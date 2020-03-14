@@ -1,8 +1,11 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.UserEntity;
+import com.mall.wms.vo.UserListIn;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -25,5 +28,7 @@ public interface UserMapper {
     UserEntity selectCustomerByUserNameAndRole(@Param("userName")String userName,@Param("role") Integer role,@Param("type")Integer type);
 
     Long selectCount();
+
+    List<UserEntity> selectAllByCondition(UserListIn in);
 
 }

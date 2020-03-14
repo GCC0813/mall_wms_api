@@ -73,7 +73,7 @@ public class UserEntity implements Serializable {
     private String headIcon;
 
     /**
-     * 状态位
+     * 状态位 0:未启用，1:启用
      */
     private Integer status;
 
@@ -81,6 +81,11 @@ public class UserEntity implements Serializable {
      * 签名
      */
     private String tag;
+
+    /**
+     * 注册时间戳
+     */
+    private Integer regTime;
 
     /**
      * 添加时间

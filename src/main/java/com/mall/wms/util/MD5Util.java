@@ -34,6 +34,6 @@ public class MD5Util {
     }
 
     public static void main(String[] args) {
-    	System.out.println(encrypt("19970813GCC"));
+    	System.out.println(encrypt("111"));
     }
 }
