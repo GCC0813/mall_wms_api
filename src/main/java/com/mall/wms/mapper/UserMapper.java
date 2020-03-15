@@ -31,4 +31,6 @@ public interface UserMapper {
 
     List<UserEntity> selectAllByCondition(UserListIn in);
 
+    int updateStatusById(@Param("status")Integer status,@Param("id")Integer id);
+
 }

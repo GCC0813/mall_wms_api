@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX;
 import static com.mall.wms.util.DateUtil.date2Format;
 
 @Data
@@ -46,7 +47,7 @@ public class UserListOut {
         public UserOut(UserEntity u) {
             this.id = u.getId();
             this.nick = u.getNick();
-            this.headIcon = u.getHeadIcon();
+            this.headIcon = String.format(STATIC_RESOURCES_PREFIX,u.getHeadIcon());
             this.sex = u.getSex() == 0 ? "男" : u.getSex() == 1 ? "女" : "未知";
             this.mobile = u.getMobile();
             this.email = u.getMail();

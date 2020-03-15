@@ -43,8 +43,7 @@ public class UserManagementService {
         if(Objects.isNull(userEntity)){
             throw new BizException(CODE_201);
         }
-        userEntity.setStatus(in.getType());
-        int row = userMapper.updateByPrimaryKeySelective(userEntity);
+        int row = userMapper.updateStatusById(in.getType(),in.getUserId());
         if(row < 1){
             throw new BizException(CODE_208);
         }

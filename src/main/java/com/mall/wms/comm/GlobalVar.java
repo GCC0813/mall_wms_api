@@ -12,7 +12,7 @@ public class GlobalVar {
     //邮箱正则
     public static final String MAIL_REGULAR = "^[0-9A-Za-z][\\.-_0-9A-Za-z]*@[0-9A-Za-z]+(?:\\.[0-9A-Za-z]+)+$";
 
-
+    public static final String STATIC_RESOURCES_PREFIX= "http://static.gcc666.top/%s";
 
 
 }

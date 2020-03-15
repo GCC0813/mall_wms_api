@@ -1,6 +1,7 @@
 package com.mall.wms.vo;
 
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 
 @Data

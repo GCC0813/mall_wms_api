@@ -7,7 +7,7 @@
     <result column="mail" jdbcType="VARCHAR" property="mail" />
     <result column="nick" jdbcType="VARCHAR" property="nick" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="birth" jdbcType="INTEGER" property="birth" />
     <result column="role" jdbcType="INTEGER" property="role" />
     <result column="province" jdbcType="VARCHAR" property="province" />
@@ -97,7 +97,7 @@
       <if test="tag != null">
         tag,
       </if>
-      <if test="reg_time!=null">
+      <if test="regTime!=null">
         reg_time,
       </if>
       <if test="createTime != null">
@@ -154,7 +154,7 @@
         #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
-        #{regTime},
+        #{regTime,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -180,7 +180,7 @@
         `password` = #{password,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
-        sex = #{sex,jdbcType=TINYINT},
+        sex = #{sex,jdbcType=INTEGER},
       </if>
       <if test="birth != null">
         birth = #{birth,jdbcType=INTEGER},
@@ -210,7 +210,7 @@
         tag = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
-       reg_time= #{regTime},
+       reg_time= #{regTime,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -279,12 +279,13 @@
     from user
     where status=1
     AND role = 1
+    and is_delete=1
   </select>
 
   <select id="selectAllByCondition" resultMap="BaseResultMap" parameterType="com.mall.wms.vo.UserListIn">
     select <include refid="Base_Column_List"/>
     from user
-    where 1=1
+    where role = 1
     <if test="startTime != null">
       and reg_time >= #{startTime}
     </if>
@@ -297,9 +298,16 @@
     <if test="email != null">
       and email = #{email}
     </if>
-    <if test="phone != null">
+    <if test="phone != null ">
       and mobile = #{phone}
     </if>
-    and role = 1
+    and is_delete=1
   </select>
+
+  <update id="updateStatusById">
+    update user
+    set status = #{status}
+    where id = #{id}
+    and is_delete=1
+  </update>
 </mapper>
