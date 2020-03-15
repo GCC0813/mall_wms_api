@@ -36,33 +36,32 @@ public class UserService {
     @Autowired
     HttpServletRequest httpServletRequest;
 
-    public CodeMsg login(LoginIn in){
+    public CodeMsg login(LoginIn in) {
         String userName = in.getUserName();
         Integer role = in.getRole();
-        UserEntity userEntity = userMapper.selectAdminByUserNameAndRole(userName,role);
-        if(role == 1){
-            int type = 0;
-            if(userName.contains("@")){
-                if(!Pattern.compile(MAIL_REGULAR).matcher(userName).matches()){
+        int type = 0;
+        if (role == 1) {
+            if (userName.contains("@")) {
+                if (!Pattern.compile(MAIL_REGULAR).matcher(userName).matches()) {
                     throw new BizException(CODE_207);
                 }
-            }else {
+                type = 1;
+            } else {
                 /*if(!Pattern.compile(PHONE_REGULAR).matcher(userName).matches()){
                     throw new BizException(CODE_206);
                 }*/
-                type = 1;
+                type = 2;
             }
-           userEntity = userMapper.selectCustomerByUserNameAndRole(userName,role,type);
         }
-
-        if(Objects.isNull(userEntity)){
+        UserEntity userEntity = userMapper.selectCustomerByUserNameAndRole(userName, role, type);
+        if (Objects.isNull(userEntity)) {
             return CODE_201;
         }
-        if(!encrypt(in.getPassword()).equals(userEntity.getPassword())){
+        if (!encrypt(in.getPassword()).equals(userEntity.getPassword())) {
             return CODE_205;
         }
-        httpSession.setAttribute("user",userEntity);
-        userLoginMapper.insertSelective(new UserLoginEntity(userEntity.getId(),in.getIp()));
+        httpSession.setAttribute("user", userEntity);
+        userLoginMapper.insertSelective(new UserLoginEntity(userEntity.getId(), in.getIp()));
         return CODE_200;
     }
 
