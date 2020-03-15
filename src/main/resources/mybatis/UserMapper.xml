@@ -262,15 +262,16 @@
   <select id="selectCustomerByUserNameAndRole" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from user
-    where
+    where role = #{role}
     <if test="type == 0">
-      mail = #{userName}
+     and  nick = #{userName}
     </if>
     <if test="type == 1">
-      mobile = #{userName}
+      and mail = #{userName}
     </if>
-    and
-    role =#{role}
+    <if test="type == 2">
+      and mobile = #{userName}
+    </if>
   </select>
 
   <select id="selectCount" resultType="java.lang.Long">
