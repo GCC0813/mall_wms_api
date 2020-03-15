@@ -22,8 +22,8 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, mobile, mail, nick, `password`, sex, birth, role, province, city, district,
-    `level`, head_icon, `status`, tag, reg_time, create_time, update_time
+    id, mobile, mail, nick, password, sex, birth, role, province, city, district,
+    level, head_icon, status, tag, reg_time, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -303,6 +303,20 @@
     </if>
     and is_delete=1
   </select>
+
+  <select id="selectUserInfo" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List"/>
+  from user
+  where mail = #{email}
+    or mobile = #{moblie}
+  </select>
+
+  <insert id="insertUserInfo" parameterType="com.mall.wms.vo.UserResiterIn">
+     insert into user (mobile,mail,role,password,reg_time)
+    values  #{moblie,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR},
+      #{role,jdbcType=INTEGER}, #{reg_time,jdbcType=INTEGER}
+  </insert>
+
 
   <update id="updateStatusById">
     update user

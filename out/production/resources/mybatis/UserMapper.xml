@@ -17,12 +17,13 @@
     <result column="head_icon" jdbcType="VARCHAR" property="headIcon" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="reg_time" javaType="INTEGER" property="regTime"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, mobile, mail, nick, `password`, sex, birth, role, province, city, district,
-    `level`, head_icon, `status`, tag, create_time, update_time
+    id, mobile, mail, nick, password, sex, birth, role, province, city, district,
+    level, head_icon, status, tag, reg_time, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -96,6 +97,9 @@
       <if test="tag != null">
         tag,
       </if>
+      <if test="reg_time!=null">
+        reg_time,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -149,6 +153,9 @@
       <if test="tag != null">
         #{tag,jdbcType=VARCHAR},
       </if>
+      <if test="regTime != null">
+        #{regTime},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -201,6 +208,9 @@
       </if>
       <if test="tag != null">
         tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+       reg_time= #{regTime},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -267,5 +277,42 @@
     select count(id)
     from user
     where status=1
+    AND role = 1
   </select>
+
+  <select id="selectAllByCondition" resultMap="BaseResultMap" parameterType="com.mall.wms.vo.UserListIn">
+    select <include refid="Base_Column_List"/>
+    from user
+    where 1=1
+    <if test="startTime != null">
+      and reg_time >= #{startTime}
+    </if>
+    <if test="endTime != null">
+      and reg_time <![CDATA[<=]]> #{endTime}
+    </if>
+    <if test="userName != null">
+      and nick = #{userName}
+    </if>
+    <if test="email != null">
+      and email = #{email}
+    </if>
+    <if test="phone != null">
+      and mobile = #{phone}
+    </if>
+    and role = 1
+  </select>
+
+  <select id="selectUserInfo" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List"/>
+  from user
+  where mail = #{email}
+    or mobile = #{moblie}
+  </select>
+
+  <insert id="insertUserInfo" parameterType="com.mall.wms.vo.UserResiterIn">
+     insert into user (mobile,mail,role,password,reg_time)
+    values  #{moblie,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR},
+      #{role,jdbcType=INTEGER}, #{reg_time,jdbcType=INTEGER}
+  </insert>
+
 </mapper>
