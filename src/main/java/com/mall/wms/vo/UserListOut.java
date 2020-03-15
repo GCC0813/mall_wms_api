@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+import static com.mall.wms.util.DateUtil.date2Format;
+
 @Data
 public class UserListOut {
 
@@ -32,6 +34,8 @@ public class UserListOut {
 
         private String address;
 
+        private String regTime;
+
         private Integer status;
 
 
@@ -49,7 +53,8 @@ public class UserListOut {
             this.level = String.format("V%s", u.getLevel());
             this.address = (StringUtils.isNotBlank(u.getProvince()) ? u.getProvince() : "") +
                     (StringUtils.isNotBlank(u.getCity()) ? u.getCity() : "") + (StringUtils.isNotBlank(u.getDistrict()) ? u.getDistrict() : "");
-            this.status = u.getStatus();
+           this.regTime=date2Format(u.getCreateTime(),"yyyy年MM月dd日");
+           this.status = u.getStatus();
         }
     }
 

@@ -36,9 +36,6 @@ public class UserService {
     @Autowired
     HttpServletRequest httpServletRequest;
 
-    @Autowired
-    private RedisOperation redisOperation;
-
     public CodeMsg login(LoginIn in){
         String userName = in.getUserName();
         Integer role = in.getRole();
@@ -47,12 +44,12 @@ public class UserService {
             int type = 0;
             if(userName.contains("@")){
                 if(!Pattern.compile(MAIL_REGULAR).matcher(userName).matches()){
-                    throw new BizException(CODE_206);
-                }
-            }else {
-                if(!Pattern.compile(PHONE_REGULAR).matcher(userName).matches()){
                     throw new BizException(CODE_207);
                 }
+            }else {
+                /*if(!Pattern.compile(PHONE_REGULAR).matcher(userName).matches()){
+                    throw new BizException(CODE_206);
+                }*/
                 type = 1;
             }
            userEntity = userMapper.selectCustomerByUserNameAndRole(userName,role,type);
