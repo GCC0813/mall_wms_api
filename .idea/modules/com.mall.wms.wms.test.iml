@@ -124,5 +124,5 @@
     <orderEntry type="library" name="Gradle: org.opentest4j:opentest4j:1.2.0" level="project" />
     <orderEntry type="library" name="Gradle: org.ow2.asm:asm:5.0.4" level="project" />
   </component>
-  <component name="TestModuleProperties" production-module="com.mall.wms.wms.main" />
+  <component name="TestModuleProperties" production-module="wms.main" />
 </module>

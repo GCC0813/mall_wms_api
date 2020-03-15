@@ -2,6 +2,7 @@ package com.mall.wms.mapper;
 
 import com.mall.wms.entity.UserEntity;
 import com.mall.wms.vo.UserListIn;
+import com.mall.wms.vo.UserResiterIn;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,5 +31,9 @@ public interface UserMapper {
     Long selectCount();
 
     List<UserEntity> selectAllByCondition(UserListIn in);
+
+    List<UserEntity> selectUserInfo(@Param("moblie")String moblie,@Param("email")String email);
+
+    int insertUserInfo(UserResiterIn in);
 
 }
