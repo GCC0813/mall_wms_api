@@ -73,7 +73,7 @@
       <if test="birth != null">
         birth,
       </if>
-      <if test="type != null">
+      <if test="role != null">
         role,
       </if>
       <if test="province != null">
@@ -129,7 +129,7 @@
       <if test="birth != null">
         #{birth,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
+      <if test="role != null">
         #{role,jdbcType=INTEGER},
       </if>
       <if test="province != null">
@@ -185,7 +185,7 @@
       <if test="birth != null">
         birth = #{birth,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
+      <if test="role != null">
         role = #{type,jdbcType=INTEGER},
       </if>
       <if test="province != null">
@@ -301,7 +301,7 @@
     <if test="phone != null ">
       and mobile = #{phone}
     </if>
-    and is_delete=1
+    and status != 3
   </select>
 
   <select id="selectUserInfo" resultMap="BaseResultMap">

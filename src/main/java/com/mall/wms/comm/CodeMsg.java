@@ -37,6 +37,10 @@ public enum  CodeMsg {
 
     CODE_301(301,"手机已注册"),
     CODE_302(302,"邮箱已注册"),
+
+    CODE_303(303, "删除失败"),
+
+
     ;
     private int code;
 

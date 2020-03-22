@@ -1,10 +1,7 @@
 package com.mall.wms.controller;
 
 import com.mall.wms.service.UserManagementService;
-import com.mall.wms.vo.EnAndDisIn;
-import com.mall.wms.vo.JsonOut;
-import com.mall.wms.vo.UserListIn;
-import com.mall.wms.vo.UserListOut;
+import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +21,8 @@ public class UserManagementController {
         return new JsonOut<>(userManagementService.getUserList(in));
     }
 
-    @PostMapping("enable-disabled")
-    public JsonOut enAndDis(@RequestBody @Validated EnAndDisIn in){
-        return new JsonOut<>(userManagementService.enAndDis(in));
+    @PostMapping("user-operation")
+    public JsonOut userOperation(@RequestBody @Validated UserOperationIn in){
+        return new JsonOut<>(userManagementService.userOperation(in));
     }
-
 }
