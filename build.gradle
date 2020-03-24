@@ -66,4 +66,7 @@ dependencies {
     compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.10'
     //qiniu SDK
     compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.27'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.2.2.RELEASE'
+
 }
