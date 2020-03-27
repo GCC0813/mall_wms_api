@@ -47,7 +47,7 @@ public class GoodsController {
      */
     @PostMapping("details")
     public JsonOut goodsDetails(@RequestBody @Validated GoodsDetailsIn in){
-        return null;
+        return JsonOut.ok(goodsService.goodsDetails(in));
     }
 
 

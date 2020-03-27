@@ -6,12 +6,14 @@ import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.mapper.GoodsMapper;
 import com.mall.wms.vo.GoodsAuditListIn;
+import com.mall.wms.vo.GoodsDetailsIn;
 import com.mall.wms.vo.GoodsToExamineIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.mall.wms.comm.CodeMsg.*;
 
@@ -54,6 +56,14 @@ public class GoodsService {
             throw new BizException(CODE_210);
         }
         return CODE_200;
+    }
+
+    public GoodsEntity goodsDetails(GoodsDetailsIn in){
+        GoodsEntity entity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
+        if(Objects.isNull(entity)){
+            throw new BizException(CODE_304);
+        }
+        return entity;
     }
 
 }

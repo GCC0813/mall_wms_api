@@ -40,6 +40,8 @@ public enum  CodeMsg {
 
     CODE_303(303, "删除失败"),
 
+    CODE_304(304,"该商品不存在！"),
+
 
     ;
     private int code;

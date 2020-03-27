@@ -12,5 +12,5 @@ import javax.validation.constraints.NotNull;
 public class GoodsDetailsIn {
 
     @NotNull(message = "商品id不能为空")
-    private Integer goodsId;
+    private Long goodsId;
 }
