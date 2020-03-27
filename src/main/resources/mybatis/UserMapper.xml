@@ -6,6 +6,7 @@
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="mail" jdbcType="VARCHAR" property="mail" />
     <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="age" javaType="INTEGER" property="age"/>
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="birth" jdbcType="INTEGER" property="birth" />
@@ -22,7 +23,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, mobile, mail, nick, password, sex, birth, role, province, city, district,
+    id, mobile, mail, nick, age,password, sex, birth, role, province, city, district,
     level, head_icon, status, tag, reg_time, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -63,6 +64,9 @@
       </if>
       <if test="nick != null">
         nick,
+      </if>
+      <if test="age != null">
+        age,
       </if>
       <if test="password != null">
         `password`,
@@ -120,6 +124,9 @@
       <if test="nick != null">
         #{nick,jdbcType=VARCHAR},
       </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
@@ -175,6 +182,9 @@
       </if>
       <if test="nick != null">
         nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
       </if>
       <if test="password != null">
         `password` = #{password,jdbcType=VARCHAR},

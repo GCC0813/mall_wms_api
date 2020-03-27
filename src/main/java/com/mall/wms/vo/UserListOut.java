@@ -39,6 +39,12 @@ public class UserListOut {
 
         private Integer status;
 
+        private String province;
+
+        private String city;
+
+        private String district;
+
 
         public UserOut() {
         }
@@ -47,15 +53,18 @@ public class UserListOut {
         public UserOut(UserEntity u) {
             this.id = u.getId();
             this.nick = u.getNick();
-            this.headIcon = String.format(STATIC_RESOURCES_PREFIX,u.getHeadIcon());
+            this.headIcon = String.format(STATIC_RESOURCES_PREFIX, u.getHeadIcon());
             this.sex = u.getSex() == 0 ? "男" : u.getSex() == 1 ? "女" : "未知";
             this.mobile = u.getMobile();
             this.email = u.getMail();
             this.level = String.format("V%s", u.getLevel());
             this.address = (StringUtils.isNotBlank(u.getProvince()) ? u.getProvince() : "") +
                     (StringUtils.isNotBlank(u.getCity()) ? u.getCity() : "") + (StringUtils.isNotBlank(u.getDistrict()) ? u.getDistrict() : "");
-           this.regTime=date2Format(u.getCreateTime(),"yyyy年MM月dd日");
-           this.status = u.getStatus();
+            this.regTime = date2Format(u.getCreateTime(), "yyyy年MM月dd日");
+            this.status = u.getStatus();
+            this.province = u.getProvince();
+            this.city = u.getCity();
+            this.district = u.getDistrict();
         }
     }
 

@@ -1,7 +1,9 @@
 package com.mall.wms.controller;
 
 import com.mall.wms.entity.UserEntity;
+import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.service.UserService;
+import com.mall.wms.vo.GetUserInfoByIdIn;
 import com.mall.wms.vo.JsonOut;
 import com.mall.wms.vo.LoginIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     @PostMapping("login")
     public JsonOut login(@RequestBody @Validated LoginIn in){
@@ -46,5 +49,9 @@ public class UserController {
         return new JsonOut<>(userService.loginOut());
     }
 
+    @PostMapping("get-user-info-by-id")
+    public JsonOut getUserInfoById(@RequestBody @Validated GetUserInfoByIdIn in ){
+        return JsonOut.ok(userService.getUserInfoById(in));
+    }
 
 }

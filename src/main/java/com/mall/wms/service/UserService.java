@@ -7,6 +7,7 @@ import com.mall.wms.entity.UserEntity;
 import com.mall.wms.entity.UserLoginEntity;
 import com.mall.wms.mapper.UserLoginMapper;
 import com.mall.wms.mapper.UserMapper;
+import com.mall.wms.vo.GetUserInfoByIdIn;
 import com.mall.wms.vo.LoginIn;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -92,6 +93,15 @@ public class UserService {
             throw new BizException(CODE_208);
         }
         return userEntity;
+    }
+
+    public UserEntity getUserInfoById(GetUserInfoByIdIn in){
+        UserEntity entity = userMapper.selectByPrimaryKey(in.getId());
+        if(Objects.isNull(entity)){
+            throw new BizException(CODE_201);
+        }
+        entity.setHeadIcon(String.format(STATIC_RESOURCES_PREFIX, entity.getHeadIcon()));
+        return entity;
     }
 
 }

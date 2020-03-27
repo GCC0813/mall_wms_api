@@ -28,6 +28,11 @@ public class UserEntity implements Serializable {
     private String nick;
 
     /**
+     * 年龄
+     */
+    private Integer age;
+
+    /**
      * 密码
      */
     private String password;
