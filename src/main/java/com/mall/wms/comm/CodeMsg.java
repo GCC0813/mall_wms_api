@@ -42,6 +42,9 @@ public enum  CodeMsg {
 
     CODE_304(304,"该商品不存在！"),
 
+    CODE_305(305,"增加用户失败！"),
+
+    CODE_306(306,"该用户已存在！请确认手机号或邮箱"),
 
     ;
     private int code;

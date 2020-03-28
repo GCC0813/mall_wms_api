@@ -14,5 +14,7 @@ public class GlobalVar {
 
     public static final String STATIC_RESOURCES_PREFIX= "http://static.gcc666.top/%s";
 
+    public static final String DEFAULT_HEAD="default_head.jpg";
+
 
 }

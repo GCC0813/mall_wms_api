@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
+import static com.mall.wms.comm.GlobalVar.DEFAULT_HEAD;
+
 /**
  * @author: cjn
  * @date:2020/3/15 14:38
@@ -20,5 +22,7 @@ public class UserResiterIn {
 
     private int role;
 
-    private int reg_time = (int) System.currentTimeMillis()/1000;
+    private Long reg_time = System.currentTimeMillis();
+
+    private String headIcon = DEFAULT_HEAD;
 }
