@@ -1,9 +1,11 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.GoodsCategoryEntity;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface GoodsCategoryMapper {
     int deleteByPrimaryKey(Integer id);
 
