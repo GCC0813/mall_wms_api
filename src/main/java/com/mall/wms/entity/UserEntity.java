@@ -90,7 +90,7 @@ public class UserEntity implements Serializable {
     /**
      * 注册时间戳
      */
-    private Integer regTime;
+    private Long regTime;
 
     /**
      * 添加时间

@@ -18,7 +18,7 @@
     <result column="head_icon" jdbcType="VARCHAR" property="headIcon" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
-    <result column="reg_time" javaType="INTEGER" property="regTime"/>
+    <result column="reg_time" javaType="LONG" property="regTime"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -161,7 +161,7 @@
         #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
-        #{regTime,jdbcType=INTEGER},
+        #{regTime,javaType=LONG},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -220,7 +220,7 @@
         tag = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
-       reg_time= #{regTime,jdbcType=INTEGER},
+       reg_time= #{regTime,javaType=LONG},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -229,26 +229,6 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.mall.wms.entity.UserEntity">
-    update user
-    set mobile = #{mobile,jdbcType=VARCHAR},
-      mail = #{mail,jdbcType=VARCHAR},
-      nick = #{nick,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=TINYINT},
-      birth = #{birth,jdbcType=INTEGER},
-      role = #{type,jdbcType=INTEGER},
-      province = #{province,jdbcType=VARCHAR},
-      city = #{city,jdbcType=VARCHAR},
-      district = #{district,jdbcType=VARCHAR},
-      `level` = #{level,jdbcType=INTEGER},
-      head_icon = #{headIcon,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=INTEGER},
-      tag = #{tag,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -290,6 +270,7 @@
     where status=1
     AND role = 1
     and is_delete=1
+    and status != 3
   </select>
 
   <select id="selectAllByCondition" resultMap="BaseResultMap" parameterType="com.mall.wms.vo.UserListIn">
@@ -322,9 +303,9 @@
   </select>
 
   <insert id="insertUserInfo" parameterType="com.mall.wms.vo.UserResiterIn">
-     insert into user (mobile,mail,role,password,reg_time)
+     insert into user (mobile,mail,role,password,reg_time,head_icon)
     values  #{moblie,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{passWord,jdbcType=VARCHAR},
-      #{role,jdbcType=INTEGER}, #{reg_time,jdbcType=INTEGER}
+      #{role,jdbcType=INTEGER}, #{reg_time,jdbcType=INTEGER},#{headIcon}
   </insert>
 
 
@@ -334,4 +315,17 @@
     where id = #{id}
     and is_delete=1
   </update>
+
+  <select id="selectUserByPhoneAndEmail" parameterType="com.mall.wms.vo.IsHasUserIn" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from user
+    where  role = 1
+    <if test="mobile != null">
+      and mobile = #{mobile}
+    </if>
+    <if test="email != null">
+     and mail = #{email}
+    </if>
+    and status != 3
+  </select>
 </mapper>

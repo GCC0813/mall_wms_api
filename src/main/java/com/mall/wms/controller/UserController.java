@@ -4,6 +4,7 @@ import com.mall.wms.entity.UserEntity;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.service.UserService;
 import com.mall.wms.vo.GetUserInfoByIdIn;
+import com.mall.wms.vo.IsHasUserIn;
 import com.mall.wms.vo.JsonOut;
 import com.mall.wms.vo.LoginIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,6 @@ public class UserController {
         return new JsonOut<>(userService.login(in));
     }
 
-
     @PostMapping("loginOut")
     public JsonOut loginOut(){
         return new JsonOut<>(userService.loginOut());
@@ -39,9 +39,9 @@ public class UserController {
         return new JsonOut<>(userService.updateUserInfo(in));
     }
 
-    @PostMapping("register")
-    public JsonOut register(@RequestBody @Validated UserEntity in){
-        return new JsonOut<>(userService.register(in));
+    @PostMapping("add")
+    public JsonOut addUser(@RequestBody @Validated UserEntity in){
+        return new JsonOut<>(userService.addUser(in));
     }
 
     @PostMapping("getUserInfo")
@@ -52,6 +52,11 @@ public class UserController {
     @PostMapping("get-user-info-by-id")
     public JsonOut getUserInfoById(@RequestBody @Validated GetUserInfoByIdIn in ){
         return JsonOut.ok(userService.getUserInfoById(in));
+    }
+
+    @PostMapping("is-has-user")
+    public JsonOut isHasUser(@RequestBody @Validated IsHasUserIn in){
+        return new JsonOut(userService.isHasUser(in));
     }
 
 }

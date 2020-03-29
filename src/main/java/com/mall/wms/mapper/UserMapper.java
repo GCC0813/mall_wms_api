@@ -1,6 +1,7 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.UserEntity;
+import com.mall.wms.vo.IsHasUserIn;
 import com.mall.wms.vo.UserListIn;
 import com.mall.wms.vo.UserResiterIn;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,8 +21,6 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(UserEntity record);
 
-    int updateByPrimaryKey(UserEntity record);
-
     UserEntity selectByUserAndPassword(@Param("userName")String userName ,@Param("password")String password);
 
     UserEntity selectAdminByUserNameAndRole(@Param("userName")String userName,@Param("role") Integer role);
@@ -37,5 +36,7 @@ public interface UserMapper {
     List<UserEntity> selectUserInfo(@Param("moblie")String moblie,@Param("email")String email);
 
     int insertUserInfo(UserResiterIn in);
+
+    UserEntity selectUserByPhoneAndEmail(IsHasUserIn in);
 
 }

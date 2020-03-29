@@ -8,7 +8,9 @@ import com.mall.wms.entity.UserLoginEntity;
 import com.mall.wms.mapper.UserLoginMapper;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.vo.GetUserInfoByIdIn;
+import com.mall.wms.vo.IsHasUserIn;
 import com.mall.wms.vo.LoginIn;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -72,6 +74,9 @@ public class UserService {
     }
 
     public CodeMsg updateUserInfo(UserEntity in){
+        if(StringUtils.isNotBlank(in.getPassword())){
+            in.setPassword(encrypt(in.getPassword()));
+        }
         int row = userMapper.updateByPrimaryKeySelective(in);
         if(row<1){
             return CODE_202;
@@ -79,7 +84,18 @@ public class UserService {
         return CODE_200;
     }
 
-    public CodeMsg register(UserEntity in){
+    public CodeMsg addUser(UserEntity in){
+        IsHasUserIn isHasUserIn = new IsHasUserIn();
+        isHasUserIn.setMobile(in.getMobile());
+        UserEntity entity = userMapper.selectUserByPhoneAndEmail(isHasUserIn);
+        if(!Objects.isNull(entity)){
+           throw new BizException(CODE_306);
+        }
+        if(StringUtils.isNotBlank(in.getPassword())){
+            in.setPassword(encrypt(in.getPassword()));
+        }
+        in.setHeadIcon(DEFAULT_HEAD);
+        in.setRegTime(System.currentTimeMillis()/1000);
         int row = userMapper.insertSelective(in);
         if(row<1){
             return CODE_203;
@@ -104,4 +120,20 @@ public class UserService {
         return entity;
     }
 
+    public CodeMsg isHasUser(IsHasUserIn in){
+        UserEntity entity = userMapper.selectUserByPhoneAndEmail(in);
+        if(!Objects.isNull(entity)){
+            if(in.getId()!=null && entity.getId().equals(in.getId())){
+                if(in.getEmail()!=null&&in.getEmail().equals(entity.getMail())){
+                    return CODE_200;
+                }
+                if (in.getMobile()!=null&&in.getMobile().equals(entity.getMobile())){
+                    return CODE_200;
+                }
+            }else {
+                throw new BizException(CODE_306);
+            }
+        }
+        return CODE_200;
+    }
 }
