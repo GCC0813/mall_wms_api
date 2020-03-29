@@ -337,4 +337,11 @@
     from goods
     where status=1
   </select>
+  
+  <select id="selectGetGoodsList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from goods
+    where status=1
+    order by weight
+  </select>
 </mapper>

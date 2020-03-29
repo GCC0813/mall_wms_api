@@ -4,6 +4,8 @@ import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.vo.GoodsAuditListIn;
 import com.mall.wms.vo.GoodsToExamineIn;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -27,4 +29,11 @@ public interface GoodsMapper {
 
     Long selectCount();
 
+    List<GoodsEntity> selectGetGoodsList();
+
+    List<GoodsEntity> selectGoodsByName(@Param("name") String name );
+
+    List<GoodsEntity> selectGoodsByTag(@Param("tagId") int tagId);
+
+    List<GoodsEntity> selectGoodsByVriety(@Param("vrietyId")int vrietyId);
 }

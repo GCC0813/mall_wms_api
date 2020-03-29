@@ -337,4 +337,40 @@
     from goods
     where status=1
   </select>
+  
+  <select id="selectGetGoodsList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from goods
+    where status=1
+    order by weight
+  </select>
+
+  <select id="selectGoodsByName" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    <if test="name != null "></if>
+    where name like concat(concat('%',#{phone}),'%')
+    and status =1
+    order by weight
+  </select>
+  <select id="selectGoodsByTag" parameterType="java.lang.Integer" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    where tag_id=#{tagId}
+    and
+    status =1
+    order by weight
+  </select>
+
+  <select id="selectGoodsByVriety" parameterType="java.lang.Integer" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    where category_id=#{vrietyId}
+    and
+    status =1
+    order by weight
+  </select>
 </mapper>

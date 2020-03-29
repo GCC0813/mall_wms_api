@@ -2,10 +2,7 @@ package com.mall.wms.controller;
 
 import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.GoodsService;
-import com.mall.wms.vo.JsonOut;
-import com.mall.wms.vo.GoodsAuditListIn;
-import com.mall.wms.vo.GoodsDetailsIn;
-import com.mall.wms.vo.GoodsToExamineIn;
+import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,6 +64,42 @@ public class GoodsController {
         return new JsonOut<>(goodsService.setGoodsStatus(in)) ;
     }
 
+    /**
+     * 商品链表
+     */
+    @PostMapping("goodsList")
+    public JsonOut getGoodsList(){
+        return new JsonOut<>(goodsService.getGoodsList());
+    }
 
+    /**
+     * 商品名字搜索
+     */
+    @PostMapping("goodsName")
+    public JsonOut getGoodFormName(@RequestBody @Validated GoodNameIn goodNameIn){
+        return new JsonOut<>(goodsService.getGoodName(goodNameIn));
+    }
 
+    /**
+     * 商品总类
+     */
+    @PostMapping("goodsVariety")
+    public JsonOut getGoodsVariety(){
+          return new JsonOut<>(goodsService.getGoodsVariety());
+    }
+
+    /**
+     * 根据标签查商品
+     */
+    public JsonOut getGoodsByTag(@RequestBody @Validated GoodTagIn goodTagIn){
+        return new JsonOut(goodsService.getGoodsByTag(goodTagIn));
+    }
+
+    /**
+     * 根据商品种类查商品
+     */
+    public JsonOut getGoodsByVriety(@RequestBody @Validated GoodCategoryIn goodCategoryIn){
+        return new JsonOut(goodsService.getGoodsByVriety(goodCategoryIn));
+    }
 }
+

@@ -6,8 +6,9 @@
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="mail" jdbcType="VARCHAR" property="mail" />
     <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="age" javaType="INTEGER" property="age"/>
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="birth" jdbcType="INTEGER" property="birth" />
     <result column="role" jdbcType="INTEGER" property="role" />
     <result column="province" jdbcType="VARCHAR" property="province" />
@@ -22,7 +23,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, mobile, mail, nick, password, sex, birth, role, province, city, district,
+    id, mobile, mail, nick, age,password, sex, birth, role, province, city, district,
     level, head_icon, status, tag, reg_time, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -64,6 +65,9 @@
       <if test="nick != null">
         nick,
       </if>
+      <if test="age != null">
+        age,
+      </if>
       <if test="password != null">
         `password`,
       </if>
@@ -73,7 +77,7 @@
       <if test="birth != null">
         birth,
       </if>
-      <if test="type != null">
+      <if test="role != null">
         role,
       </if>
       <if test="province != null">
@@ -97,7 +101,7 @@
       <if test="tag != null">
         tag,
       </if>
-      <if test="reg_time!=null">
+      <if test="regTime!=null">
         reg_time,
       </if>
       <if test="createTime != null">
@@ -120,6 +124,9 @@
       <if test="nick != null">
         #{nick,jdbcType=VARCHAR},
       </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
@@ -129,7 +136,7 @@
       <if test="birth != null">
         #{birth,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
+      <if test="role != null">
         #{role,jdbcType=INTEGER},
       </if>
       <if test="province != null">
@@ -154,7 +161,7 @@
         #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
-        #{regTime},
+        #{regTime,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -176,16 +183,19 @@
       <if test="nick != null">
         nick = #{nick,jdbcType=VARCHAR},
       </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
       <if test="password != null">
         `password` = #{password,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
-        sex = #{sex,jdbcType=TINYINT},
+        sex = #{sex,jdbcType=INTEGER},
       </if>
       <if test="birth != null">
         birth = #{birth,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
+      <if test="role != null">
         role = #{type,jdbcType=INTEGER},
       </if>
       <if test="province != null">
@@ -210,7 +220,7 @@
         tag = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
-       reg_time= #{regTime},
+       reg_time= #{regTime,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -262,15 +272,16 @@
   <select id="selectCustomerByUserNameAndRole" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from user
-    where
+    where role = #{role}
     <if test="type == 0">
-      mail = #{userName}
+     and  nick = #{userName}
     </if>
     <if test="type == 1">
-      mobile = #{userName}
+      and mail = #{userName}
     </if>
-    and
-    role =#{role}
+    <if test="type == 2">
+      and mobile = #{userName}
+    </if>
   </select>
 
   <select id="selectCount" resultType="java.lang.Long">
@@ -278,12 +289,13 @@
     from user
     where status=1
     AND role = 1
+    and is_delete=1
   </select>
 
   <select id="selectAllByCondition" resultMap="BaseResultMap" parameterType="com.mall.wms.vo.UserListIn">
     select <include refid="Base_Column_List"/>
     from user
-    where 1=1
+    where role = 1
     <if test="startTime != null">
       and reg_time >= #{startTime}
     </if>
@@ -296,10 +308,10 @@
     <if test="email != null">
       and email = #{email}
     </if>
-    <if test="phone != null">
+    <if test="phone != null ">
       and mobile = #{phone}
     </if>
-    and role = 1
+    and status != 3
   </select>
 
   <select id="selectUserInfo" resultMap="BaseResultMap">
@@ -315,4 +327,11 @@
       #{role,jdbcType=INTEGER}, #{reg_time,jdbcType=INTEGER}
   </insert>
 
+
+  <update id="updateStatusById">
+    update user
+    set status = #{status}
+    where id = #{id}
+    and is_delete=1
+  </update>
 </mapper>

@@ -5,35 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="715e2624-1d0d-4cce-b5ec-0d324db15424" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserResgiterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserResgiterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserResiterIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodCategoryIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodNameIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagsOut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodVrietyOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/com.mall.wms.wms.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.mall.wms.wms.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/com.mall.wms.wms.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.mall.wms.wms.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/comm/CodeMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/comm/CodeMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/comm/GlobalVar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/comm/GlobalVar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/GoodsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/GoodsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/UserManagementController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/controller/UserManagementController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/entity/ManagementListEntity.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/entity/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/entity/UserEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/ManagementListMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/GoodsMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/GoodsMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/UserOrderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/mapper/UserOrderMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/HomeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/HomeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/GoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/GoodsService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/UserManagementService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/UserManagementService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/util/MD5Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/util/MD5Util.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/HomeInfoOut$Management.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/HomeInfoOut.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/HomeInfoOut.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/EnAndDisIn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/GoodsDetailsIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/GoodsDetailsIn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/UserListOut.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/mall/wms/vo/UserListOut.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/ManagementListMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/mybatis/GoodsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/mybatis/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/UserOrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/mybatis/UserOrderMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/GoodsMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -89,33 +91,26 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+            <state relative-caret-position="330">
+              <caret line="94" column="46" lean-forward="true" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1072#1073#0" expanded="true" />
-                <element signature="e#1134#1135#0" expanded="true" />
+                <element signature="e#1923#1924#0" expanded="true" />
+                <element signature="e#1974#1975#0" expanded="true" />
+                <element signature="e#2179#2180#0" expanded="true" />
+                <element signature="e#2216#2217#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/LoginIn.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagIn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+            <state relative-caret-position="304">
+              <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,70 +119,73 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserResgiterService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="304" column="2" selection-start-line="304" selection-start-column="2" selection-end-line="304" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserResiterIn.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodsDetailsIn.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="30" />
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="143" column="42" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodCategoryIn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodVrietyOut.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="16" column="29" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserResgiterController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="292">
+              <caret line="43" column="20" lean-forward="true" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/GoodsMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="366" column="21" selection-start-line="366" selection-start-column="21" selection-end-line="366" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="520">
+              <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -221,10 +219,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/UserLoginMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserLoginMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/util/NetUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/in/login/LoginIn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/JsonOut.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/in/EnAndDisIn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/out/user/UserListOut.java" />
@@ -250,21 +244,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/service/HomeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/out/HomeInfoOut.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodsDetailsIn.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserManagementService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/HomeInfoOut.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserResiterIn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserResgiterController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserResgiterService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserResgiterController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodNameIn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagsOut.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodVrietyOut.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsCategoryMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/GoodsCategoryMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsTagMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/GoodsTagMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/Good.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagIn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodCategoryIn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/GoodsMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java" />
       </list>
     </option>
   </component>
@@ -275,10 +280,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1369" />
-    <option name="height" value="365" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1383" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -287,7 +292,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -365,7 +369,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="mall" type="462c0819:PsiDirectoryNode" />
               <item name="wms" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms" type="b2602c69:ProjectViewProjectNode" />
@@ -397,6 +401,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -504,7 +509,8 @@
       <workItem from="1584175291953" duration="77000" />
       <workItem from="1584177852516" duration="802000" />
       <workItem from="1584178691017" duration="174000" />
-      <workItem from="1584178895140" duration="12456000" />
+      <workItem from="1584178895140" duration="13146000" />
+      <workItem from="1585387129871" duration="11080000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1583674842907</created>
@@ -534,11 +540,18 @@
       <option name="project" value="LOCAL" />
       <updated>1584174617092</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix">
+      <created>1584262601549</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1584262601549</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57994000" />
+    <option name="totallyTimeSpent" value="69764000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -550,7 +563,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Web" order="4" side_tool="true" />
       <window_info id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.33914208" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.28954422" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Spring" order="0" weight="0.3295082" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.5442623" />
@@ -563,7 +576,7 @@
       <window_info anchor="bottom" id="Build" order="8" weight="0.40651557" />
       <window_info anchor="bottom" id="Message" order="9" />
       <window_info anchor="bottom" id="Find" order="10" />
-      <window_info active="true" anchor="bottom" id="Run" order="11" visible="true" weight="0.2266289" />
+      <window_info anchor="bottom" id="Run" order="11" weight="0.52691215" />
       <window_info anchor="bottom" id="Debug" order="12" weight="0.5141643" />
       <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
@@ -609,73 +622,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.servlet/jakarta.servlet-api/4.0.3/e9d245a3171cbbfee13207df0f288035b1b25709/jakarta.servlet-api-4.0.3-sources.jar!/javax/servlet/http/HttpSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="67" column="17" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.session/spring-session-core/2.2.0.RELEASE/9f1700ae79de19cd2c106abac6ff507fc8ff83f6/spring-session-core-2.2.0.RELEASE-sources.jar!/org/springframework/session/MapSession.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.session/spring-session-data-redis/2.2.2.RELEASE/c93b94dab4e4f667d2d4323adc717ad83f67fe09/spring-session-data-redis-2.2.2.RELEASE-sources.jar!/org/springframework/session/data/redis/RedisFlushMode.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.2.2.RELEASE/f00ed1b4c867366979ed716dcc4f762f3b20714a/spring-boot-autoconfigure-2.2.2.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/session/SessionProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="90" column="16" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
-          <folding>
-            <element signature="e#2620#2621#0" expanded="true" />
-            <element signature="e#2649#2650#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.2.2.RELEASE/f1a256beaabd2f2314e8a4286713b2d4770378fc/spring-boot-2.2.2.RELEASE-sources.jar!/org/springframework/boot/web/servlet/server/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="57" column="16" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
-          <folding>
-            <element signature="e#1487#1488#0" expanded="true" />
-            <element signature="e#1516#1517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.session/spring-session-data-redis/2.2.2.RELEASE/c93b94dab4e4f667d2d4323adc717ad83f67fe09/spring-session-data-redis-2.2.2.RELEASE-sources.jar!/org/springframework/session/data/redis/config/annotation/web/http/EnableRedisHttpSession.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/config/RedisConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="52" lean-forward="true" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.2.2.RELEASE/f00ed1b4c867366979ed716dcc4f762f3b20714a/spring-boot-autoconfigure-2.2.2.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/session/RedisSessionProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
-          <folding>
-            <element signature="e#1967#1968#0" expanded="true" />
-            <element signature="e#2000#2001#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.2.2.RELEASE/2e7876e237097d36bfffd5ce3416930f6d6b579c/spring-boot-autoconfigure-2.2.2.RELEASE.jar!/META-INF/spring-configuration-metadata.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/entity/UserLoginEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/entity/ManagementListEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/entity/ManagementListEntity.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/CommService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -695,16 +642,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/ManagementListMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/ManagementListMapper.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/in/user/LoginIn.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserInfoOut.java">
@@ -719,16 +657,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/EnAndDisIn.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodsDetailsIn.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserListOut.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -798,25 +726,7 @@
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/ManagementListMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="105" column="2" selection-start-line="105" selection-start-column="2" selection-end-line="105" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1331#1332#0" expanded="true" />
-            <element signature="e#1358#1359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/ManagementListMapper.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserManagementController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -828,16 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/WmsApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -861,20 +761,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1275">
           <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserLoginMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -885,64 +790,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserLoginMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-912" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserResiterIn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1072#1073#0" expanded="true" />
-            <element signature="e#1134#1135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="304" column="2" selection-start-line="304" selection-start-column="2" selection-end-line="304" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
+        <state relative-caret-position="1330">
           <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -952,21 +802,198 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/UserResgiterService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        <state relative-caret-position="551">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserResgiterController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/UserMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="6004">
+          <caret line="316" column="2" selection-start-line="316" selection-start-column="2" selection-end-line="316" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/UserResiterIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/UserResgiterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodNameIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagsOut.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/WmsApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/GoodsCategoryMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="169" column="22" selection-start-line="169" selection-start-column="22" selection-end-line="169" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsCategoryMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="52" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsTagMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodsDetailsIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodTagIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodCategoryIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/vo/GoodVrietyOut.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/controller/GoodsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="94" column="46" lean-forward="true" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1923#1924#0" expanded="true" />
+            <element signature="e#1974#1975#0" expanded="true" />
+            <element signature="e#2179#2180#0" expanded="true" />
+            <element signature="e#2216#2217#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/GoodsTagMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="190" column="23" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/GoodsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="366" column="21" selection-start-line="366" selection-start-column="21" selection-end-line="366" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/mapper/GoodsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/service/GoodsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="143" column="42" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mall/wms/comm/CodeMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="43" column="20" lean-forward="true" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
         </state>
       </provider>
     </entry>
