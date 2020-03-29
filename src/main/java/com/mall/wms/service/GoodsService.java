@@ -140,7 +140,7 @@ public class GoodsService {
     public List<GoodsEntity> getGoodsByTag(GoodTagIn goodTagIn){
         List<GoodsEntity> goodsEntityList = goodsMapper.selectGoodsByTag(goodTagIn.getTagId());
         if(CollectionUtils.isEmpty(goodsEntityList)){
-            throw new BizException(CODE_305);
+            throw new BizException(CODE_307);
         }
         return goodsEntityList;
     }
@@ -151,7 +151,7 @@ public class GoodsService {
     public List<GoodsEntity> getGoodsByVriety(GoodCategoryIn goodCategoryIn){
         List<GoodsEntity> goodsEntityList = goodsMapper.selectGoodsByVriety(goodCategoryIn.getVarietyId());
         if(CollectionUtils.isEmpty(goodsEntityList)){
-            throw new BizException(CODE_305);
+            throw new BizException(CODE_307);
         }
         return goodsEntityList;
     }
