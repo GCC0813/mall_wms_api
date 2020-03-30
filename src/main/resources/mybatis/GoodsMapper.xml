@@ -374,4 +374,15 @@
     status =1
     order by weight
   </select>
+
+  <select id="selectGoodsByIds" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    WHERE id in
+    <foreach collection="goodsIds" item="ids" open="(" close=")" separator=",">
+    #{ids}
+    </foreach>
+    and status =1
+  </select>
 </mapper>
