@@ -13,6 +13,12 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+bootJar {
+    exclude 'application.properties'
+    exclude 'application.yml'
+    exclude 'banner.txt'
+}
+
 allprojects{
     repositories {
         //默认设置阿里云仓库
