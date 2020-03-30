@@ -1,5 +1,6 @@
 package com.mall.wms.controller;
 
+import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.GoodsService;
 import com.mall.wms.vo.*;
@@ -91,6 +92,7 @@ public class GoodsController {
     /**
      * 根据标签查商品
      */
+    @PostMapping("/getGoodsByTag")
     public JsonOut getGoodsByTag(@RequestBody @Validated GoodTagIn goodTagIn){
         return new JsonOut(goodsService.getGoodsByTag(goodTagIn));
     }
@@ -98,8 +100,35 @@ public class GoodsController {
     /**
      * 根据商品种类查商品
      */
+    @PostMapping("/getGoodsByVriety")
     public JsonOut getGoodsByVriety(@RequestBody @Validated GoodCategoryIn goodCategoryIn){
         return new JsonOut(goodsService.getGoodsByVriety(goodCategoryIn));
+    }
+
+    /**
+     * 商品收藏
+     */
+    @PostMapping("/goodsCollect")
+    public JsonOut goodsCollect(@RequestBody @Validated GoodCollectIn goodCollectIn){
+        goodsService.goodsCollect(goodCollectIn);
+        return new JsonOut(CodeMsg.CODE_200);
+    }
+
+    /**
+     * 取消商品收藏
+     */
+    @PostMapping("/goodsDelectCollect")
+    public JsonOut goodsDelectCollect(@RequestBody @Validated GoodCollectIn goodCollectIn){
+        goodsService.goodsDelectCollect(goodCollectIn);
+        return new JsonOut(CodeMsg.CODE_200);
+    }
+
+    /**
+     * 用户的收藏列表
+     */
+    @PostMapping("/goodsCollectList")
+    public JsonOut goodsCollectList(@RequestBody @Validated UserIn userIn){
+         return new JsonOut(goodsService.goodsCollectList(userIn));
     }
 }
 

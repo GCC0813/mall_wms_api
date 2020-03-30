@@ -36,4 +36,6 @@ public interface GoodsMapper {
     List<GoodsEntity> selectGoodsByTag(@Param("tagId") int tagId);
 
     List<GoodsEntity> selectGoodsByVriety(@Param("vrietyId")int vrietyId);
+
+    List<GoodsEntity> selectGoodsByIds(@Param("goodsIds") List<Integer> goodsIds);
 }
