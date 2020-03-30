@@ -49,7 +49,7 @@ public class GoodsController {
 
 
     /**
-     * 待审核商品列表和已审核列表
+     * 商品列表（包含搜索）
      */
     @PostMapping("goods-list")
     public JsonOut goodsList(@RequestBody @Validated GoodsAuditListIn in){

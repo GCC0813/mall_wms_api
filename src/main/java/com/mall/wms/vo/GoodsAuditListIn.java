@@ -17,6 +17,8 @@ public class GoodsAuditListIn {
 
     private Integer categoryId;
 
+    private Integer tag_id;
+
     private Integer pageNo = 1;
 
     private Integer pageSize=10;
