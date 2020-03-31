@@ -13,8 +13,6 @@ import java.util.List;
 public interface GoodsMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(GoodsEntity record);
-
     int insertSelective(GoodsEntity record);
 
     GoodsEntity selectByPrimaryKey(Long id);

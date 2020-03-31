@@ -113,6 +113,11 @@ public class GoodsEntity{
     private Long updateBy;
 
     /**
+     * 创建时间时间戳
+     */
+    private Long timeCreate;
+
+    /**
      * 创建时间
      */
     private Date createTime;
