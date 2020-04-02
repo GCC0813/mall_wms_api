@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+
 /**
  * @author GCC
  * create on 2020/3/6 13:43
@@ -84,9 +86,9 @@ public class GoodsController {
     /**
      * 商品总类
      */
-    @PostMapping("goodsVariety")
+    @PostMapping("/goodsVariety")
     public JsonOut getGoodsVariety(){
-          return new JsonOut<>(goodsService.getGoodsVariety());
+          return new JsonOut<>(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety()));
     }
 
     /**
