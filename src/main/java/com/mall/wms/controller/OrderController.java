@@ -22,9 +22,6 @@ import java.util.List;
 @RestController
 public class OrderController {
 
-    @Autowired
-    UserOrderMapper userOrderMapper;
-
     @PostMapping("add")
     public JsonOut add(){
         return null;
@@ -42,6 +39,11 @@ public class OrderController {
 
     @PostMapping("change-status")
     public JsonOut changeStatus(@RequestBody @Validated ChangeOrderStatusIn in){
+        return new JsonOut(CodeMsg.CODE_200);
+    }
+
+    @PostMapping("to-deliver-goods")
+    public JsonOut toDeliverGoods(){
         return new JsonOut(CodeMsg.CODE_200);
     }
 }
