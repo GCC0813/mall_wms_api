@@ -18,11 +18,13 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
+import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
+import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
 
 /**
  * @author GCC
@@ -60,13 +62,34 @@ public class GoodsService {
     }
 
 
-    public List<GoodsEntity> goodsList(GoodsAuditListIn in){
-        PageHelper.startPage(in.getPageNo(),in.getPageSize());
-        return goodsMapper.selectByCondition(in);
+    public GoodsListOut goodsList(GoodsAuditListIn in){
+
+        List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
+        List<GoodsTagEntity> goodsTagEntityList = goodsTagMapper.selectByPrimaryKeyList();
+        Map<Integer,GoodsCategoryEntity> goodsCategoryEntityMap = new HashMap<>();
+        if(!CollectionUtils.isEmpty(goodsCategoryEntities)){
+            goodsCategoryEntityMap = goodsCategoryEntities.stream().collect(Collectors.toMap(GoodsCategoryEntity::getId, Function.identity()));
+        }
+        Map<Integer,GoodsTagEntity> goodsTagEntityMap = new HashMap<>();
+        if(!CollectionUtils.isEmpty(goodsTagEntityList)){
+            goodsTagEntityMap=goodsTagEntityList.stream().collect(Collectors.toMap(GoodsTagEntity::getId, Function.identity()));
+        }
+        List<GoodsEntity> goodsBySql = goodsMapper.selectByCondition(in);
+        List<GoodsListOut.GoodsOut> goodsOuts = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(goodsBySql)){
+            for (GoodsEntity goods:goodsBySql){
+                goodsOuts.add(new GoodsListOut.GoodsOut(goods,goodsCategoryEntityMap,goodsTagEntityMap));
+            }
+        }
+        return new GoodsListOut((long)goodsBySql.size(),goodsOuts);
     }
 
 
     public CodeMsg setGoodsStatus(GoodsToExamineIn in){
+        GoodsEntity goodsEntity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
+        if(Objects.isNull(goodsEntity)){
+            throw new BizException(CODE_213);
+        }
         int row = goodsMapper.updateByType(in);
         if(row < 1){
             throw new BizException(CODE_210);
@@ -108,7 +131,7 @@ public class GoodsService {
     /**
      * 商品种类
      */
-    public List<GoodVrietyOut> getGoodsVariety(){
+    public List<GoodVrietyOut> getGoodsVariety(int from){
         List<GoodVrietyOut> goodVrietyOutList = new ArrayList<>();
         List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
         List<GoodsTagEntity> goodsTagEntityList = goodsTagMapper.selectByPrimaryKeyList();
@@ -116,16 +139,21 @@ public class GoodsService {
             throw new BizException(CODE_305);
         }
         else {
+            if(from==1){
+                goodVrietyOutList.add(new GoodVrietyOut(STATIC_CATEGORY,new ArrayList<GoodTagsOut>(){{
+                    add(new GoodTagsOut(STATIC_TAGS));
+                }}));
+            }
             for (GoodsCategoryEntity categoryEntity : goodsCategoryEntities) {
                 List<GoodTagsOut> goodTagsOutList = new ArrayList<>();
                 GoodVrietyOut goodVrietyOut = new GoodVrietyOut();
                 goodVrietyOut.setVrietyId(categoryEntity.getId());
-                goodVrietyOut.setVrietyName(categoryEntity.getName());
+                goodVrietyOut.setVrietyName(categoryEntity.getName().trim());
                 for (GoodsTagEntity tagEntity : goodsTagEntityList) {
                     if (categoryEntity.getId().equals(tagEntity.getCategoryId())) {
                         GoodTagsOut goodTagsOut = new GoodTagsOut();
                         goodTagsOut.setTagId(tagEntity.getId());
-                        goodTagsOut.setTagName(tagEntity.getName());
+                        goodTagsOut.setTagName(tagEntity.getName().trim());
                         goodTagsOutList.add(goodTagsOut);
                     }
                 }

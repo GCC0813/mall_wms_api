@@ -1,5 +1,6 @@
 package com.mall.wms.vo;
 
+import com.mall.wms.enums.GoodsEnums;
 import lombok.Data;
 
 /**
@@ -12,4 +13,12 @@ public class GoodTagsOut {
     private Integer tagId;
 
     private String tagName;
+
+    public GoodTagsOut() {
+    }
+
+    public GoodTagsOut(GoodsEnums e) {
+        this.tagId = e.getId();
+        this.tagName = e.getName();
+    }
 }

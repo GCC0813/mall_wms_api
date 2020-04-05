@@ -18,4 +18,15 @@ public class DateUtil {
         }
         return new SimpleDateFormat(format).format(date);
     }
+
+    public static String timeStamp2Date(Long timeStamp,String format){
+        if(StringUtils.isBlank(format)){
+            format="yyyy-MM-dd HH:mm:ss";
+        }
+        return new SimpleDateFormat(format).format(timeStamp);
+    }
+
+    public static void main(String[] args) {
+        System.out.println( timeStamp2Date(System.currentTimeMillis(),"yyyy年MM月dd日 HH:mm"));
+    }
 }

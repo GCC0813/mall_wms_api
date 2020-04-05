@@ -1,5 +1,6 @@
 package com.mall.wms.vo;
 
+import com.mall.wms.enums.GoodsEnums;
 import lombok.Data;
 import sun.dc.pr.PRError;
 
@@ -17,4 +18,13 @@ public class GoodVrietyOut {
     private String vrietyName;
 
     private List<GoodTagsOut> goodTagsList;
+
+    public GoodVrietyOut() {
+    }
+
+    public GoodVrietyOut(GoodsEnums e, List<GoodTagsOut> goodTagsList) {
+        this.vrietyId = e.getId();
+        this.vrietyName = e.getName();
+        this.goodTagsList = goodTagsList;
+    }
 }

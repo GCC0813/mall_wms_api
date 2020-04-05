@@ -60,7 +60,7 @@ public class UserListOut {
             this.level = String.format("V%s", u.getLevel());
             this.address = (StringUtils.isNotBlank(u.getProvince()) ? u.getProvince() : "") +
                     (StringUtils.isNotBlank(u.getCity()) ? u.getCity() : "") + (StringUtils.isNotBlank(u.getDistrict()) ? u.getDistrict() : "");
-            this.regTime = date2Format(u.getCreateTime(), "yyyy年MM月dd日");
+            this.regTime = date2Format(u.getCreateTime(), "yyyy年MM月dd日 HH:mm");
             this.status = u.getStatus();
             this.province = u.getProvince();
             this.city = u.getCity();

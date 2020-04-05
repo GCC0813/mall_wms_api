@@ -12,11 +12,16 @@ import javax.validation.constraints.NotNull;
 public class GoodsToExamineIn {
 
     @NotNull(message = "goodsId不能为空！")
-    private Integer goodsId;
+    private Long goodsId;
 
     /**
-     * 1:待审核，2:已审核，3:上架中，4：下架中
+     * 1:上架或者下架，2:审核状态
      */
+    @NotNull(message = "type不能为空！")
     private Integer type;
+
+    @NotNull(message = "type不能为空！")
+    private Integer status;
+
 
 }

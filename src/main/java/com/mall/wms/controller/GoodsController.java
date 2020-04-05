@@ -83,12 +83,17 @@ public class GoodsController {
         return new JsonOut<>(goodsService.getGoodName(goodNameIn));
     }
 
+    @PostMapping("/goodsVarietyAdmin")
+    public JsonOut getGoodsVarietyAdmin(){
+        return new JsonOut<>(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(1)));
+    }
+
     /**
      * 商品总类
      */
     @PostMapping("/goodsVariety")
     public JsonOut getGoodsVariety(){
-          return new JsonOut<>(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety()));
+          return new JsonOut<>(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(2)));
     }
 
     /**
