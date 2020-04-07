@@ -6,6 +6,7 @@ import com.mall.wms.entity.GoodsTagEntity;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +86,8 @@ public class GoodsListOut {
         public GoodsOut(GoodsEntity e, Map<Integer, GoodsCategoryEntity> goodsCategoryEntityMap,Map<Integer, GoodsTagEntity> goodsTagEntityMap) {
             this.id = e.getId();
             this.name = e.getName();
-            this.picUrls = String.format(STATIC_RESOURCES_PREFIX,e.getPicUrls());
+            List<String> pics = Arrays.asList(e.getPicUrls().split(","));
+            this.picUrls = String.format(STATIC_RESOURCES_PREFIX,pics.get(0));
             this.tagName = goodsTagEntityMap.get(e.getTagId()).getName();
             this.categoryName = goodsCategoryEntityMap.get(e.getCategoryId()).getName();
             this.marketPrice = e.getMarketPrice();
@@ -93,7 +95,7 @@ public class GoodsListOut {
             this.statusStr = status==1?"上架中":status==2?"下架中":"";
             this.checkStatus = e.getCheckStatus().intValue();
             this.checkStatusStr = checkStatus==0?"未审核":checkStatus==1?"审核通过":checkStatus==2?"审核不通过":"";
-            this.createTime = timeStamp2Date(e.getTimeCreate()*1000L,"yyyy年MM月dd日 HH:mm");
+            this.createTime = timeStamp2Date(e.getTimeCreate(),"yyyy年MM月dd日 HH:mm");
         }
     }
 

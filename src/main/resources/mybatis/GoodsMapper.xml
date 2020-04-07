@@ -19,7 +19,7 @@
     <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
     <result column="check_status" jdbcType="TINYINT" property="checkStatus" />
     <result column="check_by" jdbcType="BIGINT" property="checkBy" />
-    <result column="check_time" jdbcType="INTEGER" property="checkTime" />
+    <result column="check_time" jdbcType="BIGINT" property="checkTime" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="update_by" jdbcType="BIGINT" property="updateBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -168,7 +168,7 @@
         #{checkBy,jdbcType=BIGINT},
       </if>
       <if test="checkTime != null">
-        #{checkTime,jdbcType=INTEGER},
+        #{checkTime,jdbcType=BIGINT},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=BIGINT},
@@ -239,7 +239,7 @@
         check_by = #{checkBy,jdbcType=BIGINT},
       </if>
       <if test="checkTime != null">
-        check_time = #{checkTime,jdbcType=INTEGER},
+        check_time = #{checkTime,jdbcType=BIGINT},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=BIGINT},
@@ -277,7 +277,7 @@
       delete_flag = #{deleteFlag,jdbcType=TINYINT},
       check_status = #{checkStatus,jdbcType=TINYINT},
       check_by = #{checkBy,jdbcType=BIGINT},
-      check_time = #{checkTime,jdbcType=INTEGER},
+      check_time = #{checkTime,jdbcType=BIGINT},
       create_by = #{createBy,jdbcType=BIGINT},
       update_by = #{updateBy,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -305,12 +305,6 @@
     </if>
     <if test="startTime!=null">
       and time_create <![CDATA[<=]]> #{endTime}
-    </if>
-    <if test="goodsId!=null">
-      and id =#{goodsId}
-    </if>
-    <if test="goodsId!=null">
-      and id =#{goodsId}
     </if>
     <if test="vague!=null">
       and name like concat('%',#{vague},'%')
@@ -386,5 +380,11 @@
     #{ids}
     </foreach>
     and status =1
+  </select>
+
+  <select id="selectGoodsCount" resultType="java.lang.Long">
+    select count(id)
+    from goods
+    where delete_flag = 0
   </select>
 </mapper>

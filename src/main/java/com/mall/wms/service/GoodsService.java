@@ -1,16 +1,11 @@
 package com.mall.wms.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.comm.exceptionhandler.BizException;
-import com.mall.wms.entity.GoodsCategoryEntity;
-import com.mall.wms.entity.GoodsEntity;
-import com.mall.wms.entity.GoodsTagEntity;
-import com.mall.wms.entity.UserCollectEntity;
-import com.mall.wms.mapper.GoodsCategoryMapper;
-import com.mall.wms.mapper.GoodsMapper;
-import com.mall.wms.mapper.GoodsTagMapper;
-import com.mall.wms.mapper.UserCollectMapper;
+import com.mall.wms.entity.*;
+import com.mall.wms.mapper.*;
 import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +40,9 @@ public class GoodsService {
     @Autowired
     private UserCollectMapper userCollectMapper;
 
+    @Autowired
+    private UserMapper userMapper;
+
     public CodeMsg addGoods(GoodsEntity in){
         int row  = goodsMapper.insertSelective(in);
         if(row<1){
@@ -63,7 +61,6 @@ public class GoodsService {
 
 
     public GoodsListOut goodsList(GoodsAuditListIn in){
-
         List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
         List<GoodsTagEntity> goodsTagEntityList = goodsTagMapper.selectByPrimaryKeyList();
         Map<Integer,GoodsCategoryEntity> goodsCategoryEntityMap = new HashMap<>();
@@ -74,6 +71,7 @@ public class GoodsService {
         if(!CollectionUtils.isEmpty(goodsTagEntityList)){
             goodsTagEntityMap=goodsTagEntityList.stream().collect(Collectors.toMap(GoodsTagEntity::getId, Function.identity()));
         }
+        Page page = PageHelper.startPage(in.getCurrentPage(),in.getPageSize());
         List<GoodsEntity> goodsBySql = goodsMapper.selectByCondition(in);
         List<GoodsListOut.GoodsOut> goodsOuts = new ArrayList<>();
         if(!CollectionUtils.isEmpty(goodsBySql)){
@@ -81,7 +79,7 @@ public class GoodsService {
                 goodsOuts.add(new GoodsListOut.GoodsOut(goods,goodsCategoryEntityMap,goodsTagEntityMap));
             }
         }
-        return new GoodsListOut((long)goodsBySql.size(),goodsOuts);
+        return new GoodsListOut(page.getTotal(),goodsOuts);
     }
 
 
@@ -97,17 +95,31 @@ public class GoodsService {
         return CODE_200;
     }
 
-    public GoodsEntity goodsDetails(GoodsDetailsIn in){
+    public GoodsDetailsOut goodsDetails(GoodsDetailsIn in){
         GoodsEntity entity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
         if(Objects.isNull(entity)){
             throw new BizException(CODE_304);
         }
-        return entity;
+        List<GoodsTagEntity> goodsTagEntityList = goodsTagMapper.selectByPrimaryKeyList();
+        Map<Integer,GoodsTagEntity> goodsTagEntityMap = new HashMap<>();
+        if(!CollectionUtils.isEmpty(goodsTagEntityList)){
+            goodsTagEntityMap=goodsTagEntityList.stream().collect(Collectors.toMap(GoodsTagEntity::getId, Function.identity()));
+        }
+        List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
+        Map<Integer,GoodsCategoryEntity> goodsCategoryEntityMap = new HashMap<>();
+        if(!CollectionUtils.isEmpty(goodsCategoryEntities)){
+            goodsCategoryEntityMap = goodsCategoryEntities.stream().collect(Collectors.toMap(GoodsCategoryEntity::getId, Function.identity()));
+        }
+        List<UserEntity> userEntitieList = userMapper.selectAdminUserList();
+        Map<Integer,UserEntity> userEntityHashMap = new HashMap<>();
+        if(!CollectionUtils.isEmpty(userEntitieList)){
+            userEntityHashMap=userEntitieList.stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
+        }
+        return new GoodsDetailsOut(entity,goodsTagEntityMap,goodsCategoryEntityMap,userEntityHashMap);
     }
 
     /**
      * 商品链表
-     * @return
      */
     public List<GoodsEntity> getGoodsList(){
         List<GoodsEntity> entityList = goodsMapper.selectGetGoodsList();
@@ -167,7 +179,6 @@ public class GoodsService {
     /**
      * 根据标签查商品
      */
-
     public List<GoodsEntity> getGoodsByTag(GoodTagIn goodTagIn){
         List<GoodsEntity> goodsEntityList = goodsMapper.selectGoodsByTag(goodTagIn.getTagId());
         if(CollectionUtils.isEmpty(goodsEntityList)){

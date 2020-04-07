@@ -15,9 +15,6 @@ public class GoodsAuditListIn {
     private Long startTime;
 
     private Long endTime;
-
-    private Long goodsId;
-
     //模糊搜索
     private String vague;
 
@@ -25,7 +22,7 @@ public class GoodsAuditListIn {
 
     private Integer tagId;
 
-    private Integer pageNo = 1;
+    private Integer currentPage;
 
-    private Integer pageSize=10;
+    private Integer pageSize;
 }

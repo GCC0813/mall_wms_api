@@ -270,7 +270,7 @@
     where status=1
     AND role = 1
     and is_delete=1
-    and status != 3
+    and status != 2
   </select>
 
   <select id="selectAllByCondition" resultMap="BaseResultMap" parameterType="com.mall.wms.vo.UserListIn">
@@ -292,7 +292,7 @@
     <if test="phone != null ">
       and mobile = #{phone}
     </if>
-    and status != 3
+    and status != 2
   </select>
 
   <select id="selectUserInfo" resultMap="BaseResultMap">
@@ -313,7 +313,7 @@
     update user
     set status = #{status}
     where id = #{id}
-    and is_delete=1
+    and is_delete = 0
   </update>
 
   <select id="selectUserByPhoneAndEmail" parameterType="com.mall.wms.vo.IsHasUserIn" resultMap="BaseResultMap">
@@ -326,6 +326,13 @@
     <if test="email != null">
      and mail = #{email}
     </if>
-    and status != 3
+    and status != 2
+  </select>
+  <select id="selectAdminUserList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from user
+    where role = 0
+    and is_delete = 0
+    and status != 2
   </select>
 </mapper>

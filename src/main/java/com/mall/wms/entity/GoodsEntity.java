@@ -100,7 +100,7 @@ public class GoodsEntity{
     /**
      * 审核时间
      */
-    private Integer checkTime;
+    private Long checkTime;
 
     /**
      * 创建人id
