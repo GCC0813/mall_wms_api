@@ -324,8 +324,8 @@
     </if>
     <if test="type==2">
      set check_status = #{status},
-     set check_by = #{userId},
-     set check_time =#{time}
+     check_by = #{userId},
+     check_time =#{time}
     </if>
     where id = #{goodsId,jdbcType=INTEGER}
     and delete_flag = 0

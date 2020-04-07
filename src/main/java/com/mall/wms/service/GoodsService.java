@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -52,7 +53,8 @@ public class GoodsService {
     GoodsSupplierMapper goodsSupplierMapper;
 
     @Autowired
-    HttpServletRequest httpServletRequest;
+    HttpSession httpSession;
+
 
     public CodeMsg addGoods(GoodsEntity in){
         int row  = goodsMapper.insertSelective(in);
@@ -92,13 +94,12 @@ public class GoodsService {
         return new GoodsListOut(page.getTotal(),goodsOuts);
     }
 
-
     public CodeMsg setGoodsStatus(GoodsToExamineIn in){
         GoodsEntity goodsEntity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
         if(Objects.isNull(goodsEntity)){
             throw new BizException(CODE_213);
         }
-        Long userId = Long.parseLong(httpServletRequest.getAttribute("userId").toString());
+        Long userId = (long) ((UserEntity)httpSession.getAttribute("user")).getId();
         in.setUserId(userId);
         int row = goodsMapper.updateStatusByType(in);
         if(row < 1){
