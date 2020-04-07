@@ -16,5 +16,7 @@ public class GlobalVar {
 
     public static final String DEFAULT_HEAD="default_head.jpg";
 
+    public static final  String GOODS_REDIS_KEY = "goodsId_key_%s";
+
 
 }

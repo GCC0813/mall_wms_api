@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.mall.wms.vo.JsonOut.ok;
+
 @RequestMapping("user-management")
 @RestController
 public class UserManagementController {
@@ -18,11 +20,11 @@ public class UserManagementController {
 
     @PostMapping("user-list")
     public JsonOut getUserList(@RequestBody @Validated UserListIn in){
-        return new JsonOut<>(userManagementService.getUserList(in));
+        return ok(userManagementService.getUserList(in));
     }
 
     @PostMapping("user-operation")
     public JsonOut userOperation(@RequestBody @Validated UserOperationIn in){
-        return new JsonOut<>(userManagementService.userOperation(in));
+        return ok(userManagementService.userOperation(in));
     }
 }

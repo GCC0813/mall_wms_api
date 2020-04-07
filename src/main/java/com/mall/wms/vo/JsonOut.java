@@ -33,7 +33,10 @@ public class JsonOut<T> {
         }
     }
 
-    public static <T> JsonOut<T> ok(T data) {
-        return new JsonOut<>(data);
+    public static <T> JsonOut<T> ok(T res) {
+        if(res instanceof CodeMsg){
+            return new JsonOut<>( (CodeMsg) res);
+        }
+        return new JsonOut<>(res);
     }
 }

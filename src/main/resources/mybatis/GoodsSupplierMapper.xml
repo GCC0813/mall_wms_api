@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall.wms.mapper.GoodsCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.mall.wms.entity.GoodsCategoryEntity">
+<mapper namespace="com.mall.wms.mapper.GoodsSupplierMapper">
+  <resultMap id="BaseResultMap" type="com.mall.wms.entity.GoodsSupplierEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="concat_name" jdbcType="VARCHAR" property="concatName" />
+    <result column="concat_phone" jdbcType="VARCHAR" property="concatPhone" />
+    <result column="concat_address" jdbcType="VARCHAR" property="concatAddress" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_card_no" jdbcType="VARCHAR" property="bankCardNo" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
     <result column="check_status" jdbcType="TINYINT" property="checkStatus" />
@@ -15,38 +20,58 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, remark, delete_flag, check_status, check_by, check_time, create_by, update_by, 
-    create_time, update_time
+    id, `name`, concat_name, concat_phone, concat_address, bank_name, bank_card_no, remark, 
+    delete_flag, check_status, check_by, check_time, create_by, update_by, create_time, 
+    update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from goods_category
+    from goods_supplier
     where id = #{id,jdbcType=INTEGER}
     and delete_flag=0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from goods_category
+    delete from goods_supplier
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.mall.wms.entity.GoodsCategoryEntity">
-    insert into goods_category (id, `name`, remark, 
-      delete_flag, check_status, check_by, 
-      check_time, create_by, update_by, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{deleteFlag,jdbcType=TINYINT}, #{checkStatus,jdbcType=TINYINT}, #{checkBy,jdbcType=BIGINT}, 
-      #{checkTime,jdbcType=INTEGER}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.mall.wms.entity.GoodsSupplierEntity">
+    insert into goods_supplier (id, `name`, concat_name, 
+      concat_phone, concat_address, bank_name, 
+      bank_card_no, remark, delete_flag, 
+      check_status, check_by, check_time, 
+      create_by, update_by, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{concatName,jdbcType=VARCHAR}, 
+      #{concatPhone,jdbcType=VARCHAR}, #{concatAddress,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{bankCardNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=TINYINT}, 
+      #{checkStatus,jdbcType=TINYINT}, #{checkBy,jdbcType=BIGINT}, #{checkTime,jdbcType=INTEGER}, 
+      #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mall.wms.entity.GoodsCategoryEntity">
-    insert into goods_category
+  <insert id="insertSelective" parameterType="com.mall.wms.entity.GoodsSupplierEntity">
+    insert into goods_supplier
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
       <if test="name != null">
         `name`,
+      </if>
+      <if test="concatName != null">
+        concat_name,
+      </if>
+      <if test="concatPhone != null">
+        concat_phone,
+      </if>
+      <if test="concatAddress != null">
+        concat_address,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no,
       </if>
       <if test="remark != null">
         remark,
@@ -83,6 +108,21 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="concatName != null">
+        #{concatName,jdbcType=VARCHAR},
+      </if>
+      <if test="concatPhone != null">
+        #{concatPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="concatAddress != null">
+        #{concatAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null">
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -112,11 +152,26 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mall.wms.entity.GoodsCategoryEntity">
-    update goods_category
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.wms.entity.GoodsSupplierEntity">
+    update goods_supplier
     <set>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="concatName != null">
+        concat_name = #{concatName,jdbcType=VARCHAR},
+      </if>
+      <if test="concatPhone != null">
+        concat_phone = #{concatPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="concatAddress != null">
+        concat_address = #{concatAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -148,9 +203,14 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mall.wms.entity.GoodsCategoryEntity">
-    update goods_category
+  <update id="updateByPrimaryKey" parameterType="com.mall.wms.entity.GoodsSupplierEntity">
+    update goods_supplier
     set `name` = #{name,jdbcType=VARCHAR},
+      concat_name = #{concatName,jdbcType=VARCHAR},
+      concat_phone = #{concatPhone,jdbcType=VARCHAR},
+      concat_address = #{concatAddress,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       delete_flag = #{deleteFlag,jdbcType=TINYINT},
       check_status = #{checkStatus,jdbcType=TINYINT},
@@ -162,12 +222,4 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="selectByPrimaryKeyList" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from goods_category
-    where delete_flag = 0
-    and check_status = 1
-  </select>
 </mapper>

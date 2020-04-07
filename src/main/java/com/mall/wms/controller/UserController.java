@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import static com.mall.wms.vo.JsonOut.ok;
+
 
 /**
  * @author GCC
@@ -26,37 +28,37 @@ public class UserController {
 
     @PostMapping("login")
     public JsonOut login(@RequestBody @Validated LoginIn in){
-        return new JsonOut<>(userService.login(in));
+        return ok(userService.login(in));
     }
 
     @PostMapping("loginOut")
     public JsonOut loginOut(){
-        return new JsonOut<>(userService.loginOut());
+        return ok(userService.loginOut());
     }
 
     @PostMapping("updateUserInfo")
     public JsonOut updateUserInfo(@RequestBody @Validated UserEntity in){
-        return new JsonOut<>(userService.updateUserInfo(in));
+        return ok(userService.updateUserInfo(in));
     }
 
     @PostMapping("add")
     public JsonOut addUser(@RequestBody @Validated UserEntity in){
-        return new JsonOut<>(userService.addUser(in));
+        return ok(userService.addUser(in));
     }
 
     @PostMapping("getUserInfo")
     public JsonOut getUserInfo(){
-        return new JsonOut<>(userService.loginOut());
+        return ok(userService.loginOut());
     }
 
     @PostMapping("get-user-info-by-id")
     public JsonOut getUserInfoById(@RequestBody @Validated GetUserInfoByIdIn in ){
-        return JsonOut.ok(userService.getUserInfoById(in));
+        return ok(userService.getUserInfoById(in));
     }
 
     @PostMapping("is-has-user")
     public JsonOut isHasUser(@RequestBody @Validated IsHasUserIn in){
-        return new JsonOut(userService.isHasUser(in));
+        return ok(userService.isHasUser(in));
     }
 
 }

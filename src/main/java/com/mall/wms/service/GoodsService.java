@@ -3,6 +3,7 @@ package com.mall.wms.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
+import com.mall.wms.comm.RedisOperation;
 import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.*;
 import com.mall.wms.mapper.*;
@@ -18,8 +19,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
+import static com.mall.wms.comm.GlobalVar.GOODS_REDIS_KEY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
+import static java.util.concurrent.TimeUnit.DAYS;
+import static java.util.concurrent.TimeUnit.MINUTES;
 
 /**
  * @author GCC
@@ -42,6 +46,9 @@ public class GoodsService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    GoodsSupplierMapper goodsSupplierMapper;
 
     public CodeMsg addGoods(GoodsEntity in){
         int row  = goodsMapper.insertSelective(in);
@@ -95,27 +102,30 @@ public class GoodsService {
         return CODE_200;
     }
 
-    public GoodsDetailsOut goodsDetails(GoodsDetailsIn in){
+    public GoodsDetailsOut goodsDetails(GoodsDetailsIn in) {
         GoodsEntity entity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
-        if(Objects.isNull(entity)){
+        if (Objects.isNull(entity)) {
             throw new BizException(CODE_304);
         }
-        List<GoodsTagEntity> goodsTagEntityList = goodsTagMapper.selectByPrimaryKeyList();
-        Map<Integer,GoodsTagEntity> goodsTagEntityMap = new HashMap<>();
-        if(!CollectionUtils.isEmpty(goodsTagEntityList)){
-            goodsTagEntityMap=goodsTagEntityList.stream().collect(Collectors.toMap(GoodsTagEntity::getId, Function.identity()));
+
+        GoodsTagEntity goodsTagEntity = goodsTagMapper.selectByPrimaryKey(entity.getTagId());
+
+        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.selectByPrimaryKey(entity.getCategoryId());
+
+        List<Long> userIds = new ArrayList<Long>() {{
+            add(entity.getCheckBy());
+            add(entity.getCreateBy());
+            add(entity.getUpdateBy());
+        }};
+
+        GoodsSupplierEntity goodsSupplierEntity = goodsSupplierMapper.selectByPrimaryKey(entity.getSupplierId());
+
+        List<UserEntity> userEntitieList = userMapper.selectAdminUserListByIds(userIds);
+        Map<Integer, UserEntity> userEntityHashMap = new HashMap<>();
+        if (!CollectionUtils.isEmpty(userEntitieList)) {
+            userEntityHashMap = userEntitieList.stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
         }
-        List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
-        Map<Integer,GoodsCategoryEntity> goodsCategoryEntityMap = new HashMap<>();
-        if(!CollectionUtils.isEmpty(goodsCategoryEntities)){
-            goodsCategoryEntityMap = goodsCategoryEntities.stream().collect(Collectors.toMap(GoodsCategoryEntity::getId, Function.identity()));
-        }
-        List<UserEntity> userEntitieList = userMapper.selectAdminUserList();
-        Map<Integer,UserEntity> userEntityHashMap = new HashMap<>();
-        if(!CollectionUtils.isEmpty(userEntitieList)){
-            userEntityHashMap=userEntitieList.stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
-        }
-        return new GoodsDetailsOut(entity,goodsTagEntityMap,goodsCategoryEntityMap,userEntityHashMap);
+        return new GoodsDetailsOut(entity, goodsTagEntity, goodsCategoryEntity, userEntityHashMap,goodsSupplierEntity);
     }
 
     /**

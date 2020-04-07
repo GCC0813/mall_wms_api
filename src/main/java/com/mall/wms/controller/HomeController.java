@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 
+import static com.mall.wms.vo.JsonOut.ok;
+
 /**
  * @author GCC
  * create on 2020/3/12 22:14
@@ -23,12 +25,12 @@ public class HomeController {
 
     @PostMapping("get-home-info")
     public JsonOut getHomeInfo(){
-        return new JsonOut<>(homeService.getHomeInfo());
+        return ok(homeService.getHomeInfo());
     }
 
     @PostMapping("my-desktop-info")
     public JsonOut myDesktopInfo(){
-        return new JsonOut<>(Collections.singletonMap("rows",
+        return ok(Collections.singletonMap("rows",
                 homeService.myDesktopInfo()));
     }
 

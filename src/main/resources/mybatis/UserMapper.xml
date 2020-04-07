@@ -328,11 +328,17 @@
     </if>
     and status != 2
   </select>
-  <select id="selectAdminUserList" resultMap="BaseResultMap">
+  <select id="selectAdminUserListByIds" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from user
     where role = 0
     and is_delete = 0
     and status != 2
+    <if test="ids!=null and ids.size>0">
+       and id in
+      <foreach collection="ids" item="id" index="index" separator=","  open="(" close=")">
+        #{id}
+      </foreach>
+    </if>
   </select>
 </mapper>

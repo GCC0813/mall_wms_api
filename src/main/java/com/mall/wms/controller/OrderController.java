@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mall.wms.vo.JsonOut.ok;
+
 /**
  * @author GCC
  * create on 2020/3/6 13:46
@@ -24,26 +26,26 @@ public class OrderController {
 
     @PostMapping("add")
     public JsonOut add(){
-        return null;
+        return ok(null);
     }
 
     @PostMapping("list")
     public JsonOut list(){
-        return null;
+        return ok(null);
     }
 
     @PostMapping("details")
     public JsonOut details(){
-        return null;
+        return ok(null);
     }
 
     @PostMapping("change-status")
     public JsonOut changeStatus(@RequestBody @Validated ChangeOrderStatusIn in){
-        return new JsonOut(CodeMsg.CODE_200);
+        return ok(CodeMsg.CODE_200);
     }
 
     @PostMapping("to-deliver-goods")
     public JsonOut toDeliverGoods(){
-        return new JsonOut(CodeMsg.CODE_200);
+        return ok(CodeMsg.CODE_200);
     }
 }

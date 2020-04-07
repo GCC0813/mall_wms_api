@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 
+import static com.mall.wms.vo.JsonOut.ok;
+
 /**
  * @author GCC
  * create on 2020/3/6 13:43
@@ -29,7 +31,7 @@ public class GoodsController {
      */
     @PostMapping("add")
     public JsonOut add(@RequestBody @Validated GoodsEntity in){
-        return new JsonOut<>(goodsService.addGoods(in));
+        return ok(goodsService.addGoods(in));
     }
 
 
@@ -38,7 +40,7 @@ public class GoodsController {
      */
     @PostMapping("change-info")
     public JsonOut changeGoodsInfo(@RequestBody @Validated GoodsEntity in){
-        return new JsonOut<>(goodsService.changeGoodsInfo(in));
+        return ok(goodsService.changeGoodsInfo(in));
     }
 
 
@@ -47,7 +49,7 @@ public class GoodsController {
      */
     @PostMapping("details")
     public JsonOut goodsDetails(@RequestBody @Validated GoodsDetailsIn in){
-        return JsonOut.ok(goodsService.goodsDetails(in));
+        return ok(goodsService.goodsDetails(in));
     }
 
 
@@ -56,7 +58,7 @@ public class GoodsController {
      */
     @PostMapping("goods-list")
     public JsonOut goodsList(@RequestBody @Validated GoodsAuditListIn in){
-        return new JsonOut<>(goodsService.goodsList(in));
+        return ok(goodsService.goodsList(in));
     }
 
     /**
@@ -64,7 +66,7 @@ public class GoodsController {
      */
     @PostMapping("set-goods-status")
     public JsonOut setGoodsStatus(@RequestBody @Validated GoodsToExamineIn in){
-        return new JsonOut<>(goodsService.setGoodsStatus(in)) ;
+        return ok(goodsService.setGoodsStatus(in)) ;
     }
 
     /**
@@ -72,7 +74,7 @@ public class GoodsController {
      */
     @PostMapping("goodsList")
     public JsonOut getGoodsList(){
-        return new JsonOut<>(goodsService.getGoodsList());
+        return ok(goodsService.getGoodsList());
     }
 
     /**
@@ -80,12 +82,17 @@ public class GoodsController {
      */
     @PostMapping("goodsName")
     public JsonOut getGoodFormName(@RequestBody @Validated GoodNameIn goodNameIn){
-        return new JsonOut<>(goodsService.getGoodName(goodNameIn));
+        return ok(goodsService.getGoodName(goodNameIn));
     }
 
     @PostMapping("/goodsVarietyAdmin")
     public JsonOut getGoodsVarietyAdmin(){
-        return new JsonOut<>(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(1)));
+        return ok(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(1)));
+    }
+    
+    @PostMapping("goodsSupplier")
+    public JsonOut getGoodsSupplier(){
+        return ok(null);
     }
 
     /**
@@ -93,7 +100,7 @@ public class GoodsController {
      */
     @PostMapping("/goodsVariety")
     public JsonOut getGoodsVariety(){
-          return new JsonOut<>(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(2)));
+          return ok(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(2)));
     }
 
     /**
@@ -101,7 +108,7 @@ public class GoodsController {
      */
     @PostMapping("/getGoodsByTag")
     public JsonOut getGoodsByTag(@RequestBody @Validated GoodTagIn goodTagIn){
-        return new JsonOut(goodsService.getGoodsByTag(goodTagIn));
+        return ok(goodsService.getGoodsByTag(goodTagIn));
     }
 
     /**
@@ -109,7 +116,7 @@ public class GoodsController {
      */
     @PostMapping("/getGoodsByVriety")
     public JsonOut getGoodsByVriety(@RequestBody @Validated GoodCategoryIn goodCategoryIn){
-        return new JsonOut(goodsService.getGoodsByVriety(goodCategoryIn));
+        return ok(goodsService.getGoodsByVriety(goodCategoryIn));
     }
 
     /**
@@ -118,7 +125,7 @@ public class GoodsController {
     @PostMapping("/goodsCollect")
     public JsonOut goodsCollect(@RequestBody @Validated GoodCollectIn goodCollectIn){
         goodsService.goodsCollect(goodCollectIn);
-        return new JsonOut(CodeMsg.CODE_200);
+        return ok(CodeMsg.CODE_200);
     }
 
     /**
@@ -127,7 +134,7 @@ public class GoodsController {
     @PostMapping("/goodsDelectCollect")
     public JsonOut goodsDelectCollect(@RequestBody @Validated GoodCollectIn goodCollectIn){
         goodsService.goodsDelectCollect(goodCollectIn);
-        return new JsonOut(CodeMsg.CODE_200);
+        return ok(CodeMsg.CODE_200);
     }
 
     /**
@@ -135,7 +142,7 @@ public class GoodsController {
      */
     @PostMapping("/goodsCollectList")
     public JsonOut goodsCollectList(@RequestBody @Validated UserIn userIn){
-         return new JsonOut(goodsService.goodsCollectList(userIn));
+         return ok(goodsService.goodsCollectList(userIn));
     }
 }
 

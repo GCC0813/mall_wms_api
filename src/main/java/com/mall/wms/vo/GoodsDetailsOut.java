@@ -1,11 +1,11 @@
 package com.mall.wms.vo;
 
-import com.mall.wms.entity.GoodsCategoryEntity;
-import com.mall.wms.entity.GoodsEntity;
-import com.mall.wms.entity.GoodsTagEntity;
-import com.mall.wms.entity.UserEntity;
+import com.mall.wms.entity.*;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX;
 import static com.mall.wms.util.DateUtil.*;
 
 @Data
-public class GoodsDetailsOut {
+public class GoodsDetailsOut implements Serializable {
 
     private Long id;
 
@@ -32,37 +32,39 @@ public class GoodsDetailsOut {
 
     private String physicalOrVirtual;
 
-    private BigDecimal marketPrice;
+    private BigDecimal marketPrice=BigDecimal.valueOf(0.00);
 
-    private BigDecimal purchasePrice;
+    private BigDecimal purchasePrice=BigDecimal.valueOf(0.00);
 
-    private String supplier;
+    private String supplier="";
 
     private Integer status;
 
-    private String statusStr;
+    private String statusStr="";
 
     private Integer checkStatus;
 
-    private String checkStatusStr;
+    private String checkStatusStr="";
 
-    private String toExamine;
+    private String toExamine="";
 
-    private String toExamineTime;
+    private String toExamineTime="";
 
-    private String founder;
+    private String founder="";
 
-    private String createTime;
+    private String createTime="";
 
-    private String modifier;
+    private String modifier="";
 
-    private String modificationTime;
+    private String modificationTime="";
 
     public GoodsDetailsOut() {
     }
 
-    public GoodsDetailsOut(GoodsEntity g, Map<Integer, GoodsTagEntity> goodsTagEntityMap,Map<Integer,
-            GoodsCategoryEntity> goodsCategoryEntityMap,Map<Integer, UserEntity> userEntityHashMap) {
+    public GoodsDetailsOut(GoodsEntity g, GoodsTagEntity goodsTagEntity,
+                           GoodsCategoryEntity goodsCategoryEntity,
+                           Map<Integer, UserEntity> userEntityHashMap,
+                           GoodsSupplierEntity goodsSupplierEntity) {
         this.id = g.getId();
         this.name = g.getName();
         this.picUrls = (Arrays.asList(g.getPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
@@ -70,14 +72,12 @@ public class GoodsDetailsOut {
         detailPics.forEach(dp-> dp = String.format(STATIC_RESOURCES_PREFIX,dp));
         this.detailPicUrls = detailPics;
         this.synopsis = g.getSynopsis();
-        GoodsCategoryEntity category=goodsCategoryEntityMap.get(g.getCategoryId());
-        this.categoryName = !Objects.isNull(category)?category.getName():"";
-        GoodsTagEntity tag = goodsTagEntityMap.get(g.getTagId());
-        this.tagName = !Objects.isNull(tag)?tag.getName():"";
+        this.categoryName = !Objects.isNull(goodsCategoryEntity)&& StringUtils.isNotBlank(goodsCategoryEntity.getName())?goodsCategoryEntity.getName():"";
+        this.tagName = !Objects.isNull(goodsTagEntity)&&StringUtils.isNotBlank(goodsTagEntity.getName())?goodsTagEntity.getName():"";
         this.physicalOrVirtual = g.getIsReal()==1?"实物":g.getIsReal()==0?"虚拟":"未知";
         this.marketPrice = g.getMarketPrice();
         this.purchasePrice = g.getPurchasePrice();
-        this.supplier = g.getSupplierId().toString();
+        this.supplier = !Objects.isNull(goodsSupplierEntity)&& StringUtils.isNotBlank(goodsSupplierEntity.getName())?goodsSupplierEntity.getName():"";
 
         int status = g.getStatus();
         this.status=status;
@@ -87,16 +87,18 @@ public class GoodsDetailsOut {
         this.checkStatus = checkStatus;
         this.checkStatusStr = checkStatus==0?"未审核":checkStatus==1?"审核通过":checkStatus==2?"审核不通过":"";
 
-        UserEntity toExamineEntity = userEntityHashMap.get(Integer.parseInt(g.getCheckBy().toString()));
-        this.toExamine = !Objects.isNull(toExamineEntity)?toExamineEntity.getNick():"";
-        this.toExamineTime = timeStamp2Date(g.getCheckTime(),"yyyy年MM月dd日 HH:mm");
+        if(!CollectionUtils.isEmpty(userEntityHashMap)){
+            UserEntity toExamineEntity = userEntityHashMap.get(g.getCheckBy().intValue());
+            this.toExamine = !Objects.isNull(toExamineEntity)?toExamineEntity.getNick():"";
+            this.toExamineTime = timeStamp2Date(g.getCheckTime(),"yyyy年MM月dd日 HH:mm");
 
-        UserEntity founderEntity = userEntityHashMap.get(Integer.parseInt(g.getCreateBy().toString()));
-        this.founder = !Objects.isNull(founderEntity)?founderEntity.getNick():"";
-        this.createTime = timeStamp2Date(g.getTimeCreate(),"yyyy年MM月dd日 HH:mm");
+            UserEntity founderEntity = userEntityHashMap.get(g.getCreateBy().intValue());
+            this.founder = !Objects.isNull(founderEntity)?founderEntity.getNick():"";
+            this.createTime = timeStamp2Date(g.getTimeCreate(),"yyyy年MM月dd日 HH:mm");
 
-        UserEntity modifierEntity = userEntityHashMap.get(Integer.parseInt(g.getUpdateBy().toString()));
-        this.modifier = !Objects.isNull(modifierEntity)?modifierEntity.getNick():"";
-        this.modificationTime = date2Format(g.getUpdateTime(),"yyyy年MM月dd日 HH:mm");
+            UserEntity modifierEntity = userEntityHashMap.get(g.getUpdateBy().intValue());
+            this.modifier = !Objects.isNull(modifierEntity)?modifierEntity.getNick():"";
+            this.modificationTime = date2Format(g.getUpdateTime(),"yyyy年MM月dd日 HH:mm");
+        }
     }
 }
