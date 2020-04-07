@@ -20,8 +20,11 @@ public class GoodsToExamineIn {
     @NotNull(message = "type不能为空！")
     private Integer type;
 
-    @NotNull(message = "type不能为空！")
+    @NotNull(message = "status不能为空！")
     private Integer status;
 
+    private Long userId;
+
+    private Long time = System.currentTimeMillis()/1000;
 
 }

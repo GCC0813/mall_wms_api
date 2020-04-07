@@ -22,7 +22,7 @@ public interface GoodsMapper {
 
     List<GoodsEntity> selectByCondition(GoodsAuditListIn in);
 
-    int updateByType(GoodsToExamineIn in);
+    int updateStatusByType(GoodsToExamineIn in);
 
     Long selectCount();
 

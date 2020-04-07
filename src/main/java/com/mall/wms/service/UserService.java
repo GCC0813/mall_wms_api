@@ -64,6 +64,7 @@ public class UserService {
             return CODE_205;
         }
         httpSession.setAttribute("user", userEntity);
+        httpServletRequest.setAttribute("userId",userEntity.getId());
         userLoginMapper.insertSelective(new UserLoginEntity(userEntity.getId(), in.getIp()));
         return CODE_200;
     }

@@ -14,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -50,6 +51,9 @@ public class GoodsService {
     @Autowired
     GoodsSupplierMapper goodsSupplierMapper;
 
+    @Autowired
+    HttpServletRequest httpServletRequest;
+
     public CodeMsg addGoods(GoodsEntity in){
         int row  = goodsMapper.insertSelective(in);
         if(row<1){
@@ -65,7 +69,6 @@ public class GoodsService {
         }
         return CODE_200;
     }
-
 
     public GoodsListOut goodsList(GoodsAuditListIn in){
         List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
@@ -95,7 +98,9 @@ public class GoodsService {
         if(Objects.isNull(goodsEntity)){
             throw new BizException(CODE_213);
         }
-        int row = goodsMapper.updateByType(in);
+        Long userId = Long.parseLong(httpServletRequest.getAttribute("userId").toString());
+        in.setUserId(userId);
+        int row = goodsMapper.updateStatusByType(in);
         if(row < 1){
             throw new BizException(CODE_210);
         }

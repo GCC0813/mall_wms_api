@@ -317,13 +317,15 @@
     </if>
   </select>
 
-  <update id="updateByType" parameterType="com.mall.wms.vo.GoodsToExamineIn">
+  <update id="updateStatusByType" parameterType="com.mall.wms.vo.GoodsToExamineIn">
     update goods
     <if test="type==1">
       set status = #{status}
     </if>
     <if test="type==2">
-     set check_status = #{status}
+     set check_status = #{status},
+     set check_by = #{userId},
+     set check_time =#{time}
     </if>
     where id = #{goodsId,jdbcType=INTEGER}
     and delete_flag = 0
