@@ -328,10 +328,10 @@
     </if>
     and status != 2
   </select>
-  <select id="selectAdminUserListByIds" resultMap="BaseResultMap">
+  <select id="selectUserListByIds" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from user
-    where role = 0
+    where role = #{role}
     and is_delete = 0
     and status != 2
     <if test="ids!=null and ids.size>0">

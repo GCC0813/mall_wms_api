@@ -39,6 +39,6 @@ public interface UserMapper {
 
     UserEntity selectUserByPhoneAndEmail(IsHasUserIn in);
 
-    List<UserEntity> selectAdminUserListByIds(@Param("ids") List<Long> ids);
+    List<UserEntity> selectUserListByIds(@Param("ids") List<Long> ids,@Param("role") Integer role);
 
 }

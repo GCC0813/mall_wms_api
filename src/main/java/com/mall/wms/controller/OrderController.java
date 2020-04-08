@@ -2,6 +2,7 @@ package com.mall.wms.controller;
 
 import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.mapper.UserOrderMapper;
+import com.mall.wms.service.OrderService;
 import com.mall.wms.vo.ChangeOrderStatusIn;
 import com.mall.wms.vo.JsonOut;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,17 @@ import static com.mall.wms.vo.JsonOut.ok;
 @RestController
 public class OrderController {
 
+    @Autowired
+    OrderService orderService;
+
     @PostMapping("add")
     public JsonOut add(){
         return ok(null);
     }
 
-    @PostMapping("list")
-    public JsonOut list(){
-        return ok(null);
+    @PostMapping("order-list")
+    public JsonOut orderList(){
+        return ok(orderService.orderList());
     }
 
     @PostMapping("details")

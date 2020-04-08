@@ -348,8 +348,9 @@
     select
     <include refid="Base_Column_List"/>
     from goods
-    <if test="name != null "></if>
+    <if test="name != null ">
     where name like concat(concat('%',#{phone}),'%')
+    </if>
     and status =1
     order by weight
   </select>

@@ -401,5 +401,6 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from user_order
+    where delete_flag = 0
   </select>
 </mapper>

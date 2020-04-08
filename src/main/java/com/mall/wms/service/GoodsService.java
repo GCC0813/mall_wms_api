@@ -126,7 +126,7 @@ public class GoodsService {
 
         GoodsSupplierEntity goodsSupplierEntity = goodsSupplierMapper.selectByPrimaryKey(entity.getSupplierId());
 
-        List<UserEntity> userEntitieList = userMapper.selectAdminUserListByIds(userIds);
+        List<UserEntity> userEntitieList = userMapper.selectUserListByIds(userIds,0);
         Map<Integer, UserEntity> userEntityHashMap = new HashMap<>();
         if (!CollectionUtils.isEmpty(userEntitieList)) {
             userEntityHashMap = userEntitieList.stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
