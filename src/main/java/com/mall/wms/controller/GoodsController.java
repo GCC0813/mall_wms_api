@@ -53,6 +53,12 @@ public class GoodsController {
     }
 
 
+    @PostMapping("details/goodsVariety")
+    public JsonOut detailsGoodsVariety(@RequestBody @Validated DetailsGoodsVarietyIn in){
+        return null;
+    }
+
+
     /**
      * 商品列表（包含搜索）
      */

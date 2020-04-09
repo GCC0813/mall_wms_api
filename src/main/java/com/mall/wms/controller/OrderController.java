@@ -5,6 +5,7 @@ import com.mall.wms.mapper.UserOrderMapper;
 import com.mall.wms.service.OrderService;
 import com.mall.wms.vo.ChangeOrderStatusIn;
 import com.mall.wms.vo.JsonOut;
+import com.mall.wms.vo.ToDeliverGoodsIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +50,8 @@ public class OrderController {
     }
 
     @PostMapping("to-deliver-goods")
-    public JsonOut toDeliverGoods(){
+    public JsonOut toDeliverGoods(@RequestBody @Validated ToDeliverGoodsIn in){
+
         return ok(CodeMsg.CODE_200);
     }
 }
