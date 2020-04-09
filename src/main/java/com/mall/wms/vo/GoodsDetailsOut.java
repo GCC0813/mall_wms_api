@@ -26,7 +26,11 @@ public class GoodsDetailsOut implements Serializable {
 
     private String synopsis;
 
+    private Integer categoryId;
+
     private String categoryName;
+
+    private Integer tagId;
 
     private String tagName;
 
@@ -70,7 +74,9 @@ public class GoodsDetailsOut implements Serializable {
         this.picUrls = (Arrays.asList(g.getPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
         this.detailPicUrls =  (Arrays.asList(g.getDetailPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
         this.synopsis = g.getSynopsis();
+        this.categoryId = g.getCategoryId();
         this.categoryName = !Objects.isNull(goodsCategoryEntity)&& StringUtils.isNotBlank(goodsCategoryEntity.getName())?goodsCategoryEntity.getName():"";
+        this.tagId = g.getTagId();
         this.tagName = !Objects.isNull(goodsTagEntity)&&StringUtils.isNotBlank(goodsTagEntity.getName())?goodsTagEntity.getName():"";
         this.physicalOrVirtual = g.getIsReal()==1?"实物":g.getIsReal()==0?"虚拟":"未知";
         this.marketPrice = g.getMarketPrice();
