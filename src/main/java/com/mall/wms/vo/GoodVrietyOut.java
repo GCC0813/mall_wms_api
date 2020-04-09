@@ -27,4 +27,10 @@ public class GoodVrietyOut {
         this.vrietyName = e.getName();
         this.goodTagsList = goodTagsList;
     }
+
+    public GoodVrietyOut(GoodVrietyOut out, List<GoodTagsOut> goodTagsList) {
+        this.vrietyId = out.getVrietyId();
+        this.vrietyName = out.getVrietyName();
+        this.goodTagsList = goodTagsList;
+    }
 }

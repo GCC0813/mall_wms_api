@@ -55,7 +55,12 @@ public class GoodsController {
 
     @PostMapping("details/goodsVariety")
     public JsonOut detailsGoodsVariety(@RequestBody @Validated DetailsGoodsVarietyIn in){
-        return null;
+        return ok(Collections.singletonMap("rows",goodsService.detailsGoodsVariety(in)));
+    }
+
+    @PostMapping("details/get_tags_by_cate")
+    public JsonOut getTagsByCate(@RequestBody @Validated DetailsGoodsVarietyIn in){
+        return ok(Collections.singletonMap("rows",goodsService.getTagsByCate(in)));
     }
 
 

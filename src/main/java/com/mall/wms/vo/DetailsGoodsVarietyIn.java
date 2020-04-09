@@ -11,9 +11,6 @@ import javax.validation.constraints.NotNull;
 @Data
 public class DetailsGoodsVarietyIn {
 
-    @NotNull(message = "goodsId不能为空！")
-    private Long goodsId;
-
     private Integer categoryId;
 
     private Integer tagId;

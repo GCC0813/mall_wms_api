@@ -13,19 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
-import static com.mall.wms.comm.GlobalVar.GOODS_REDIS_KEY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
-import static java.util.concurrent.TimeUnit.DAYS;
-import static java.util.concurrent.TimeUnit.MINUTES;
 
 /**
  * @author GCC
@@ -258,5 +253,43 @@ public class GoodsService {
             throw new BizException(CODE_307);
         }
         return goodsEntityList;
+    }
+
+    public List<GoodVrietyOut> detailsGoodsVariety(DetailsGoodsVarietyIn in){
+        List<GoodVrietyOut> goodVrietyOuts = getGoodsVariety(2);
+        List<GoodVrietyOut> goodVrieties = new ArrayList<>();
+        List<GoodTagsOut> goodTagsOuts = new ArrayList<>();
+        for (GoodVrietyOut out :goodVrietyOuts){
+            if(in.getCategoryId().equals(out.getVrietyId())){
+                for(GoodTagsOut o :out.getGoodTagsList()){
+                    if(in.getTagId().equals(o.getTagId())){
+                      goodTagsOuts.add(new GoodTagsOut(new GoodTagsOut(o)));
+                      break;
+                    }
+                }
+                for (GoodTagsOut o :out.getGoodTagsList()){
+                    if(!in.getTagId().equals(o.getTagId())){
+                        goodTagsOuts.add(new GoodTagsOut(new GoodTagsOut(o)));
+                    }
+                }
+                goodVrieties.add(new GoodVrietyOut(out,goodTagsOuts));
+                break;
+            }
+        }
+        goodVrietyOuts = goodVrietyOuts.stream().filter(g->!in.getCategoryId().equals(g.getVrietyId())&&
+                !g.getGoodTagsList().containsAll(goodTagsOuts)).collect(Collectors.toList());
+        goodVrieties.addAll(goodVrietyOuts);
+        return goodVrieties;
+    }
+
+    public List<GoodTagsOut> getTagsByCate(DetailsGoodsVarietyIn in){
+        List<GoodsTagEntity> goodsTagEntity = goodsTagMapper.selectByCateId(in.getCategoryId());
+        List<GoodTagsOut> goodTagsOuts = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(goodsTagEntity)){
+            goodsTagEntity.forEach(g->{
+                goodTagsOuts.add(new GoodTagsOut(g));
+            });
+        }
+        return goodTagsOuts;
     }
 }

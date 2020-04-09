@@ -1,6 +1,8 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.GoodsTagEntity;
+import org.apache.ibatis.annotations.Param;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
@@ -18,4 +20,7 @@ public interface GoodsTagMapper {
     int updateByPrimaryKey(GoodsTagEntity record);
 
     List<GoodsTagEntity>  selectByPrimaryKeyList();
+
+    List<GoodsTagEntity> selectByCateId(@Param("cateId")Integer id);
+
 }
