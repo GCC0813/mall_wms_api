@@ -292,4 +292,9 @@ public class GoodsService {
         }
         return goodTagsOuts;
     }
+
+    public List<GoodsSupplierEntity> getSupplierInDetails(SupplierInDetailsIn in){
+        return goodsSupplierMapper.selectAll().stream().filter(s->
+                !in.getSupplierId().equals(s.getId())).collect(Collectors.toList());
+    }
 }

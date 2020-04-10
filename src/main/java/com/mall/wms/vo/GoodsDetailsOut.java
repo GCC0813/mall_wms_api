@@ -34,11 +34,15 @@ public class GoodsDetailsOut implements Serializable {
 
     private String tagName;
 
+    private Integer isPhysicalOrVirtual;
+
     private String physicalOrVirtual;
 
     private BigDecimal marketPrice=BigDecimal.valueOf(0.00);
 
     private BigDecimal purchasePrice=BigDecimal.valueOf(0.00);
+
+    private Integer supplierId;
 
     private String supplier="";
 
@@ -78,9 +82,11 @@ public class GoodsDetailsOut implements Serializable {
         this.categoryName = !Objects.isNull(goodsCategoryEntity)&& StringUtils.isNotBlank(goodsCategoryEntity.getName())?goodsCategoryEntity.getName():"";
         this.tagId = g.getTagId();
         this.tagName = !Objects.isNull(goodsTagEntity)&&StringUtils.isNotBlank(goodsTagEntity.getName())?goodsTagEntity.getName():"";
+        this.isPhysicalOrVirtual = g.getIsReal().intValue();
         this.physicalOrVirtual = g.getIsReal()==1?"实物":g.getIsReal()==0?"虚拟":"未知";
         this.marketPrice = g.getMarketPrice();
         this.purchasePrice = g.getPurchasePrice();
+        this.supplierId = g.getSupplierId();
         this.supplier = !Objects.isNull(goodsSupplierEntity)&& StringUtils.isNotBlank(goodsSupplierEntity.getName())?goodsSupplierEntity.getName():"";
 
         int status = g.getStatus();

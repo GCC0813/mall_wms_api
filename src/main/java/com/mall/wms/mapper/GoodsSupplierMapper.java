@@ -2,6 +2,8 @@ package com.mall.wms.mapper;
 
 import com.mall.wms.entity.GoodsSupplierEntity;
 
+import java.util.List;
+
 public interface GoodsSupplierMapper {
 
     int deleteByPrimaryKey(Integer id);
@@ -15,4 +17,6 @@ public interface GoodsSupplierMapper {
     int updateByPrimaryKeySelective(GoodsSupplierEntity record);
 
     int updateByPrimaryKey(GoodsSupplierEntity record);
+
+    List<GoodsSupplierEntity> selectAll();
 }

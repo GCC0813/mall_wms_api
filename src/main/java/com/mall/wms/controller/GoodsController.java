@@ -63,6 +63,10 @@ public class GoodsController {
         return ok(Collections.singletonMap("rows",goodsService.getTagsByCate(in)));
     }
 
+    @PostMapping("details/supplier")
+    public JsonOut getSupplierInDetails(@RequestBody @Validated SupplierInDetailsIn in){
+        return ok(Collections.singletonMap("rows",goodsService.getSupplierInDetails(in)));
+    }
 
     /**
      * 商品列表（包含搜索）
