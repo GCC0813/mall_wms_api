@@ -19,6 +19,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
+import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX;
+import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX_TWO;
 import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
 
@@ -60,12 +62,35 @@ public class GoodsService {
     }
 
     public CodeMsg changeGoodsInfo(GoodsEntity in){
+        in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
+        in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
+        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
+        //TODO 删除
+        /*if(Objects.isNull(userEntity)){
+            throw new BizException(LANDING_FAILURE);
+        }
+        in.setUpdateBy(userEntity.getId().longValue());*/
         int row = goodsMapper.updateByPrimaryKeySelective(in);
         if(row<1){
             throw new BizException(CODE_211);
         }
         return CODE_200;
     }
+
+    public String getSubStringImgPic(String url){
+        String str = "";
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(url)){
+            List<String> out = new ArrayList<>();
+            List<String>picUrls= Arrays.asList(url.split(","));
+            for (String a:picUrls){
+                out.add(a.substring(STATIC_RESOURCES_PREFIX_TWO.length()));
+            }
+            String picUrlStr = out.toString().replaceAll(" ","");
+            str = picUrlStr.substring(1,picUrlStr.length()-1);
+        }
+        return str;
+    }
+
 
     public GoodsListOut goodsList(GoodsAuditListIn in){
         List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
@@ -94,11 +119,25 @@ public class GoodsService {
         if(Objects.isNull(goodsEntity)){
             throw new BizException(CODE_213);
         }
-        Long userId = (long) ((UserEntity)httpSession.getAttribute("user")).getId();
-        in.setUserId(userId);
+        //TODO 删除
+        /*Long userId = (long) ((UserEntity)httpSession.getAttribute("user")).getId();
+        in.setUserId(userId);*/
         int row = goodsMapper.updateStatusByType(in);
         if(row < 1){
             throw new BizException(CODE_210);
+        }
+        return CODE_200;
+    }
+
+    public CodeMsg deleteGoods(GoodsDetailsIn in){
+        GoodsEntity goodsEntity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
+        if(Objects.isNull(goodsEntity)){
+            throw new BizException(CODE_213);
+        }
+        goodsEntity.setDeleteFlag(Byte.valueOf("1"));
+        int row = goodsMapper.updateByPrimaryKeySelective(goodsEntity);
+        if(row<1){
+            throw new BizException(CODE_601);
         }
         return CODE_200;
     }
@@ -297,4 +336,16 @@ public class GoodsService {
         return goodsSupplierMapper.selectAll().stream().filter(s->
                 !in.getSupplierId().equals(s.getId())).collect(Collectors.toList());
     }
+
+    public static void main(String[] args) {
+        List<String> a = new ArrayList<>();
+        a.add("a");
+        a.add("b");
+        a.add("b");
+        a.add("b");
+        a.add("b");
+        System.out.println(a.toString());
+        System.out.println(a.toString().replaceAll(" ","").substring(1,a.toString().replaceAll(" ","").length()-1));
+    }
+
 }

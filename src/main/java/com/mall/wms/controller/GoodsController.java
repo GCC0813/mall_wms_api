@@ -4,6 +4,7 @@ import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.GoodsService;
 import com.mall.wms.vo.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,6 @@ public class GoodsController {
         return ok(goodsService.changeGoodsInfo(in));
     }
 
-
     /**
      * 商品详情
      */
@@ -82,6 +82,11 @@ public class GoodsController {
     @PostMapping("set-goods-status")
     public JsonOut setGoodsStatus(@RequestBody @Validated GoodsToExamineIn in){
         return ok(goodsService.setGoodsStatus(in)) ;
+    }
+
+    @PostMapping("delete-goods")
+    public JsonOut deleteGoods(@RequestBody @Validated GoodsDetailsIn in){
+        return ok(goodsService.deleteGoods(in)) ;
     }
 
     /**

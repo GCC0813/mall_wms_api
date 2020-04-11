@@ -75,8 +75,12 @@ public class GoodsDetailsOut implements Serializable {
                            GoodsSupplierEntity goodsSupplierEntity) {
         this.id = g.getId();
         this.name = g.getName();
-        this.picUrls = (Arrays.asList(g.getPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
-        this.detailPicUrls =  (Arrays.asList(g.getDetailPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
+        if(StringUtils.isNotBlank(g.getPicUrls())){
+            this.picUrls = (Arrays.asList(g.getPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
+        }
+        if(StringUtils.isNotBlank(g.getDetailPicUrls())){
+            this.detailPicUrls =  (Arrays.asList(g.getDetailPicUrls().split(","))).stream().map(p->String.format(STATIC_RESOURCES_PREFIX,p)).collect(Collectors.toList());
+        }
         this.synopsis = g.getSynopsis();
         this.categoryId = g.getCategoryId();
         this.categoryName = !Objects.isNull(goodsCategoryEntity)&& StringUtils.isNotBlank(goodsCategoryEntity.getName())?goodsCategoryEntity.getName():"";

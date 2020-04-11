@@ -18,5 +18,7 @@ public class GlobalVar {
 
     public static final  String GOODS_REDIS_KEY = "goodsId_key_%s";
 
+    public static final String STATIC_RESOURCES_PREFIX_TWO = "http://static.gcc666.top/";
+
 
 }
