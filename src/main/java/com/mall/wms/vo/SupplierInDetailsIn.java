@@ -10,4 +10,6 @@ import lombok.Data;
 public class SupplierInDetailsIn {
 
     private Integer supplierId;
+
+    private Integer type=1;
 }

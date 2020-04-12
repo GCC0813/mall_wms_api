@@ -19,7 +19,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
-import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX;
 import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX_TWO;
 import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
@@ -52,8 +51,13 @@ public class GoodsService {
     @Autowired
     HttpSession httpSession;
 
+    //private UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
 
     public CodeMsg addGoods(GoodsEntity in){
+        in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
+        in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
+        //in.setCreateBy(userEntity.getId().longValue());
+        in.setTimeCreate(System.currentTimeMillis()/1000);
         int row  = goodsMapper.insertSelective(in);
         if(row<1){
             throw new BizException(CODE_209);
@@ -64,7 +68,7 @@ public class GoodsService {
     public CodeMsg changeGoodsInfo(GoodsEntity in){
         in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
         in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
-        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
+        //UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
         //TODO 删除
         /*if(Objects.isNull(userEntity)){
             throw new BizException(LANDING_FAILURE);
@@ -333,8 +337,11 @@ public class GoodsService {
     }
 
     public List<GoodsSupplierEntity> getSupplierInDetails(SupplierInDetailsIn in){
-        return goodsSupplierMapper.selectAll().stream().filter(s->
-                !in.getSupplierId().equals(s.getId())).collect(Collectors.toList());
+        if(in.getType()==1){
+            return goodsSupplierMapper.selectAll().stream().filter(s->
+                    !in.getSupplierId().equals(s.getId())).collect(Collectors.toList());
+        }
+        return goodsSupplierMapper.selectAll();
     }
 
     public static void main(String[] args) {

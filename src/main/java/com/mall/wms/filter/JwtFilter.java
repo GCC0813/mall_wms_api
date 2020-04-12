@@ -1,15 +1,28 @@
 package com.mall.wms.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mall.wms.vo.JsonOut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
+
+import static com.mall.wms.comm.CodeMsg.LANDING_FAILURE;
 
 @Configuration
 public class JwtFilter implements Filter {
+
+	@Autowired
+	HttpSession httpSession;
+
+	@Autowired
+	ObjectMapper mapper;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -27,7 +40,19 @@ public class JwtFilter implements Filter {
 		response.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token,Access-Control-Allow-Headers");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("XDomainRequestAllowed","1");
-		chain.doFilter(req, response);
+
+		String apiUrl = request.getRequestURI();
+		String method = request.getMethod();
+		//TODO 删除
+		/*if(FilterConstant.isSpecialAPI(apiUrl) || "OPTIONS".equals(method)){
+			chain.doFilter(request, response);
+			return;
+		}
+		if(Objects.isNull(httpSession.getAttribute("user"))){
+			FilterConstant.outBusinessErr(response, new JsonOut(LANDING_FAILURE), mapper);
+			return;
+		}*/
+		chain.doFilter(req, res);
 	}
 
 	@Override

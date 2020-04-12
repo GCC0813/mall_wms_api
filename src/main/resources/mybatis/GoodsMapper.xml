@@ -324,7 +324,9 @@
     </if>
     <if test="type==2">
      set check_status = #{status},
-     check_by = #{userId},
+     <if test="userId!=null">
+       check_by = #{userId},
+     </if>
      check_time =#{time}
     </if>
     where id = #{goodsId,jdbcType=INTEGER}
