@@ -20,4 +20,6 @@ public interface GoodsCategoryMapper {
     int updateByPrimaryKey(GoodsCategoryEntity record);
 
     List<GoodsCategoryEntity> selectByPrimaryKeyList();
+
+    List<GoodsCategoryEntity> selectAll();
 }

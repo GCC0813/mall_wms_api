@@ -196,4 +196,15 @@
     from goods_tag
     where delete_flag=0 and category_id =#{cateId}
   </select>
+  <select id="selectByCateIds" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from goods_tag
+    where 0=0
+    <if test="goodsCateIds!=null and goodsCateIds.size>0">
+       and category_id in
+      <foreach collection="goodsCateIds" item="cateId" open="(" separator=","  close=")">
+        #{cateId}
+      </foreach>
+    </if>
+  </select>
 </mapper>

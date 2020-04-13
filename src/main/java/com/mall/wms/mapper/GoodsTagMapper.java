@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsTagMapper {
     int deleteByPrimaryKey(Integer id);
@@ -22,5 +23,7 @@ public interface GoodsTagMapper {
     List<GoodsTagEntity>  selectByPrimaryKeyList();
 
     List<GoodsTagEntity> selectByCateId(@Param("cateId")Integer id);
+
+    List<GoodsTagEntity> selectByCateIds(@Param("goodsCateIds") List<Integer>goodsCateIds);
 
 }
