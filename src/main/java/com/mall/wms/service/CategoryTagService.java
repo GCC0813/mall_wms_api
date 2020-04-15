@@ -7,7 +7,11 @@ import com.mall.wms.mapper.GoodsCategoryMapper;
 import com.mall.wms.mapper.GoodsTagMapper;
 import com.mall.wms.vo.CategoryTagListOut;
 import com.mall.wms.vo.ModifyCategoryOrTagStatusIn;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
@@ -27,6 +31,7 @@ public class CategoryTagService {
     @Autowired
     GoodsTagMapper goodsTagMapper;
 
+
     public CategoryTagListOut categoryTagList(){
         List<GoodsCategoryEntity> goodsCategories = goodsCategoryMapper.selectAll();
         List<CategoryTagListOut.CategoryTagOut> categoryTagList = new ArrayList<>(goodsCategories.size());
@@ -45,13 +50,18 @@ public class CategoryTagService {
         //分类
         if(in.getType()==1){
 
-
         //标签
         }else if(in.getType()==2){
 
         }
-
         return CODE_200;
     }
+
+
+    @RabbitListener(queues = "qqq",containerFactory = "oneFactory")
+    public void over(Message message){
+        System.out.println(new String(message.getBody()));
+    }
+
 
 }
