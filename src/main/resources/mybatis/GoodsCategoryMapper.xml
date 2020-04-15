@@ -162,8 +162,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="selectByPrimaryKeyList" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKeyList" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from goods_category
@@ -174,4 +173,8 @@
     select <include refid="Base_Column_List"></include>
     from goods_category;
   </select>
+
+  <update id="modifyStatus">
+
+  </update>
 </mapper>

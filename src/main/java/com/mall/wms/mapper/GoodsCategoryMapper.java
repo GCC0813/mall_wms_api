@@ -22,4 +22,6 @@ public interface GoodsCategoryMapper {
     List<GoodsCategoryEntity> selectByPrimaryKeyList();
 
     List<GoodsCategoryEntity> selectAll();
+
+    int modifyStatus();
 }
