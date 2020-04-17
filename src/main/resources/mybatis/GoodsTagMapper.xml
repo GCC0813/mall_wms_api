@@ -15,9 +15,10 @@
     <result column="update_by" jdbcType="BIGINT" property="updateBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" javaType="INTEGER" property="status"/>
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, pic_url, remark, delete_flag, check_status, check_by, check_time, category_id, 
+    id, `name`, pic_url, remark, delete_flag, check_status,status, check_by, check_time, category_id,
     create_by, update_by, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

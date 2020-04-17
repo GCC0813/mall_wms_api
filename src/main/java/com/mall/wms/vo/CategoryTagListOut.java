@@ -44,6 +44,10 @@ public class CategoryTagListOut {
 
         private String checkStatusStr;
 
+        private Integer status;
+
+        private String statusStr;
+
         private Integer isDelete;
 
         private String isDeleteStr;
@@ -59,6 +63,9 @@ public class CategoryTagListOut {
             this.checkStatus = g.getCheckStatus().intValue();
             //0:未审核 1:审核通过
             this.checkStatusStr = checkStatus==0?"未审核":"审核通过";
+            //1:启用，0未启用
+            this.status=g.getStatus();
+            this.statusStr = status==1?"已启用":"未启用";
             this.isDelete = g.getDeleteFlag().intValue();
             //0:未删除 1:已删除
             this.isDeleteStr = isDelete==0?"未删除":"已删除";
@@ -71,6 +78,9 @@ public class CategoryTagListOut {
             this.checkStatus = g.getCheckStatus().intValue();
             //0:未审核 1:审核通过
             this.checkStatusStr = checkStatus==0?"未审核":"审核通过";
+            //1:启用，0未启用
+            this.status=g.getStatus();
+            this.statusStr = status==1?"已启用":"未启用";
             this.isDelete = g.getDeleteFlag().intValue();
             //0:未删除 1:已删除
             this.isDeleteStr = isDelete==0?"未删除":"已删除";
