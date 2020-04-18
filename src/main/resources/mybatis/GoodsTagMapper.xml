@@ -200,7 +200,7 @@
   <select id="selectByCateIds" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from goods_tag
-    where 0=0
+    where delete_flag=0
     <if test="goodsCateIds!=null and goodsCateIds.size>0">
        and category_id in
       <foreach collection="goodsCateIds" item="cateId" open="(" separator=","  close=")">
@@ -208,4 +208,28 @@
       </foreach>
     </if>
   </select>
+
+  <update id="modifyStatus" parameterType="com.mall.wms.vo.ModifyCategoryOrTagStatusIn">
+    update goods_tag
+    <if test="statusType==1">
+      set status= #{status}
+    </if>
+    <if test="statusType==2">
+      set check_status= #{status}
+    </if>
+    <if test="statusType==3">
+      set delete_flag= #{status}
+    </if>
+    where id = #{id}
+  </update>
+  <update id="modifyStatusByCateId" parameterType="com.mall.wms.vo.ModifyCategoryOrTagStatusIn">
+    update goods_tag
+    <if test="statusType==1">
+      set status= #{status}
+    </if>
+    <if test="statusType==3">
+      set delete_flag= #{status}
+    </if>
+    where category_id = #{id}
+  </update>
 </mapper>

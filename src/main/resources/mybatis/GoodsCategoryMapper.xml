@@ -172,10 +172,22 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
-    from goods_category;
+    from goods_category
+    where delete_flag=0
   </select>
 
-  <update id="modifyStatus">
-
+  <update id="modifyStatus" parameterType="com.mall.wms.vo.ModifyCategoryOrTagStatusIn">
+     update goods_category
+     <if test="statusType==1">
+       set status= #{status}
+     </if>
+     <if test="statusType==2">
+       set check_status= #{status}
+     </if>
+     <if test="statusType==3">
+       set delete_flag= #{status}
+     </if>
+    where id = #{id}
   </update>
+
 </mapper>

@@ -1,6 +1,7 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.GoodsTagEntity;
+import com.mall.wms.vo.ModifyCategoryOrTagStatusIn;
 import org.apache.ibatis.annotations.Param;
 import org.omg.PortableInterceptor.INACTIVE;
 
@@ -26,4 +27,7 @@ public interface GoodsTagMapper {
 
     List<GoodsTagEntity> selectByCateIds(@Param("goodsCateIds") List<Integer>goodsCateIds);
 
+    int modifyStatus(ModifyCategoryOrTagStatusIn in);
+
+    int modifyStatusByCateId(ModifyCategoryOrTagStatusIn in);
 }

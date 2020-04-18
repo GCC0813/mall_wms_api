@@ -1,7 +1,9 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.GoodsCategoryEntity;
+import com.mall.wms.vo.ModifyCategoryOrTagStatusIn;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,5 +25,5 @@ public interface GoodsCategoryMapper {
 
     List<GoodsCategoryEntity> selectAll();
 
-    int modifyStatus();
+    int modifyStatus(ModifyCategoryOrTagStatusIn in);
 }

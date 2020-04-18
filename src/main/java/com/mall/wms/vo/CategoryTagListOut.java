@@ -62,7 +62,7 @@ public class CategoryTagListOut {
             this.creatTime = DateUtil.date2Format(g.getCreateTime(),"yyyy年MM月dd日 HH:mm:ss");
             this.checkStatus = g.getCheckStatus().intValue();
             //0:未审核 1:审核通过
-            this.checkStatusStr = checkStatus==0?"未审核":"审核通过";
+            this.checkStatusStr = checkStatus==0?"未审核":"已审核";
             //1:启用，0未启用
             this.status=g.getStatus();
             this.statusStr = status==1?"已启用":"未启用";
@@ -77,7 +77,7 @@ public class CategoryTagListOut {
             this.creatTime = DateUtil.date2Format(g.getCreateTime(),"yyyy年MM月dd日 HH:mm:ss");
             this.checkStatus = g.getCheckStatus().intValue();
             //0:未审核 1:审核通过
-            this.checkStatusStr = checkStatus==0?"未审核":"审核通过";
+            this.checkStatusStr = checkStatus==0?"未审核":"已审核";
             //1:启用，0未启用
             this.status=g.getStatus();
             this.statusStr = status==1?"已启用":"未启用";
