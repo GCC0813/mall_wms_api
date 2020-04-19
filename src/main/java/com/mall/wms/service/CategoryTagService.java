@@ -132,6 +132,9 @@ public class CategoryTagService {
         goodsTagEntity.setName(in.getTagName());
         goodsTagEntity.setRemark(in.getTagRemark());
         int rows = goodsTagMapper.insertSelective(goodsTagEntity);
+        if (rows<1){
+            throw new BizException(CODE_608);
+        }
         System.out.println(goodsTagEntity.toString());
         return CODE_200;
 
