@@ -2,6 +2,8 @@ package com.mall.wms.controller;
 
 import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.CategoryTagService;
+import com.mall.wms.vo.AddTagIn;
+import com.mall.wms.vo.EditCategoryTagInfoIn;
 import com.mall.wms.vo.JsonOut;
 import com.mall.wms.vo.ModifyCategoryOrTagStatusIn;
 import com.qiniu.util.Json;
@@ -39,6 +41,23 @@ public class CategoryTagController {
     public JsonOut modifyCategoryOrTagStatus(@RequestBody @Validated ModifyCategoryOrTagStatusIn in){
         return ok(categoryTagService.modifyCategoryOrTagStatus(in));
     }
+
+    @PostMapping("category-tag-info")
+    public JsonOut categoryTagInfo(@RequestBody @Validated ModifyCategoryOrTagStatusIn in){
+        return categoryTagService.categoryTagInfo(in);
+    }
+
+    @PostMapping("edit-info")
+    public JsonOut editCategoryTagInfo(@RequestBody @Validated EditCategoryTagInfoIn in){
+        return ok(categoryTagService.editCategoryTagInfo(in));
+    }
+
+    @PostMapping("add-tag")
+    public JsonOut addTag(@RequestBody @Validated AddTagIn in){
+        return ok(categoryTagService.addTag(in));
+    }
+
+
 
     @GetMapping("abc")
     public void abc(String a){

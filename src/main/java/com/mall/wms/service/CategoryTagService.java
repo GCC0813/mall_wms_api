@@ -6,13 +6,11 @@ import com.mall.wms.entity.GoodsCategoryEntity;
 import com.mall.wms.entity.GoodsTagEntity;
 import com.mall.wms.mapper.GoodsCategoryMapper;
 import com.mall.wms.mapper.GoodsTagMapper;
-import com.mall.wms.vo.CategoryTagListOut;
-import com.mall.wms.vo.ModifyCategoryOrTagStatusIn;
+import com.mall.wms.vo.*;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -88,6 +86,57 @@ public class CategoryTagService {
         }
         return CODE_200;
     }
+
+    public JsonOut categoryTagInfo(ModifyCategoryOrTagStatusIn in){
+        if (in.getType()==1){
+            GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.selectByPrimaryKey(in.getId());
+            if(Objects.isNull(goodsCategoryEntity)){
+                throw new BizException(CODE_604);
+            }
+            return JsonOut.ok(goodsCategoryEntity);
+        }else {
+            GoodsTagEntity goodsTagEntity = goodsTagMapper.selectByPrimaryKey(in.getId());
+            if(Objects.isNull(goodsTagEntity)){
+                throw new BizException(CODE_605);
+            }
+            return JsonOut.ok(goodsTagEntity);
+        }
+    }
+
+    public CodeMsg editCategoryTagInfo(EditCategoryTagInfoIn in){
+        if(in.getType()==1){
+            GoodsCategoryEntity goodsCategoryEntity =new GoodsCategoryEntity();
+            goodsCategoryEntity.setId(in.getId());
+            goodsCategoryEntity.setName(in.getName());
+            goodsCategoryEntity.setRemark(in.getRemark());
+            int row = goodsCategoryMapper.updateByPrimaryKeySelective(goodsCategoryEntity);
+            if(row<1){
+                throw new BizException(CODE_606);
+            }
+        }else {
+            GoodsTagEntity goodsTagEntity =new GoodsTagEntity();
+            goodsTagEntity.setId(in.getId());
+            goodsTagEntity.setName(in.getName());
+            goodsTagEntity.setRemark(in.getRemark());
+            int row = goodsTagMapper.updateByPrimaryKeySelective(goodsTagEntity);
+            if(row<1){
+                throw new BizException(CODE_607);
+            }
+        }
+        return CODE_200;
+    }
+
+    public CodeMsg addTag(AddTagIn in){
+        GoodsTagEntity goodsTagEntity = new GoodsTagEntity();
+        goodsTagEntity.setCategoryId(in.getCateId());
+        goodsTagEntity.setName(in.getTagName());
+        goodsTagEntity.setRemark(in.getTagRemark());
+        int rows = goodsTagMapper.insertSelective(goodsTagEntity);
+        System.out.println(goodsTagEntity.toString());
+        return CODE_200;
+
+    }
+
 
 
     @RabbitListener(queues = "qqq",containerFactory = "oneFactory")
