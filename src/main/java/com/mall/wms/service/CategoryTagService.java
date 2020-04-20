@@ -4,10 +4,10 @@ import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.GoodsCategoryEntity;
 import com.mall.wms.entity.GoodsTagEntity;
+import com.mall.wms.entity.UserEntity;
 import com.mall.wms.mapper.GoodsCategoryMapper;
 import com.mall.wms.mapper.GoodsTagMapper;
 import com.mall.wms.vo.*;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,11 @@ public class CategoryTagService {
 
     @Autowired
     GoodsTagMapper goodsTagMapper;
+
+    @Autowired
+    HttpSession httpSession;
+
+    //private final UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
 
 
     public CategoryTagListOut categoryTagList(){
@@ -131,13 +137,39 @@ public class CategoryTagService {
         goodsTagEntity.setCategoryId(in.getCateId());
         goodsTagEntity.setName(in.getTagName());
         goodsTagEntity.setRemark(in.getTagRemark());
+        //TODO 删除
+        //goodsTagEntity.setCreateBy(userEntity.getId().longValue());
         int rows = goodsTagMapper.insertSelective(goodsTagEntity);
         if (rows<1){
             throw new BizException(CODE_608);
         }
-        System.out.println(goodsTagEntity.toString());
         return CODE_200;
 
+    }
+
+    public CodeMsg addCate(AddCateIn in){
+        String cateName = in.getCateName().replaceAll(" ","");
+        if(cateName.length()>10){
+            return CODE_609;
+        }
+        if(!cateName.contains("类")){
+            cateName=cateName+"类";
+        }
+        String cateRemark = in.getCateRemark().replaceAll(" ","");
+        if(cateRemark.length()>30){
+            return CODE_610;
+        }
+        GoodsCategoryEntity goodsCategoryEntity = new GoodsCategoryEntity();
+        goodsCategoryEntity.setName(cateName);
+        goodsCategoryEntity.setRemark(cateRemark);
+        goodsCategoryEntity.setCheckStatus(in.getCheckStatus().byteValue());
+        goodsCategoryEntity.setStatus(in.getStatus());
+        //goodsCategoryEntity.setCreateBy(userEntity.getId().longValue());
+        int rows = goodsCategoryMapper.insertSelective(goodsCategoryEntity);
+        if (rows<1){
+            throw new BizException(CODE_611);
+        }
+        return CODE_200;
     }
 
 

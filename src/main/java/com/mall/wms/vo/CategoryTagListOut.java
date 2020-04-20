@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.util.MultiValueMap;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 public class CategoryTagListOut {
@@ -25,7 +27,7 @@ public class CategoryTagListOut {
 
         public CategoryTagOut(GoodsCategoryEntity g, MultiValueMap<Integer,CategoryTag> multiValueMap) {
             super(g);
-            this.tags = multiValueMap.get(g.getId());
+            this.tags = Objects.nonNull(multiValueMap.get(g.getId()))?multiValueMap.get(g.getId()):new ArrayList<>();
        }
     }
 
