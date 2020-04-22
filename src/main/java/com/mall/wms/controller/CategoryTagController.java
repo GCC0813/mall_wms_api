@@ -1,10 +1,8 @@
 package com.mall.wms.controller;
 
-import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.CategoryTagService;
 import com.mall.wms.vo.JsonOut;
 import com.mall.wms.vo.ModifyCategoryOrTagStatusIn;
-import com.qiniu.util.Json;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
