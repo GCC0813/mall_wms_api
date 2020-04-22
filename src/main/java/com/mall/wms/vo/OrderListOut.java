@@ -61,13 +61,13 @@ public class OrderListOut {
             Integer userId = uo.getUserId();
             this.userId = (long)userId;
             UserEntity userEntity = usersMap.get(userId);
-            this.userNick = !Objects.isNull(userEntity)?userEntity.getNick():"";
+            this.userNick = Objects.nonNull(userEntity)?userEntity.getNick():"";
             OrderGoodsEntity orderGoodsEntity = orderGoodsMap.get(this.orderId);
-            this.goodsName = !Objects.isNull(orderGoodsEntity)?orderGoodsEntity.getName():"";
+            this.goodsName = Objects.nonNull(orderGoodsEntity)?orderGoodsEntity.getName():"";
             this.orderPrice = (double)uo.getOrderPrice();
             this.deliveryNo = uo.getDeliveryNo();
             OrderDeliveryEntity orderDeliveryEntity = orderDeliveryMap.get(this.orderId);
-            this.deliveryName = !Objects.isNull(orderDeliveryEntity)?orderDeliveryEntity.getDeliveryCompany():"";
+            this.deliveryName = Objects.nonNull(orderDeliveryEntity)?orderDeliveryEntity.getDeliveryCompany():"";
             this.orderDate = DateUtil.date2Format(uo.getCreateTime(),"yyyy年MM月dd日 HH:mm");
             this.orderStatus = uo.getOrderStatus().intValue();
             this.orderStatusStr = CommUtil.getOrderStatus(uo.getOrderStatus().intValue());

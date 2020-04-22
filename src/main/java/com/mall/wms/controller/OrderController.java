@@ -34,7 +34,7 @@ public class OrderController {
         return ok(null);
     }
 
-    @PostMapping("order-list")
+    @PostMapping("list")
     public JsonOut orderList(){
         return ok(orderService.orderList());
     }
