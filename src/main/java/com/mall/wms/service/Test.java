@@ -21,15 +21,8 @@ public class Test {
         }
         System.out.println(date);*/
 
-        SingleObject object = SingleObject.getInstance();
-        object.setId(1);
-        object.setName("111");
+        SingleObject object = SingleObject.getInstance(1,"傲岸");
         System.out.println(object);
-        SingleObject object1 = SingleObject.getInstance();
-        object1.setId(2);
-        object1.setName("222");
-        System.out.println(object1);
-        System.out.println(object.equals(object1));
         object.showMessage();
 
     }
