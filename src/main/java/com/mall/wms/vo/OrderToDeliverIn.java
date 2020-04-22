@@ -7,7 +7,9 @@ import lombok.Data;
  * create on 2020/4/9 18:02
  */
 @Data
-public class ToDeliverGoodsIn {
+public class OrderToDeliverIn {
+
+    private Long orderId;
 
     private String deliveryNo;
 

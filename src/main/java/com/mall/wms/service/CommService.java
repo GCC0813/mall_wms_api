@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
-import static com.mall.wms.comm.CodeMsg.CODE_212;
 import static com.mall.wms.comm.CodeMsg.LANDING_FAILURE;
 
 @Service

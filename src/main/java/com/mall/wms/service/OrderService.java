@@ -85,7 +85,7 @@ public class OrderService {
         }
         UserEntity userEntity = userMapper.selectByPrimaryKey(userOrderEntity.getUserId());
 
-        OrderDeliveryEntity orderDeliveryEntity = orderDeliveryMapper.selectByPrimaryKey(userOrderEntity.getDeliveryId().longValue())
+        OrderDeliveryEntity orderDeliveryEntity = orderDeliveryMapper.selectByPrimaryKey(userOrderEntity.getDeliveryId().longValue());
         return new OrderDetailsOut(userOrderEntity,userEntity,orderDeliveryEntity);
     }
 }

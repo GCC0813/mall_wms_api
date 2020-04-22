@@ -65,7 +65,7 @@ public class OrderListOut {
             OrderGoodsEntity orderGoodsEntity = orderGoodsMap.get(this.orderId);
             this.goodsName = Objects.nonNull(orderGoodsEntity)?orderGoodsEntity.getName():"";
             this.orderPrice = (double)uo.getOrderPrice();
-            this.deliveryNo = uo.getDeliveryNo();
+            //this.deliveryNo = uo.getDeliveryNo();
             OrderDeliveryEntity orderDeliveryEntity = orderDeliveryMap.get(this.orderId);
             this.deliveryName = Objects.nonNull(orderDeliveryEntity)?orderDeliveryEntity.getDeliveryCompany():"";
             this.orderDate = DateUtil.date2Format(uo.getCreateTime(),"yyyy年MM月dd日 HH:mm");

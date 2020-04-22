@@ -1,21 +1,17 @@
 package com.mall.wms.controller;
 
 import com.mall.wms.comm.CodeMsg;
-import com.mall.wms.mapper.UserOrderMapper;
 import com.mall.wms.service.OrderService;
 import com.mall.wms.vo.ChangeOrderStatusIn;
 import com.mall.wms.vo.JsonOut;
 import com.mall.wms.vo.OrderDetailsIn;
-import com.mall.wms.vo.ToDeliverGoodsIn;
+import com.mall.wms.vo.OrderToDeliverIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.mall.wms.vo.JsonOut.ok;
 
@@ -50,9 +46,8 @@ public class OrderController {
         return ok(CodeMsg.CODE_200);
     }
 
-    @PostMapping("to-deliver-goods")
-    public JsonOut toDeliverGoods(@RequestBody @Validated ToDeliverGoodsIn in){
-
+    @PostMapping("to-deliver")
+    public JsonOut toDeliverGoods(@RequestBody @Validated OrderToDeliverIn in){
         return ok(CodeMsg.CODE_200);
     }
 }
