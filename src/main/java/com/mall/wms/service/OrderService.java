@@ -13,6 +13,8 @@ import com.mall.wms.mapper.UserOrderMapper;
 import com.mall.wms.vo.OrderDetailsIn;
 import com.mall.wms.vo.OrderDetailsOut;
 import com.mall.wms.vo.OrderListOut;
+import com.mall.wms.vo.OrderToDeliverIn;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -87,5 +89,19 @@ public class OrderService {
 
         OrderDeliveryEntity orderDeliveryEntity = orderDeliveryMapper.selectByPrimaryKey(userOrderEntity.getDeliveryId().longValue());
         return new OrderDetailsOut(userOrderEntity,userEntity,orderDeliveryEntity);
+    }
+
+
+    public CodeMsg toDeliverGoods(OrderToDeliverIn in){
+
+        in.setDeliveryNo(in.getDeliveryNo());
+
+
+
+        int rows = orderGoodsMapper.insertSelective(new OrderGoodsEntity());
+        if(rows<1){
+            throw new BizException(CODE_613);
+        }
+        return CODE_200;
     }
 }

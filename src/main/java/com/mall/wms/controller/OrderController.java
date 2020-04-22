@@ -48,6 +48,6 @@ public class OrderController {
 
     @PostMapping("to-deliver")
     public JsonOut toDeliverGoods(@RequestBody @Validated OrderToDeliverIn in){
-        return ok(CodeMsg.CODE_200);
+        return ok(orderService.toDeliverGoods(in));
     }
 }
