@@ -5,6 +5,7 @@ import com.mall.wms.mapper.UserOrderMapper;
 import com.mall.wms.service.OrderService;
 import com.mall.wms.vo.ChangeOrderStatusIn;
 import com.mall.wms.vo.JsonOut;
+import com.mall.wms.vo.OrderDetailsIn;
 import com.mall.wms.vo.ToDeliverGoodsIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -19,7 +20,7 @@ import java.util.List;
 import static com.mall.wms.vo.JsonOut.ok;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/6 13:46
  */
 @RequestMapping("order")
@@ -40,8 +41,8 @@ public class OrderController {
     }
 
     @PostMapping("details")
-    public JsonOut details(){
-        return ok(null);
+    public JsonOut details(@RequestBody @Validated OrderDetailsIn in){
+        return ok(orderService.orderDetails(in));
     }
 
     @PostMapping("change-status")

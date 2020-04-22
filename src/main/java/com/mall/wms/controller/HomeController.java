@@ -13,7 +13,7 @@ import java.util.Collections;
 import static com.mall.wms.vo.JsonOut.ok;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/12 22:14
  */
 @RestController

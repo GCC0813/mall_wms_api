@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.mall.wms.vo.JsonOut.ok;
 
 /**
- * @author: cjn
+ * @author: haonan
  * @date:2020/3/15 14:21
  */
 @RestController

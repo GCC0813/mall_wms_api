@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.mall.wms.vo.JsonOut.ok;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/26 14:31
  */
 @RestController

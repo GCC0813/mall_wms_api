@@ -24,7 +24,7 @@ import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/12 10:35
  */
 @Service

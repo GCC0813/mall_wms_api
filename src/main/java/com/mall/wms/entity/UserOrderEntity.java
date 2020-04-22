@@ -22,9 +22,9 @@ public class UserOrderEntity {
     private String orderNo;
 
     /**
-     * 发货物流单号
+     * 发货物流id
      */
-    private String deliveryNo;
+    private Integer deliveryId;
 
     /**
      * 订单种类 1:用户下单 2:升级订单 3:手动创建

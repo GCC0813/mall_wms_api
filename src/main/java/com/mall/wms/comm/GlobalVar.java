@@ -1,7 +1,7 @@
 package com.mall.wms.comm;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/9 10:57
  */
 public class GlobalVar {

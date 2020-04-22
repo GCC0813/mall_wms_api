@@ -15,7 +15,7 @@ import static com.mall.wms.vo.JsonOut.ok;
 
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/1/9 14:20
  */
 @RestController

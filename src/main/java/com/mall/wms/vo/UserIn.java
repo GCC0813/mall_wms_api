@@ -6,7 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author: cjn
+ * @author: haonan
  * @date:2020/3/30 15:47
  */
 @Data

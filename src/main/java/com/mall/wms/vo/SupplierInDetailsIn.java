@@ -3,7 +3,7 @@ package com.mall.wms.vo;
 import lombok.Data;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/4/10 10:53
  */
 @Data

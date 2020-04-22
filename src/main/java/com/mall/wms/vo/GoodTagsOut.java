@@ -5,7 +5,7 @@ import com.mall.wms.enums.GoodsEnums;
 import lombok.Data;
 
 /**
- * @author: cjn
+ * @author: haonan
  * @date:2020/3/29 12:56
  */
 @Data

@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import java.util.HashMap;
 
 /**
- * @author GCC
+ * @author haonan
  * 业务异常定义
  */
 @EqualsAndHashCode(callSuper = true)

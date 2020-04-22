@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * @author GCC
+ * @author haonan
  * 异常model
  */
 

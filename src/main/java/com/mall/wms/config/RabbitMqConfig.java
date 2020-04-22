@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/4/15 10:32
  */
 @Configuration

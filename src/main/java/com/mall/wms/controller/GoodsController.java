@@ -17,7 +17,7 @@ import java.util.Collections;
 import static com.mall.wms.vo.JsonOut.ok;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/6 13:43
  */
 @RequestMapping("goods")

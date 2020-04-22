@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/6 16:35
  */
 public class DateUtil {

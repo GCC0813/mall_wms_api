@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mall.wms.entity.UserOrderEntity">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
-    <result column="delivery_no" jdbcType="VARCHAR" property="deliveryNo" />
+    <result column="delivery_id" jdbcType="VARCHAR" property="deliveryId" />
     <result column="order_type" jdbcType="TINYINT" property="orderType" />
     <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
     <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
@@ -35,7 +35,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, order_no, delivery_no, order_type, order_status, goods_count, order_price, discounted_price, 
+    id, order_no, delivery_id, order_type, order_status, goods_count, order_price, discounted_price,
     sale_channel, remark, user_id, order_time, pay_time, ship_time, confirm_time, cancel_time, 
     cancel_remark, cancel_type, cancel_price, refund_num, refund_time, refund_remark, 
     refund_point, delete_flag, check_status, check_by, check_time, create_by, update_by, 
@@ -52,7 +52,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.mall.wms.entity.UserOrderEntity">
-    insert into user_order (id, order_no, delivery_no, 
+    insert into user_order (id, order_no, delivery_id,
       order_type, order_status, goods_count, 
       order_price, discounted_price, sale_channel, 
       remark, user_id, order_time, 
@@ -63,7 +63,7 @@
       check_status, check_by, check_time, 
       create_by, update_by, create_time, 
       update_time)
-    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{deliveryNo,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{deliveryId.jdbcType=INTEGER}, 
       #{orderType,jdbcType=TINYINT}, #{orderStatus,jdbcType=TINYINT}, #{goodsCount,jdbcType=INTEGER}, 
       #{orderPrice,jdbcType=INTEGER}, #{discountedPrice,jdbcType=INTEGER}, #{saleChannel,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=INTEGER}, 
@@ -84,8 +84,8 @@
       <if test="orderNo != null">
         order_no,
       </if>
-      <if test="deliveryNo != null">
-        delivery_no,
+      <if test="deliveryId != null">
+        delivery_id,
       </if>
       <if test="orderType != null">
         order_type,
@@ -179,8 +179,8 @@
       <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="deliveryNo != null">
-        #{deliveryNo,jdbcType=VARCHAR},
+      <if test="deliveryId != null">
+        #{deliveryId.jdbcType=INTEGER},
       </if>
       <if test="orderType != null">
         #{orderType,jdbcType=TINYINT},
@@ -274,8 +274,8 @@
       <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="deliveryNo != null">
-        delivery_no = #{deliveryNo,jdbcType=VARCHAR},
+      <if test="deliveryId != null">
+        delivery_id = #{deliveryId.jdbcType=INTEGER},
       </if>
       <if test="orderType != null">
         order_type = #{orderType,jdbcType=TINYINT},
@@ -367,7 +367,7 @@
   <update id="updateByPrimaryKey" parameterType="com.mall.wms.entity.UserOrderEntity">
     update user_order
     set order_no = #{orderNo,jdbcType=VARCHAR},
-      delivery_no = #{deliveryNo,jdbcType=VARCHAR},
+      delivery_id = #{deliveryId.jdbcType=INTEGER},
       order_type = #{orderType,jdbcType=TINYINT},
       order_status = #{orderStatus,jdbcType=TINYINT},
       goods_count = #{goodsCount,jdbcType=INTEGER},

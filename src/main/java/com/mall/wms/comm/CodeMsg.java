@@ -3,7 +3,7 @@ package com.mall.wms.comm;
 import lombok.Getter;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/1/8 20:00
  */
 @Getter
@@ -35,8 +35,6 @@ public enum  CodeMsg {
 
     CODE_211(211,"商品信息修改失败！"),
 
-    CODE_212(212,"获取用户信息失败，请重新登陆！"),
-
     CODE_213(213,"该商品不存在！"),
 
     CODE_301(301,"手机已注册"),
@@ -65,6 +63,7 @@ public enum  CodeMsg {
     CODE_609(609,"分类名不能超过10个字符！"),
     CODE_610(610,"分类备注不能超过30个字符"),
     CODE_611(611,"添加分类失败！"),
+    CODE_612(612,"该订单不存在！"),
 
 
 

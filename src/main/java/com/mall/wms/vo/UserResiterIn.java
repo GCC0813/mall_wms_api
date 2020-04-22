@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import static com.mall.wms.comm.GlobalVar.DEFAULT_HEAD;
 
 /**
- * @author: cjn
+ * @author: haonan
  * @date:2020/3/15 14:38
  */
 @Data
