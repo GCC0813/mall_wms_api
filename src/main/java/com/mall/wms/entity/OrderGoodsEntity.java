@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author 
@@ -122,5 +123,14 @@ public class OrderGoodsEntity implements Serializable {
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;
+
+
+    private static OrderGoodsEntity orderGoods = new OrderGoodsEntity();
+
+    public static OrderGoodsEntity getOrderGoodsEntity(){
+        return orderGoods;
+    }
+
+
 
 }

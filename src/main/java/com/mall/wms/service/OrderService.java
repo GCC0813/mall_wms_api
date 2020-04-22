@@ -93,11 +93,7 @@ public class OrderService {
 
 
     public CodeMsg toDeliverGoods(OrderToDeliverIn in){
-
-        in.setDeliveryNo(in.getDeliveryNo());
-
-
-
+        OrderGoodsEntity orderGoodsEntity = OrderGoodsEntity.getOrderGoodsEntity();
         int rows = orderGoodsMapper.insertSelective(new OrderGoodsEntity());
         if(rows<1){
             throw new BizException(CODE_613);
