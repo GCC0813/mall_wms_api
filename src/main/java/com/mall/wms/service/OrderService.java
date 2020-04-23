@@ -1,5 +1,7 @@
 package com.mall.wms.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.OrderDeliveryEntity;
@@ -10,10 +12,7 @@ import com.mall.wms.mapper.OrderDeliveryMapper;
 import com.mall.wms.mapper.OrderGoodsMapper;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.mapper.UserOrderMapper;
-import com.mall.wms.vo.OrderDetailsIn;
-import com.mall.wms.vo.OrderDetailsOut;
-import com.mall.wms.vo.OrderListOut;
-import com.mall.wms.vo.OrderToDeliverIn;
+import com.mall.wms.vo.*;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +43,8 @@ public class OrderService {
     @Autowired
     OrderDeliveryMapper orderDeliveryMapper;
 
-    public OrderListOut orderList() {
+    public OrderListOut orderList(OrderListIn in) {
+        Page page = PageHelper.startPage(in.getPage(),in.getLimit());
         List<UserOrderEntity> userOrders = userOrderMapper.selectAll();
         List<OrderListOut.Order> orders = new ArrayList<>();
         if (!CollectionUtils.isEmpty(userOrders)) {
@@ -76,7 +76,7 @@ public class OrderService {
                 orders.add(new OrderListOut.Order(usersMap, orderGoodsMap, orderDeliveryMap, uo));
             }
         }
-        return new OrderListOut(orders);
+        return new OrderListOut(orders){{setCount(page.getTotal());}};
     }
 
 

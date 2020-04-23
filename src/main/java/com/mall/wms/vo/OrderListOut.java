@@ -19,6 +19,8 @@ import java.util.Objects;
 @Data
 public class OrderListOut {
 
+    private Long count;
+
     private List<Order> orders;
 
     @Data
