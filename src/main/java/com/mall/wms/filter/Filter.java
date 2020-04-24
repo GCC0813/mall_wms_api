@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
+
+import static com.mall.wms.comm.CodeMsg.LANDING_FAILURE;
+import static com.mall.wms.vo.JsonOut.ok;
 
 /**
  * @author haonan
@@ -44,12 +48,12 @@ public class Filter implements javax.servlet.Filter {
 		String apiUrl = request.getRequestURI();
 		String method = request.getMethod();
 		//TODO 删除
-		/*if(FilterConstant.isSpecialAPI(apiUrl) || "OPTIONS".equals(method)){
+/*		if(FilterConstant.isSpecialAPI(apiUrl) || "OPTIONS".equals(method)){
 			chain.doFilter(request, response);
 			return;
 		}
 		if(Objects.isNull(httpSession.getAttribute("user"))){
-			FilterConstant.outBusinessErr(response, new JsonOut(LANDING_FAILURE), mapper);
+			FilterConstant.outBusinessErr(response, ok(LANDING_FAILURE), mapper);
 			return;
 		}*/
 		chain.doFilter(req, res);
