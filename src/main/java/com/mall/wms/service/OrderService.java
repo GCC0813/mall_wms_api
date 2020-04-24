@@ -13,7 +13,6 @@ import com.mall.wms.mapper.OrderGoodsMapper;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.mapper.UserOrderMapper;
 import com.mall.wms.vo.*;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -46,9 +45,8 @@ public class OrderService {
     @Autowired
     GoodsService goodsService;
 
-    public OrderListOut orderList() {
     public OrderListOut orderList(OrderListIn in) {
-        Page page = PageHelper.startPage(in.getPage(),in.getLimit());
+        Page page = PageHelper.startPage(in.getPage(), in.getLimit());
         List<UserOrderEntity> userOrders = userOrderMapper.selectAll();
         List<OrderListOut.Order> orders = new ArrayList<>();
         if (!CollectionUtils.isEmpty(userOrders)) {
@@ -80,42 +78,44 @@ public class OrderService {
                 orders.add(new OrderListOut.Order(usersMap, orderGoodsMap, orderDeliveryMap, uo));
             }
         }
-        return new OrderListOut(orders){{setCount(page.getTotal());}};
+        return new OrderListOut(orders) {{
+            setCount(page.getTotal());
+        }};
     }
 
 
     public OrderDetailsOut orderDetails(OrderDetailsIn in) {
         UserOrderEntity userOrderEntity = userOrderMapper.selectByPrimaryKey(in.getOrderId());
-        if(Objects.isNull(userOrderEntity)){
+        if (Objects.isNull(userOrderEntity)) {
             throw new BizException(CODE_612);
         }
         UserEntity userEntity = userMapper.selectByPrimaryKey(userOrderEntity.getUserId());
 
         OrderDeliveryEntity orderDeliveryEntity = orderDeliveryMapper.selectByPrimaryKey(userOrderEntity.getDeliveryId().longValue());
-        return new OrderDetailsOut(userOrderEntity,userEntity,orderDeliveryEntity);
+        return new OrderDetailsOut(userOrderEntity, userEntity, orderDeliveryEntity);
     }
 
 
-    public CodeMsg toDeliverGoods(OrderToDeliverIn in){
+    public CodeMsg toDeliverGoods(OrderToDeliverIn in) {
         OrderGoodsEntity orderGoodsEntity = OrderGoodsEntity.getOrderGoodsEntity();
         int rows = orderGoodsMapper.insertSelective(new OrderGoodsEntity());
-        if(rows<1){
+        if (rows < 1) {
             throw new BizException(CODE_613);
         }
         return CODE_200;
     }
 
 
-    public GoodsDetailsOut goodsDetails(OrderDetailsIn in){
-        OrderGoodsEntity orderGoodsEntity =  orderGoodsMapper.selectByPrimaryKey(in.getOrderId());
+    public GoodsDetailsOut goodsDetails(OrderDetailsIn in) {
+        OrderGoodsEntity orderGoodsEntity = orderGoodsMapper.selectByPrimaryKey(in.getOrderId());
         GoodsDetailsOut out = null;
-        if(Objects.nonNull(orderGoodsEntity)){
+        if (Objects.nonNull(orderGoodsEntity)) {
             GoodsDetailsIn goodsDetailsIn = new GoodsDetailsIn();
             goodsDetailsIn.setGoodsId(orderGoodsEntity.getGoodsId());
             out = goodsService.goodsDetails(goodsDetailsIn);
         }
 
-        if(Objects.isNull(out)){
+        if (Objects.isNull(out)) {
             throw new BizException(CODE_307);
         }
         return out;
@@ -124,7 +124,7 @@ public class OrderService {
     /**
      * 物流详情
      */
-    public CodeMsg logisticsDetails(OrderDetailsIn in){
+    public CodeMsg logisticsDetails(OrderDetailsIn in) {
         return null;
     }
 }
