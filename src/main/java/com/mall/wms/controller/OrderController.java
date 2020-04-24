@@ -2,10 +2,7 @@ package com.mall.wms.controller;
 
 import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.service.OrderService;
-import com.mall.wms.vo.ChangeOrderStatusIn;
-import com.mall.wms.vo.JsonOut;
-import com.mall.wms.vo.OrderDetailsIn;
-import com.mall.wms.vo.OrderToDeliverIn;
+import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +30,8 @@ public class OrderController {
     }
 
     @PostMapping("list")
-    public JsonOut orderList(){
-        return ok(orderService.orderList());
+    public JsonOut orderList(@RequestBody @Validated OrderListIn in){
+        return ok(orderService.orderList(in));
     }
 
     @PostMapping("details")

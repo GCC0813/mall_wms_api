@@ -1,5 +1,7 @@
 package com.mall.wms.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.OrderDeliveryEntity;
@@ -45,6 +47,8 @@ public class OrderService {
     GoodsService goodsService;
 
     public OrderListOut orderList() {
+    public OrderListOut orderList(OrderListIn in) {
+        Page page = PageHelper.startPage(in.getPage(),in.getLimit());
         List<UserOrderEntity> userOrders = userOrderMapper.selectAll();
         List<OrderListOut.Order> orders = new ArrayList<>();
         if (!CollectionUtils.isEmpty(userOrders)) {
@@ -76,7 +80,7 @@ public class OrderService {
                 orders.add(new OrderListOut.Order(usersMap, orderGoodsMap, orderDeliveryMap, uo));
             }
         }
-        return new OrderListOut(orders);
+        return new OrderListOut(orders){{setCount(page.getTotal());}};
     }
 
 
