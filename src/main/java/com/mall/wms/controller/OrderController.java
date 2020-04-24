@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.mall.wms.comm.CodeMsg.CODE_200;
 import static com.mall.wms.vo.JsonOut.ok;
 
 /**
@@ -43,11 +44,21 @@ public class OrderController {
 
     @PostMapping("change-status")
     public JsonOut changeStatus(@RequestBody @Validated ChangeOrderStatusIn in){
-        return ok(CodeMsg.CODE_200);
+        return ok(CODE_200);
     }
 
     @PostMapping("to-deliver")
     public JsonOut toDeliverGoods(@RequestBody @Validated OrderToDeliverIn in){
         return ok(orderService.toDeliverGoods(in));
+    }
+
+    @PostMapping("goods-details")
+    public JsonOut goodsDetails(@RequestBody @Validated OrderDetailsIn in){
+        return ok(orderService.goodsDetails(in));
+    }
+
+    @PostMapping("logistics-details")
+    public JsonOut logisticsDetails(@RequestBody @Validated OrderDetailsIn in){
+        return ok(orderService.logisticsDetails(in));
     }
 }

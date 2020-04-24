@@ -10,10 +10,7 @@ import com.mall.wms.mapper.OrderDeliveryMapper;
 import com.mall.wms.mapper.OrderGoodsMapper;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.mapper.UserOrderMapper;
-import com.mall.wms.vo.OrderDetailsIn;
-import com.mall.wms.vo.OrderDetailsOut;
-import com.mall.wms.vo.OrderListOut;
-import com.mall.wms.vo.OrderToDeliverIn;
+import com.mall.wms.vo.*;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +40,9 @@ public class OrderService {
 
     @Autowired
     OrderDeliveryMapper orderDeliveryMapper;
+
+    @Autowired
+    GoodsService goodsService;
 
     public OrderListOut orderList() {
         List<UserOrderEntity> userOrders = userOrderMapper.selectAll();
@@ -99,5 +99,28 @@ public class OrderService {
             throw new BizException(CODE_613);
         }
         return CODE_200;
+    }
+
+
+    public GoodsDetailsOut goodsDetails(OrderDetailsIn in){
+        OrderGoodsEntity orderGoodsEntity =  orderGoodsMapper.selectByPrimaryKey(in.getOrderId());
+        GoodsDetailsOut out = null;
+        if(Objects.nonNull(orderGoodsEntity)){
+            GoodsDetailsIn goodsDetailsIn = new GoodsDetailsIn();
+            goodsDetailsIn.setGoodsId(orderGoodsEntity.getGoodsId());
+            out = goodsService.goodsDetails(goodsDetailsIn);
+        }
+
+        if(Objects.isNull(out)){
+            throw new BizException(CODE_307);
+        }
+        return out;
+    }
+
+    /**
+     * 物流详情
+     */
+    public CodeMsg logisticsDetails(OrderDetailsIn in){
+        return null;
     }
 }

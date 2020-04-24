@@ -3,6 +3,7 @@ package com.mall.wms.vo;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author haonan
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class OrderDetailsIn {
 
-    @NotBlank(message = "orderId不能为空！")
+    @NotNull(message = "orderId不能为空！")
     private Long orderId;
 
 }

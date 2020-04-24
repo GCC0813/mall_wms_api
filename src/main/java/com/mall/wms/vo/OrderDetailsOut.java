@@ -35,6 +35,7 @@ public class OrderDetailsOut {
     private String deliveryNo;
 
 
+    private Long deliveryId;
 
     private String deliveryName;
 
@@ -134,6 +135,7 @@ public class OrderDetailsOut {
         this.orderStatus = uo.getOrderStatus().intValue();
         if(Objects.nonNull(od)){
             this.deliveryNo = od.getDeliveryNo();
+            this.deliveryId=od.getId();
             this.deliveryName = od.getDeliveryCompany();
         }
         this.orderType = uo.getOrderType().intValue();
