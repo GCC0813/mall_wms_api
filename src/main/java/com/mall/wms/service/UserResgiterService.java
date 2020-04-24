@@ -1,11 +1,9 @@
 package com.mall.wms.service;
 
 import com.mall.wms.comm.CodeMsg;
-import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.UserEntity;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.vo.UserResiterIn;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

@@ -22,6 +22,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
+import static com.mall.wms.comm.exceptionhandler.BizException.bizException;
 
 @Service
 public class CategoryTagService {
@@ -60,10 +61,10 @@ public class CategoryTagService {
             if(row>0){
                 int ro = goodsTagMapper.modifyStatusByCateId(in);
                 if(ro<1){
-                    throw new BizException(CODE_603);
+                    throw bizException(CODE_603);
                 }
             }else {
-                throw new BizException(CODE_602);
+                throw bizException(CODE_602);
             }
         //类型删除需要删除下面标签
         }else if(in.getType()==1 && in.getStatusType()==3 && in.getStatus()==1){
@@ -71,23 +72,23 @@ public class CategoryTagService {
             if(row>0){
                 int ro = goodsTagMapper.modifyStatusByCateId(in);
                 if(ro<1){
-                    throw new BizException(CODE_603);
+                    throw bizException(CODE_603);
                 }
             }else {
-                throw new BizException(CODE_602);
+                throw bizException(CODE_602);
             }
         }else
         //分类
         if(in.getType()==1){
             int row = goodsCategoryMapper.modifyStatus(in);
             if(row<1){
-                throw new BizException(CODE_602);
+                throw bizException(CODE_602);
             }
         //标签
         }else if(in.getType()==2){
             int row = goodsTagMapper.modifyStatus(in);
             if(row<1){
-                throw new BizException(CODE_603);
+                throw bizException(CODE_603);
             }
         }
         return CODE_200;
@@ -97,13 +98,13 @@ public class CategoryTagService {
         if (in.getType()==1){
             GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.selectByPrimaryKey(in.getId());
             if(Objects.isNull(goodsCategoryEntity)){
-                throw new BizException(CODE_604);
+                throw bizException(CODE_604);
             }
             return JsonOut.ok(goodsCategoryEntity);
         }else {
             GoodsTagEntity goodsTagEntity = goodsTagMapper.selectByPrimaryKey(in.getId());
             if(Objects.isNull(goodsTagEntity)){
-                throw new BizException(CODE_605);
+                throw bizException(CODE_605);
             }
             return JsonOut.ok(goodsTagEntity);
         }
@@ -117,7 +118,7 @@ public class CategoryTagService {
             goodsCategoryEntity.setRemark(in.getRemark());
             int row = goodsCategoryMapper.updateByPrimaryKeySelective(goodsCategoryEntity);
             if(row<1){
-                throw new BizException(CODE_606);
+                throw bizException(CODE_606);
             }
         }else {
             GoodsTagEntity goodsTagEntity =new GoodsTagEntity();
@@ -126,7 +127,7 @@ public class CategoryTagService {
             goodsTagEntity.setRemark(in.getRemark());
             int row = goodsTagMapper.updateByPrimaryKeySelective(goodsTagEntity);
             if(row<1){
-                throw new BizException(CODE_607);
+                throw bizException(CODE_607);
             }
         }
         return CODE_200;
@@ -141,7 +142,7 @@ public class CategoryTagService {
         //goodsTagEntity.setCreateBy(userEntity.getId().longValue());
         int rows = goodsTagMapper.insertSelective(goodsTagEntity);
         if (rows<1){
-            throw new BizException(CODE_608);
+            throw bizException(CODE_608);
         }
         return CODE_200;
 
@@ -167,7 +168,7 @@ public class CategoryTagService {
         //goodsCategoryEntity.setCreateBy(userEntity.getId().longValue());
         int rows = goodsCategoryMapper.insertSelective(goodsCategoryEntity);
         if (rows<1){
-            throw new BizException(CODE_611);
+            throw bizException(CODE_611);
         }
         return CODE_200;
     }

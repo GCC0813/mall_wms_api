@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * @author haonan
@@ -22,5 +23,14 @@ public class BizException extends RuntimeException {
         this.code = c.getCode();
         this.msg = c.getMsg();
         this.data=new HashMap<>(1);
+    }
+
+    public static BizException bizException;
+
+    public static BizException bizException(CodeMsg c){
+        if(Objects.isNull(bizException)){
+            bizException = new BizException(c);
+        }
+        return bizException;
     }
 }

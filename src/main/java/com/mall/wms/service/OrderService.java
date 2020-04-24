@@ -3,7 +3,6 @@ package com.mall.wms.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
-import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.OrderDeliveryEntity;
 import com.mall.wms.entity.OrderGoodsEntity;
 import com.mall.wms.entity.UserEntity;
@@ -22,7 +21,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.mall.wms.comm.CodeMsg.*;
-
+import static com.mall.wms.comm.exceptionhandler.BizException.bizException;
 /**
  * @author haonan
  * create on 2020/4/2 18:35
@@ -87,7 +86,7 @@ public class OrderService {
     public OrderDetailsOut orderDetails(OrderDetailsIn in) {
         UserOrderEntity userOrderEntity = userOrderMapper.selectByPrimaryKey(in.getOrderId());
         if (Objects.isNull(userOrderEntity)) {
-            throw new BizException(CODE_612);
+            throw bizException(CODE_612);
         }
         UserEntity userEntity = userMapper.selectByPrimaryKey(userOrderEntity.getUserId());
 
@@ -98,9 +97,9 @@ public class OrderService {
 
     public CodeMsg toDeliverGoods(OrderToDeliverIn in) {
         OrderGoodsEntity orderGoodsEntity = OrderGoodsEntity.getOrderGoodsEntity();
-        int rows = orderGoodsMapper.insertSelective(new OrderGoodsEntity());
+        int rows = orderGoodsMapper.insertSelective(orderGoodsEntity);
         if (rows < 1) {
-            throw new BizException(CODE_613);
+            throw bizException(CODE_613);
         }
         return CODE_200;
     }
@@ -110,13 +109,13 @@ public class OrderService {
         OrderGoodsEntity orderGoodsEntity = orderGoodsMapper.selectByPrimaryKey(in.getOrderId());
         GoodsDetailsOut out = null;
         if (Objects.nonNull(orderGoodsEntity)) {
-            GoodsDetailsIn goodsDetailsIn = new GoodsDetailsIn();
+            GoodsDetailsIn goodsDetailsIn =GoodsDetailsIn.getGoodsDetailsIn();
             goodsDetailsIn.setGoodsId(orderGoodsEntity.getGoodsId());
             out = goodsService.goodsDetails(goodsDetailsIn);
         }
 
         if (Objects.isNull(out)) {
-            throw new BizException(CODE_307);
+            throw bizException(CODE_307);
         }
         return out;
     }

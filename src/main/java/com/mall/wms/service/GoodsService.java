@@ -4,7 +4,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.comm.RedisOperation;
-import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.*;
 import com.mall.wms.mapper.*;
 import com.mall.wms.vo.*;
@@ -22,6 +21,8 @@ import static com.mall.wms.comm.CodeMsg.*;
 import static com.mall.wms.comm.GlobalVar.STATIC_RESOURCES_PREFIX_TWO;
 import static com.mall.wms.enums.GoodsEnums.STATIC_CATEGORY;
 import static com.mall.wms.enums.GoodsEnums.STATIC_TAGS;
+
+import static com.mall.wms.comm.exceptionhandler.BizException.bizException;
 
 /**
  * @author haonan
@@ -60,7 +61,7 @@ public class GoodsService {
         in.setTimeCreate(System.currentTimeMillis()/1000);
         int row  = goodsMapper.insertSelective(in);
         if(row<1){
-            throw new BizException(CODE_209);
+            throw bizException(CODE_209);
         }
         return CODE_200;
     }
@@ -71,12 +72,12 @@ public class GoodsService {
         //UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
         //TODO 删除
         /*if(Objects.isNull(userEntity)){
-            throw new BizException(LANDING_FAILURE);
+            throw bizException(LANDING_FAILURE);
         }
         in.setUpdateBy(userEntity.getId().longValue());*/
         int row = goodsMapper.updateByPrimaryKeySelective(in);
         if(row<1){
-            throw new BizException(CODE_211);
+            throw bizException(CODE_211);
         }
         return CODE_200;
     }
@@ -121,14 +122,14 @@ public class GoodsService {
     public CodeMsg setGoodsStatus(GoodsToExamineIn in){
         GoodsEntity goodsEntity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
         if(Objects.isNull(goodsEntity)){
-            throw new BizException(CODE_213);
+            throw bizException(CODE_213);
         }
         //TODO 删除
         /*Long userId = (long) ((UserEntity)httpSession.getAttribute("user")).getId();
         in.setUserId(userId);*/
         int row = goodsMapper.updateStatusByType(in);
         if(row < 1){
-            throw new BizException(CODE_210);
+            throw bizException(CODE_210);
         }
         return CODE_200;
     }
@@ -136,12 +137,12 @@ public class GoodsService {
     public CodeMsg deleteGoods(GoodsDetailsIn in){
         GoodsEntity goodsEntity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
         if(Objects.isNull(goodsEntity)){
-            throw new BizException(CODE_213);
+            throw bizException(CODE_213);
         }
         goodsEntity.setDeleteFlag(Byte.valueOf("1"));
         int row = goodsMapper.updateByPrimaryKeySelective(goodsEntity);
         if(row<1){
-            throw new BizException(CODE_601);
+            throw bizException(CODE_601);
         }
         return CODE_200;
     }
@@ -149,7 +150,7 @@ public class GoodsService {
     public GoodsDetailsOut goodsDetails(GoodsDetailsIn in) {
         GoodsEntity entity = goodsMapper.selectByPrimaryKey(in.getGoodsId());
         if (Objects.isNull(entity)) {
-            throw new BizException(CODE_304);
+            throw bizException(CODE_304);
         }
 
         GoodsTagEntity goodsTagEntity = goodsTagMapper.selectByPrimaryKey(entity.getTagId());
@@ -178,7 +179,7 @@ public class GoodsService {
     public List<GoodsEntity> getGoodsList(){
         List<GoodsEntity> entityList = goodsMapper.selectGetGoodsList();
         if(Objects.isNull(entityList)){
-            throw new BizException(CODE_304);
+            throw bizException(CODE_304);
         }
         return entityList;
     }
@@ -189,7 +190,7 @@ public class GoodsService {
     public List<GoodsEntity> getGoodName(GoodNameIn in){
         List<GoodsEntity> entityList = goodsMapper.selectGoodsByName(in.getGoodName());
         if(CollectionUtils.isEmpty(entityList)){
-            throw new BizException(CODE_304);
+            throw bizException(CODE_304);
         }
         return entityList;
     }
@@ -202,7 +203,7 @@ public class GoodsService {
         List<GoodsCategoryEntity> goodsCategoryEntities = goodsCategoryMapper.selectByPrimaryKeyList();
         List<GoodsTagEntity> goodsTagEntityList = goodsTagMapper.selectByPrimaryKeyList();
         if(CollectionUtils.isEmpty(goodsCategoryEntities) || CollectionUtils.isEmpty(goodsTagEntityList)){
-            throw new BizException(CODE_305);
+            throw bizException(CODE_305);
         }
         else {
             if(from==1){
@@ -236,7 +237,7 @@ public class GoodsService {
     public List<GoodsEntity> getGoodsByTag(GoodTagIn goodTagIn){
         List<GoodsEntity> goodsEntityList = goodsMapper.selectGoodsByTag(goodTagIn.getTagId());
         if(CollectionUtils.isEmpty(goodsEntityList)){
-            throw new BizException(CODE_307);
+            throw bizException(CODE_307);
         }
         return goodsEntityList;
     }
@@ -247,7 +248,7 @@ public class GoodsService {
     public List<GoodsEntity> getGoodsByVriety(GoodCategoryIn goodCategoryIn){
         List<GoodsEntity> goodsEntityList = goodsMapper.selectGoodsByVriety(goodCategoryIn.getVarietyId());
         if(CollectionUtils.isEmpty(goodsEntityList)){
-            throw new BizException(CODE_307);
+            throw bizException(CODE_307);
         }
         return goodsEntityList;
     }
@@ -258,7 +259,7 @@ public class GoodsService {
         //先去查询该用户有没有收藏过该商品
        UserCollectEntity userCollectEntity  = userCollectMapper.selectByUserIdAndGoodIds(in.getUserId(),in.getGoodsId());
        if(!StringUtils.isEmpty(userCollectEntity)){
-           throw new BizException(CODE_403);
+           throw bizException(CODE_403);
        }
         UserCollectEntity entity = new UserCollectEntity();
         entity.setUserId(in.getUserId());
@@ -266,7 +267,7 @@ public class GoodsService {
         try {
             userCollectMapper.insertSelective(entity);
         } catch (Exception e) {
-            throw new BizException(CODE_401);
+            throw bizException(CODE_401);
         }
     }
 
@@ -277,7 +278,7 @@ public class GoodsService {
         try {
             userCollectMapper.deleteByUserIdAndGoodIds(in.getUserId(),in.getGoodsId());
         } catch (Exception e) {
-            throw new BizException(CODE_304);
+            throw bizException(CODE_304);
         }
     }
 
@@ -289,11 +290,11 @@ public class GoodsService {
          //先查询用户收藏的商品id
         List<Integer> goodsIds = userCollectMapper.selectByUserId(in.getUserId());
         if(CollectionUtils.isEmpty(goodsIds)){
-            throw new BizException(CODE_304);
+            throw bizException(CODE_304);
         }
         goodsEntityList = goodsMapper.selectGoodsByIds(goodsIds);
         if(CollectionUtils.isEmpty(goodsEntityList)){
-            throw new BizException(CODE_307);
+            throw bizException(CODE_307);
         }
         return goodsEntityList;
     }

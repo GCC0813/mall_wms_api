@@ -13,4 +13,10 @@ public class GoodsDetailsIn {
 
     @NotNull(message = "商品id不能为空")
     private Long goodsId;
+
+    public static GoodsDetailsIn goodsDetailsIn = new GoodsDetailsIn();
+
+    public static GoodsDetailsIn getGoodsDetailsIn(){
+        return goodsDetailsIn;
+    }
 }
