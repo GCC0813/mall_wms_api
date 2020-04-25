@@ -3,17 +3,13 @@ package com.mall.wms.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mall.wms.comm.CodeMsg;
-import com.mall.wms.entity.OrderDeliveryEntity;
-import com.mall.wms.entity.OrderGoodsEntity;
-import com.mall.wms.entity.UserEntity;
-import com.mall.wms.entity.UserOrderEntity;
-import com.mall.wms.mapper.OrderDeliveryMapper;
-import com.mall.wms.mapper.OrderGoodsMapper;
-import com.mall.wms.mapper.UserMapper;
-import com.mall.wms.mapper.UserOrderMapper;
+import com.mall.wms.comm.exceptionhandler.BizException;
+import com.mall.wms.entity.*;
+import com.mall.wms.mapper.*;
 import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -43,6 +39,9 @@ public class OrderService {
 
     @Autowired
     GoodsService goodsService;
+
+    @Autowired
+    LogisticsCompanyMapper logisticsCompanyMapper;
 
     public OrderListOut orderList(OrderListIn in) {
         Page page = PageHelper.startPage(in.getPage(), in.getLimit());
@@ -95,12 +94,25 @@ public class OrderService {
     }
 
 
+    @Transactional(rollbackFor = BizException.class)
     public CodeMsg toDeliverGoods(OrderToDeliverIn in) {
-        OrderGoodsEntity orderGoodsEntity = OrderGoodsEntity.getOrderGoodsEntity();
-        int rows = orderGoodsMapper.insertSelective(orderGoodsEntity);
-        if (rows < 1) {
+        UserOrderEntity userOrderEntity =userOrderMapper.selectByPrimaryKey(in.getOrderId());
+        if(Objects.isNull(userOrderEntity)){
+            throw bizException(CODE_612);
+        }
+        UserOrderEntity userOrder = new UserOrderEntity();
+        userOrder.setId(in.getOrderId());
+        userOrder.setOrderStatus(Integer.valueOf(7).byteValue());
+        int rows =  userOrderMapper.updateByPrimaryKeySelective(userOrder);
+        if(rows<1){
             throw bizException(CODE_613);
         }
+        OrderDeliveryEntity orderDeliveryEntity = new OrderDeliveryEntity();
+        orderDeliveryEntity.setId(userOrderEntity.getDeliveryId().longValue());
+        orderDeliveryEntity.setDeliveryNo(in.getDeliveryNo());
+        orderDeliveryEntity.setDeliveryCompany(in.getDeliveryCompany());
+        orderDeliveryEntity.setDeliveryFee(in.getDeliveryFee());
+        orderDeliveryMapper.updateByPrimaryKeySelective(orderDeliveryEntity);
         return CODE_200;
     }
 
@@ -126,4 +138,22 @@ public class OrderService {
     public CodeMsg logisticsDetails(OrderDetailsIn in) {
         return null;
     }
+
+    public  List<LogisticsCompanyEntity> logisticsCompany(){
+        return logisticsCompanyMapper.selectAll();
+    }
+
+
+    public  CodeMsg  orderDelete(OrderDetailsIn in){
+        UserOrderEntity userOrderEntity = new UserOrderEntity();
+        userOrderEntity.setId(in.getOrderId());
+        userOrderEntity.setDeleteFlag(Byte.valueOf("1"));
+        int rows = userOrderMapper.updateByPrimaryKeySelective(userOrderEntity);
+        if(rows<1){
+            throw bizException(CODE_614);
+        }
+        return CODE_200;
+    }
+
+
 }

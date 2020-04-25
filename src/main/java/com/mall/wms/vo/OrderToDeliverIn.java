@@ -5,6 +5,7 @@ import lombok.NonNull;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 /**
  * @author haonan
@@ -19,7 +20,10 @@ public class OrderToDeliverIn {
     @NotBlank(message = "deliveryNo不能为空")
     private String deliveryNo;
 
-    @NotBlank(message = "deliveryName不能为空")
-    private String deliveryName;
+    @NotBlank(message = "deliveryCompany不能为空")
+    private String deliveryCompany;
+
+    @NotNull(message = "运费不能为空")
+    private BigDecimal deliveryFee;
 
 }

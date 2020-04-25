@@ -1,7 +1,5 @@
 package com.mall.wms.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,7 +7,6 @@ import java.util.Date;
  * @author 
  * 物流公司表
  */
-@Data
 public class LogisticsCompanyEntity implements Serializable {
     /**
      * 主键id
@@ -56,4 +53,77 @@ public class LogisticsCompanyEntity implements Serializable {
      */
     private Date updateTime;
 
+    private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
+    public String getQueryUrl() {
+        return queryUrl;
+    }
+
+    public void setQueryUrl(String queryUrl) {
+        this.queryUrl = queryUrl;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCompanyAddr() {
+        return companyAddr;
+    }
+
+    public void setCompanyAddr(String companyAddr) {
+        this.companyAddr = companyAddr;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

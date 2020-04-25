@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+
 import static com.mall.wms.comm.CodeMsg.CODE_200;
 import static com.mall.wms.vo.JsonOut.ok;
 
@@ -57,5 +59,15 @@ public class OrderController {
     @PostMapping("logistics-details")
     public JsonOut logisticsDetails(@RequestBody @Validated OrderDetailsIn in){
         return ok(orderService.logisticsDetails(in));
+    }
+
+    @PostMapping("logistics-company")
+    public JsonOut logisticsCompany(){
+        return ok(Collections.singletonMap("list",orderService.logisticsCompany()));
+    }
+
+    @PostMapping("delete")
+    public JsonOut orderDelete(@RequestBody @Validated OrderDetailsIn in){
+        return ok(orderService.orderDelete(in));
     }
 }
