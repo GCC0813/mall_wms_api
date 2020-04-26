@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class OrderListIn {
 
-    private Integer page;
+    private Integer page = 1;
 
-    private Integer limit;
+    private Integer limit = 10;
 }

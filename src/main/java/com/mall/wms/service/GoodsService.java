@@ -52,8 +52,6 @@ public class GoodsService {
     @Autowired
     HttpSession httpSession;
 
-    private final UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
-
     public CodeMsg addGoods(GoodsEntity in){
         in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
         in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
@@ -69,6 +67,7 @@ public class GoodsService {
     public CodeMsg changeGoodsInfo(GoodsEntity in){
         in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
         in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
+        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
         if(Objects.isNull(userEntity)){
             throw bizException(LANDING_FAILURE);
         }
@@ -122,6 +121,7 @@ public class GoodsService {
         if(Objects.isNull(goodsEntity)){
             throw bizException(CODE_213);
         }
+        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
         in.setUserId(userEntity.getId().longValue());
         int row = goodsMapper.updateStatusByType(in);
         if(row < 1){

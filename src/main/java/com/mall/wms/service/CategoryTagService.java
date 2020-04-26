@@ -17,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,9 +36,6 @@ public class CategoryTagService {
 
     @Autowired
     HttpSession httpSession;
-
-    private final UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
-
 
     public CategoryTagListOut categoryTagList(){
         List<GoodsCategoryEntity> goodsCategories = goodsCategoryMapper.selectAll();
@@ -138,6 +136,7 @@ public class CategoryTagService {
         goodsTagEntity.setCategoryId(in.getCateId());
         goodsTagEntity.setName(in.getTagName());
         goodsTagEntity.setRemark(in.getTagRemark());
+        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
         goodsTagEntity.setCreateBy(userEntity.getId().longValue());
         int rows = goodsTagMapper.insertSelective(goodsTagEntity);
         if (rows<1){
@@ -164,7 +163,8 @@ public class CategoryTagService {
         goodsCategoryEntity.setRemark(cateRemark);
         goodsCategoryEntity.setCheckStatus(in.getCheckStatus().byteValue());
         goodsCategoryEntity.setStatus(in.getStatus());
-        //goodsCategoryEntity.setCreateBy(userEntity.getId().longValue());
+        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
+        goodsCategoryEntity.setCreateBy(userEntity.getId().longValue());
         int rows = goodsCategoryMapper.insertSelective(goodsCategoryEntity);
         if (rows<1){
             throw bizException(CODE_611);

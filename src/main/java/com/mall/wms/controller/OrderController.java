@@ -1,6 +1,5 @@
 package com.mall.wms.controller;
 
-import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.service.OrderService;
 import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ import static com.mall.wms.vo.JsonOut.ok;
  * @author haonan
  * create on 2020/3/6 13:46
  */
-@RequestMapping("order")
 @RestController
+@RequestMapping("order")
 public class OrderController {
 
     @Autowired

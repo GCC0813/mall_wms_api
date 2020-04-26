@@ -407,7 +407,7 @@
   <select id="selectByDate" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from user_order
-    where order_time >= #{startTime}
-    and order_time <![CDATA[<=]]> #{endTime}
+    where UNIX_TIMESTAMP(create_time) >= #{startTime}
+    and UNIX_TIMESTAMP(update_time) <![CDATA[<=]]> #{endTime}
   </select>
 </mapper>
