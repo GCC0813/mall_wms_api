@@ -1,20 +1,17 @@
 package com.mall.wms.service;
 
+import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.entity.UserEntity;
 import com.mall.wms.entity.UserOrderEntity;
 import com.mall.wms.mapper.GoodsMapper;
 import com.mall.wms.mapper.UserMapper;
 import com.mall.wms.mapper.UserOrderMapper;
-import com.mall.wms.vo.HomeInfoOut;
-import com.mall.wms.vo.MyDesktopInfoOut;
-import com.mall.wms.vo.StatisticsOut;
-import com.mall.wms.vo.UserListIn;
+import com.mall.wms.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.mall.wms.util.DateUtil.*;
 
@@ -103,10 +100,10 @@ public class HomeService {
         Long firstTimeInMillis = lastOneMonthMap.get("firstTimeInMillis");
         Long lastTimeInMillis = lastSevenMonthMap.get("lastTimeInMillis");
 
-        UserListIn in = new UserListIn();
-        in.setStartTime(firstTimeInMillis);
-        in.setEndTime(lastTimeInMillis);
-        List<UserEntity> userEntities = userMapper.selectAllByCondition(in);
+        UserListIn userListIn = new UserListIn();
+        userListIn.setStartTime(firstTimeInMillis);
+        userListIn.setEndTime(lastTimeInMillis);
+        List<UserEntity> userEntities = userMapper.selectAllByCondition(userListIn);
         List<Long> userNum = new ArrayList<>();
         if(!CollectionUtils.isEmpty(userEntities)){
             userNum.add(getUserNumSize(userEntities,lastOneMonthMap));
@@ -117,13 +114,52 @@ public class HomeService {
             userNum.add(getUserNumSize(userEntities,lastSixMonthMap));
             userNum.add(getUserNumSize(userEntities,lastSevenMonthMap));
         }
-        return StatisticsOut.getStatisticsOut(lastMonths,userNum,new ArrayList<>(),new ArrayList<>());
+
+        GoodsAuditListIn goodsAuditListIn = new GoodsAuditListIn();
+        goodsAuditListIn.setStartTime(firstTimeInMillis);
+        goodsAuditListIn.setEndTime(lastTimeInMillis);
+        List<GoodsEntity> goodsEntities = goodsMapper.selectByCondition(goodsAuditListIn);
+        List<Long> goodsNum = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(goodsEntities)){
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastOneMonthMap));
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastTwoMonthMap));
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastThreeMonthMap));
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastFourMonthMap));
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastFiveMonthMap));
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastSixMonthMap));
+            goodsNum.add(getGoodsNumSize(goodsEntities,lastSevenMonthMap));
+        }
+
+        List<UserOrderEntity> userOrderEntities = userOrderMapper.selectByDate(firstTimeInMillis,lastTimeInMillis);
+        List<Long> orderNum = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(goodsEntities)){
+            orderNum.add(getOrderNumSize(userOrderEntities,lastOneMonthMap));
+            orderNum.add(getOrderNumSize(userOrderEntities,lastTwoMonthMap));
+            orderNum.add(getOrderNumSize(userOrderEntities,lastThreeMonthMap));
+            orderNum.add(getOrderNumSize(userOrderEntities,lastFourMonthMap));
+            orderNum.add(getOrderNumSize(userOrderEntities,lastFiveMonthMap));
+            orderNum.add(getOrderNumSize(userOrderEntities,lastSixMonthMap));
+            orderNum.add(getOrderNumSize(userOrderEntities,lastSevenMonthMap));
+        }
+        return StatisticsOut.getStatisticsOut(lastMonths,userNum,goodsNum,orderNum);
     }
 
     private Long getUserNumSize(List<UserEntity> userEntities, Map<String,Long> map) {
-        return (long) userEntities.stream().filter(u -> u.getRegTime() >= map.get("firstTimeInMillis") &&
-                u.getRegTime() <= map.get("lastTimeInMillis")).collect(Collectors.toList()).size();
+        return  userEntities.stream().filter(u -> u.getRegTime() >= map.get("firstTimeInMillis") &&
+                u.getRegTime() <= map.get("lastTimeInMillis")).count();
     }
+
+    private Long getGoodsNumSize(List<GoodsEntity> goodsEntities, Map<String,Long> map){
+        return  goodsEntities.stream().filter(g -> g.getTimeCreate() >= map.get("firstTimeInMillis") &&
+                g.getTimeCreate() <= map.get("lastTimeInMillis")).count();
+    }
+
+    private Long getOrderNumSize(List<UserOrderEntity> userOrderEntities, Map<String,Long> map){
+        return  userOrderEntities.stream().filter(u -> u.getCreateTime().getTime()/1000 >= map.get("firstTimeInMillis") &&
+                u.getCreateTime().getTime()/1000 <= map.get("lastTimeInMillis")).count();
+    }
+
+
 
 
     public static void main(String[] args) {

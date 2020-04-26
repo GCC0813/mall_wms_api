@@ -52,7 +52,7 @@ public class GoodsService {
     @Autowired
     HttpSession httpSession;
 
-    //private UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
+    private final UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
 
     public CodeMsg addGoods(GoodsEntity in){
         in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
@@ -69,12 +69,10 @@ public class GoodsService {
     public CodeMsg changeGoodsInfo(GoodsEntity in){
         in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
         in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
-        //UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
-        //TODO 删除
-        /*if(Objects.isNull(userEntity)){
+        if(Objects.isNull(userEntity)){
             throw bizException(LANDING_FAILURE);
         }
-        in.setUpdateBy(userEntity.getId().longValue());*/
+        in.setUpdateBy(userEntity.getId().longValue());
         int row = goodsMapper.updateByPrimaryKeySelective(in);
         if(row<1){
             throw bizException(CODE_211);
@@ -124,9 +122,7 @@ public class GoodsService {
         if(Objects.isNull(goodsEntity)){
             throw bizException(CODE_213);
         }
-        //TODO 删除
-        /*Long userId = (long) ((UserEntity)httpSession.getAttribute("user")).getId();
-        in.setUserId(userId);*/
+        in.setUserId(userEntity.getId().longValue());
         int row = goodsMapper.updateStatusByType(in);
         if(row < 1){
             throw bizException(CODE_210);

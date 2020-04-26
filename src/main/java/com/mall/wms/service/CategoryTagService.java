@@ -36,7 +36,7 @@ public class CategoryTagService {
     @Autowired
     HttpSession httpSession;
 
-    //private final UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
+    private final UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
 
 
     public CategoryTagListOut categoryTagList(){
@@ -138,8 +138,7 @@ public class CategoryTagService {
         goodsTagEntity.setCategoryId(in.getCateId());
         goodsTagEntity.setName(in.getTagName());
         goodsTagEntity.setRemark(in.getTagRemark());
-        //TODO 删除
-        //goodsTagEntity.setCreateBy(userEntity.getId().longValue());
+        goodsTagEntity.setCreateBy(userEntity.getId().longValue());
         int rows = goodsTagMapper.insertSelective(goodsTagEntity);
         if (rows<1){
             throw bizException(CODE_608);

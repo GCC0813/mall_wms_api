@@ -1,8 +1,6 @@
 package com.mall.wms.util;
 
 import org.apache.commons.lang3.StringUtils;
-
-import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -130,6 +128,6 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(getFirstLastTimeStampByYearMonth(2019,6));;
+        System.out.println(timeStamp2Date(new Date().getTime()/1000,""));;
     }
 }

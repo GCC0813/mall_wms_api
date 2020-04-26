@@ -47,15 +47,14 @@ public class Filter implements javax.servlet.Filter {
 
 		String apiUrl = request.getRequestURI();
 		String method = request.getMethod();
-		//TODO 删除
-/*		if(FilterConstant.isSpecialAPI(apiUrl) || "OPTIONS".equals(method)){
+		if(FilterConstant.isSpecialAPI(apiUrl) || "OPTIONS".equals(method)){
 			chain.doFilter(request, response);
 			return;
 		}
 		if(Objects.isNull(httpSession.getAttribute("user"))){
 			FilterConstant.outBusinessErr(response, ok(LANDING_FAILURE), mapper);
 			return;
-		}*/
+		}
 		chain.doFilter(req, res);
 	}
 

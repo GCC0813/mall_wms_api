@@ -2,6 +2,7 @@ package com.mall.wms.mapper;
 
 import com.mall.wms.entity.UserOrderEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface UserOrderMapper {
     int updateByPrimaryKey(UserOrderEntity record);
 
     List<UserOrderEntity> selectAll();
+
+    List<UserOrderEntity> selectByDate(@Param("startTime")Long startTime,@Param("endTime")Long enTime);
 }
