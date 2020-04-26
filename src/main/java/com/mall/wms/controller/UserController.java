@@ -7,6 +7,7 @@ import com.mall.wms.vo.GetUserInfoByIdIn;
 import com.mall.wms.vo.IsHasUserIn;
 import com.mall.wms.vo.JsonOut;
 import com.mall.wms.vo.LoginIn;
+import com.qiniu.util.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -61,4 +62,8 @@ public class UserController {
         return ok(userService.isHasUser(in));
     }
 
+    @PostMapping("isLogin")
+    public JsonOut isLogin(){
+        return ok(userService.isLogin());
+    }
 }

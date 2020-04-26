@@ -159,22 +159,6 @@ public class HomeService {
                 u.getCreateTime().getTime()/1000 <= map.get("lastTimeInMillis")).count();
     }
 
-
-
-
-    public static void main(String[] args) {
-        int nowMonth = getNowMonth();
-        List<String> lastMonths = new ArrayList<>();
-        List<Integer> lastMonthIds= new ArrayList<>();
-
-        for(int i=6;i<=6 && i>=0;i--) {
-            int month = getPreviousMonth(nowMonth,i);
-            lastMonths.add(getMonthText(month));
-            lastMonthIds.add(month);
-        }
-
-    }
-
     private static int getLastMonthInYearByMonth(int lastMonth,int nowMonth){
         int nowYear = getNowYear();
         if(lastMonth-nowMonth > 0){

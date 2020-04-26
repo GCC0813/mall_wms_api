@@ -23,7 +23,8 @@ public class FilterConstant {
 
     public static boolean isSpecialAPI(String url) {
         // 只允许内部服务器访问的接口
-        String[] innerURL = {"/user/login","/upload/getQiniuToken"};
+        String[] innerURL = {"/user/login","/upload/getQiniuToken",
+                "/order/list","/user/isLogin"};
         for (String s : innerURL) {
             if(url.startsWith(rootPath  + s)) {
                 return true;

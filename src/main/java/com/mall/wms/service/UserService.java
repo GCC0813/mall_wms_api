@@ -136,4 +136,12 @@ public class UserService {
         }
         return CODE_200;
     }
+
+    public CodeMsg isLogin(){
+        if(Objects.nonNull(httpSession.getAttribute("user"))){
+            return CODE_200;
+        }else{
+            return LANDING_FAILURE;
+        }
+    }
 }
