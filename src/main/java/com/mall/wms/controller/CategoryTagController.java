@@ -1,7 +1,9 @@
 package com.mall.wms.controller;
 
+import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.CategoryTagService;
 import com.mall.wms.vo.*;
+import com.qiniu.util.Json;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class CategoryTagController {
     private RabbitTemplate oneRabbitTemplate;
 
     @PostMapping("category-tag-list")
-    public JsonOut categoryTagList(@RequestBody @Validated ModifyCategoryOrTagStatusIn in){
+    public JsonOut categoryTagList(){
         return ok(categoryTagService.categoryTagList());
     }
 
