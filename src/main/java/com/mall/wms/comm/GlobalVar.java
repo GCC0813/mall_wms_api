@@ -1,7 +1,7 @@
 package com.mall.wms.comm;
 
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/9 10:57
  */
 public class GlobalVar {
@@ -15,6 +15,10 @@ public class GlobalVar {
     public static final String STATIC_RESOURCES_PREFIX= "http://static.gcc666.top/%s";
 
     public static final String DEFAULT_HEAD="default_head.jpg";
+
+    public static final  String GOODS_REDIS_KEY = "goodsId_key_%s";
+
+    public static final String STATIC_RESOURCES_PREFIX_TWO = "http://static.gcc666.top/";
 
 
 }

@@ -4,14 +4,13 @@ import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.vo.GoodsAuditListIn;
 import com.mall.wms.vo.GoodsToExamineIn;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface GoodsMapper {
     int deleteByPrimaryKey(Long id);
-
-    int insert(GoodsEntity record);
 
     int insertSelective(GoodsEntity record);
 
@@ -23,8 +22,20 @@ public interface GoodsMapper {
 
     List<GoodsEntity> selectByCondition(GoodsAuditListIn in);
 
-    int updateByType(GoodsToExamineIn in);
+    int updateStatusByType(GoodsToExamineIn in);
 
     Long selectCount();
+
+    List<GoodsEntity> selectGetGoodsList();
+
+    List<GoodsEntity> selectGoodsByName(@Param("name") String name );
+
+    List<GoodsEntity> selectGoodsByTag(@Param("tagId") int tagId);
+
+    List<GoodsEntity> selectGoodsByVriety(@Param("vrietyId")int vrietyId);
+
+    List<GoodsEntity> selectGoodsByIds(@Param("goodsIds") List<Integer> goodsIds);
+
+    Long selectGoodsCount();
 
 }

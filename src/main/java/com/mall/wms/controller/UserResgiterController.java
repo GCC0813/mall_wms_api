@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.mall.wms.vo.JsonOut.ok;
+
 /**
- * @author: cjn
+ * @author: haonan
  * @date:2020/3/15 14:21
  */
 @RestController
@@ -28,7 +30,7 @@ public class UserResgiterController {
     @PostMapping("/userRegister")
     public JsonOut userResgier(@RequestBody @Validated UserResiterIn resiterIn){
 
-        return new JsonOut<>(userResgiterService.resgiter(resiterIn));
+        return ok(userResgiterService.resgiter(resiterIn));
     }
 
 }

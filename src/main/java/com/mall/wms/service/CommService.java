@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
-import static com.mall.wms.comm.CodeMsg.CODE_212;
+import static com.mall.wms.comm.CodeMsg.LANDING_FAILURE;
+import static com.mall.wms.comm.exceptionhandler.BizException.bizException;
 
 @Service
 public class CommService {
@@ -23,7 +24,7 @@ public class CommService {
     public Object isLogin(){
         Object o = session.getAttribute("user");
         if(Objects.isNull(o)){
-            throw new BizException(CODE_212);
+            throw bizException(LANDING_FAILURE);
         }
         return o;
     }

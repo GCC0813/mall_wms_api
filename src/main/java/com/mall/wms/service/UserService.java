@@ -1,8 +1,6 @@
 package com.mall.wms.service;
 
 import com.mall.wms.comm.CodeMsg;
-import com.mall.wms.comm.RedisOperation;
-import com.mall.wms.comm.exceptionhandler.BizException;
 import com.mall.wms.entity.UserEntity;
 import com.mall.wms.entity.UserLoginEntity;
 import com.mall.wms.mapper.UserLoginMapper;
@@ -23,6 +21,8 @@ import java.util.regex.Pattern;
 import static com.mall.wms.comm.CodeMsg.*;
 import static com.mall.wms.comm.GlobalVar.*;
 import static com.mall.wms.util.MD5Util.encrypt;
+
+import static com.mall.wms.comm.exceptionhandler.BizException.bizException;
 
 @Service
 public class UserService {
@@ -46,12 +46,12 @@ public class UserService {
         if (role == 1) {
             if (userName.contains("@")) {
                 if (!Pattern.compile(MAIL_REGULAR).matcher(userName).matches()) {
-                    throw new BizException(CODE_207);
+                    throw bizException(CODE_207);
                 }
                 type = 1;
             } else {
                 /*if(!Pattern.compile(PHONE_REGULAR).matcher(userName).matches()){
-                    throw new BizException(CODE_206);
+                    throw bizException(CODE_206);
                 }*/
                 type = 2;
             }
@@ -89,7 +89,7 @@ public class UserService {
         isHasUserIn.setMobile(in.getMobile());
         UserEntity entity = userMapper.selectUserByPhoneAndEmail(isHasUserIn);
         if(!Objects.isNull(entity)){
-           throw new BizException(CODE_306);
+           throw bizException(CODE_306);
         }
         if(StringUtils.isNotBlank(in.getPassword())){
             in.setPassword(encrypt(in.getPassword()));
@@ -106,7 +106,7 @@ public class UserService {
     public UserEntity getUserInfo(){
         UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
         if(Objects.isNull(userEntity)){
-            throw new BizException(CODE_208);
+            throw bizException(CODE_208);
         }
         return userEntity;
     }
@@ -114,7 +114,7 @@ public class UserService {
     public UserEntity getUserInfoById(GetUserInfoByIdIn in){
         UserEntity entity = userMapper.selectByPrimaryKey(in.getId());
         if(Objects.isNull(entity)){
-            throw new BizException(CODE_201);
+            throw bizException(CODE_201);
         }
         entity.setHeadIcon(String.format(STATIC_RESOURCES_PREFIX, entity.getHeadIcon()));
         return entity;
@@ -131,9 +131,17 @@ public class UserService {
                     return CODE_200;
                 }
             }else {
-                throw new BizException(CODE_306);
+                throw bizException(CODE_306);
             }
         }
         return CODE_200;
+    }
+
+    public CodeMsg isLogin(){
+        if(Objects.nonNull(httpSession.getAttribute("user"))){
+            return CODE_200;
+        }else{
+            return LANDING_FAILURE;
+        }
     }
 }

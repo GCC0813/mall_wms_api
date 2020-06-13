@@ -1,4 +1,7 @@
 #忽略提交
-/.gradle
-/.idea
-/out
+.gradle
+.idea
+**/out
+out
+log
+logs

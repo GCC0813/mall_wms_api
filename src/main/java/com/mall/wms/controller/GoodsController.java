@@ -1,11 +1,10 @@
 package com.mall.wms.controller;
 
+import com.mall.wms.comm.CodeMsg;
 import com.mall.wms.entity.GoodsEntity;
 import com.mall.wms.service.GoodsService;
-import com.mall.wms.vo.JsonOut;
-import com.mall.wms.vo.GoodsAuditListIn;
-import com.mall.wms.vo.GoodsDetailsIn;
-import com.mall.wms.vo.GoodsToExamineIn;
+import com.mall.wms.vo.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+
+import static com.mall.wms.vo.JsonOut.ok;
+
 /**
- * @author GCC
+ * @author haonan
  * create on 2020/3/6 13:43
  */
 @RequestMapping("goods")
@@ -29,7 +32,7 @@ public class GoodsController {
      */
     @PostMapping("add")
     public JsonOut add(@RequestBody @Validated GoodsEntity in){
-        return new JsonOut<>(goodsService.addGoods(in));
+        return ok(goodsService.addGoods(in));
     }
 
 
@@ -38,25 +41,39 @@ public class GoodsController {
      */
     @PostMapping("change-info")
     public JsonOut changeGoodsInfo(@RequestBody @Validated GoodsEntity in){
-        return new JsonOut<>(goodsService.changeGoodsInfo(in));
+        return ok(goodsService.changeGoodsInfo(in));
     }
-
 
     /**
      * 商品详情
      */
     @PostMapping("details")
     public JsonOut goodsDetails(@RequestBody @Validated GoodsDetailsIn in){
-        return JsonOut.ok(goodsService.goodsDetails(in));
+        return ok(goodsService.goodsDetails(in));
     }
 
 
+    @PostMapping("details/goodsVariety")
+    public JsonOut detailsGoodsVariety(@RequestBody @Validated DetailsGoodsVarietyIn in){
+        return ok(Collections.singletonMap("rows",goodsService.detailsGoodsVariety(in)));
+    }
+
+    @PostMapping("details/get_tags_by_cate")
+    public JsonOut getTagsByCate(@RequestBody @Validated DetailsGoodsVarietyIn in){
+        return ok(Collections.singletonMap("rows",goodsService.getTagsByCate(in)));
+    }
+
+    @PostMapping("details/supplier")
+    public JsonOut getSupplierInDetails(@RequestBody @Validated SupplierInDetailsIn in){
+        return ok(Collections.singletonMap("rows",goodsService.getSupplierInDetails(in)));
+    }
+
     /**
-     * 待审核商品列表和已审核列表
+     * 商品列表（包含搜索）
      */
     @PostMapping("goods-list")
     public JsonOut goodsList(@RequestBody @Validated GoodsAuditListIn in){
-        return new JsonOut<>(goodsService.goodsList(in));
+        return ok(goodsService.goodsList(in));
     }
 
     /**
@@ -64,9 +81,88 @@ public class GoodsController {
      */
     @PostMapping("set-goods-status")
     public JsonOut setGoodsStatus(@RequestBody @Validated GoodsToExamineIn in){
-        return new JsonOut<>(goodsService.setGoodsStatus(in)) ;
+        return ok(goodsService.setGoodsStatus(in)) ;
     }
 
+    @PostMapping("delete-goods")
+    public JsonOut deleteGoods(@RequestBody @Validated GoodsDetailsIn in){
+        return ok(goodsService.deleteGoods(in)) ;
+    }
 
+    /**
+     * 商品链表
+     */
+    @PostMapping("goodsList")
+    public JsonOut getGoodsList(){
+        return ok(goodsService.getGoodsList());
+    }
 
+    /**
+     * 商品名字搜索
+     */
+    @PostMapping("goodsName")
+    public JsonOut getGoodFormName(@RequestBody @Validated GoodNameIn goodNameIn){
+        return ok(goodsService.getGoodName(goodNameIn));
+    }
+
+    @PostMapping("/goodsVarietyAdmin")
+    public JsonOut getGoodsVarietyAdmin(){
+        return ok(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(1)));
+    }
+    
+    @PostMapping("goodsSupplier")
+    public JsonOut getGoodsSupplier(){
+        return ok(null);
+    }
+
+    /**
+     * 商品总类
+     */
+    @PostMapping("/goodsVariety")
+    public JsonOut getGoodsVariety(){
+          return ok(Collections.singletonMap("goodVrietyOut",goodsService.getGoodsVariety(2)));
+    }
+
+    /**
+     * 根据标签查商品
+     */
+    @PostMapping("/getGoodsByTag")
+    public JsonOut getGoodsByTag(@RequestBody @Validated GoodTagIn goodTagIn){
+        return ok(goodsService.getGoodsByTag(goodTagIn));
+    }
+
+    /**
+     * 根据商品种类查商品
+     */
+    @PostMapping("/getGoodsByVriety")
+    public JsonOut getGoodsByVriety(@RequestBody @Validated GoodCategoryIn goodCategoryIn){
+        return ok(goodsService.getGoodsByVriety(goodCategoryIn));
+    }
+
+    /**
+     * 商品收藏
+     */
+    @PostMapping("/goodsCollect")
+    public JsonOut goodsCollect(@RequestBody @Validated GoodCollectIn goodCollectIn){
+        goodsService.goodsCollect(goodCollectIn);
+        return ok(CodeMsg.CODE_200);
+    }
+
+    /**
+     * 取消商品收藏
+     */
+    @PostMapping("/goodsDelectCollect")
+    public JsonOut goodsDelectCollect(@RequestBody @Validated GoodCollectIn goodCollectIn){
+        goodsService.goodsDelectCollect(goodCollectIn);
+        return ok(CodeMsg.CODE_200);
+    }
+
+    /**
+     * 用户的收藏列表
+     */
+    @PostMapping("/goodsCollectList")
+    public JsonOut goodsCollectList(@RequestBody @Validated UserIn userIn){
+         return ok(goodsService.goodsCollectList(userIn));
+    }
 }
+

@@ -19,45 +19,29 @@
     <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
     <result column="check_status" jdbcType="TINYINT" property="checkStatus" />
     <result column="check_by" jdbcType="BIGINT" property="checkBy" />
-    <result column="check_time" jdbcType="INTEGER" property="checkTime" />
+    <result column="check_time" jdbcType="BIGINT" property="checkTime" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="update_by" jdbcType="BIGINT" property="updateBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="time_create" jdbcType="BIGINT" property="timeCreate"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, `name`, pic_urls, detail_pic_urls, synopsis, tag_id, category_id, weight, is_real, 
     market_price, purchase_price, point, supplier_id, `status`, delete_flag, check_status, 
-    check_by, check_time, create_by, update_by, create_time, update_time
+    check_by, check_time, create_by, update_by, create_time, update_time, time_create
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from goods
     where id = #{id,jdbcType=BIGINT}
+    and delete_flag = 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from goods
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.mall.wms.entity.GoodsEntity">
-    insert into goods (id, `name`, pic_urls, 
-      detail_pic_urls, synopsis, tag_id, 
-      category_id, weight, is_real, 
-      market_price, purchase_price, point, 
-      supplier_id, `status`, delete_flag, 
-      check_status, check_by, check_time, 
-      create_by, update_by, create_time, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{picUrls,jdbcType=VARCHAR}, 
-      #{detailPicUrls,jdbcType=VARCHAR}, #{synopsis,jdbcType=VARCHAR}, #{tagId,jdbcType=INTEGER}, 
-      #{categoryId,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, #{isReal,jdbcType=TINYINT}, 
-      #{marketPrice,jdbcType=DECIMAL}, #{purchasePrice,jdbcType=DECIMAL}, #{point,jdbcType=INTEGER}, 
-      #{supplierId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{deleteFlag,jdbcType=TINYINT}, 
-      #{checkStatus,jdbcType=TINYINT}, #{checkBy,jdbcType=BIGINT}, #{checkTime,jdbcType=INTEGER}, 
-      #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
   <insert id="insertSelective" parameterType="com.mall.wms.entity.GoodsEntity">
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -127,6 +111,9 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="timeCreate!=null">
+        time_create
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -181,7 +168,7 @@
         #{checkBy,jdbcType=BIGINT},
       </if>
       <if test="checkTime != null">
-        #{checkTime,jdbcType=INTEGER},
+        #{checkTime,jdbcType=BIGINT},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=BIGINT},
@@ -194,6 +181,9 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeCreate!=null">
+        #{timeCreate,jdbcType=BIGINT}
       </if>
     </trim>
   </insert>
@@ -249,7 +239,7 @@
         check_by = #{checkBy,jdbcType=BIGINT},
       </if>
       <if test="checkTime != null">
-        check_time = #{checkTime,jdbcType=INTEGER},
+        check_time = #{checkTime,jdbcType=BIGINT},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=BIGINT},
@@ -262,6 +252,9 @@
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeCreate!=null">
+        time_create = #{time_create,jdbcType=BIGINT}
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -284,18 +277,18 @@
       delete_flag = #{deleteFlag,jdbcType=TINYINT},
       check_status = #{checkStatus,jdbcType=TINYINT},
       check_by = #{checkBy,jdbcType=BIGINT},
-      check_time = #{checkTime,jdbcType=INTEGER},
+      check_time = #{checkTime,jdbcType=BIGINT},
       create_by = #{createBy,jdbcType=BIGINT},
       update_by = #{updateBy,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByCondition" resultMap="BaseResultMap">
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.mall.wms.vo.GoodsAuditListIn">
     select <include refid="Base_Column_List"/>
     from goods
-    where 1=1
-    <if test="type == 1">
+    where delete_flag = 0
+   <!-- <if test="type == 1">
       and check_status = 0
     </if>
     <if test="type == 2">
@@ -306,6 +299,12 @@
     </if>
     <if test="type == 4">
       and status = 1
+    </if>-->
+    <if test="startTime!=null">
+      and time_create >= #{startTime}
+    </if>
+    <if test="startTime!=null">
+      and time_create <![CDATA[<=]]> #{endTime}
     </if>
     <if test="vague!=null">
       and name like concat('%',#{vague},'%')
@@ -313,28 +312,84 @@
     <if test="categoryId!=null">
       and category_id=#{categoryId}
     </if>
+    <if test="tagId!=null">
+      and tag_id=#{tagId}
+    </if>
   </select>
 
-  <update id="updateByType">
+  <update id="updateStatusByType" parameterType="com.mall.wms.vo.GoodsToExamineIn">
     update goods
     <if test="type==1">
-     set check_status = 0
+      set status = #{status}
     </if>
     <if test="type==2">
-     set check_status = 1
-    </if>
-    <if test="type==3">
-     set status = 1
-    </if>
-    <if test="type==4">
-     set status = 2
+     set check_status = #{status},
+     <if test="userId!=null">
+       check_by = #{userId},
+     </if>
+     check_time =#{time}
     </if>
     where id = #{goodsId,jdbcType=INTEGER}
+    and delete_flag = 0
   </update>
 
   <select id="selectCount" resultType="java.lang.Long">
     select count(id)
     from goods
     where status=1
+  </select>
+  
+  <select id="selectGetGoodsList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from goods
+    where status=1
+    order by weight
+  </select>
+
+  <select id="selectGoodsByName" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    <if test="name != null ">
+    where name like concat(concat('%',#{phone}),'%')
+    </if>
+    and status =1
+    order by weight
+  </select>
+  <select id="selectGoodsByTag" parameterType="java.lang.Integer" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    where tag_id=#{tagId}
+    and
+    status =1
+    order by weight
+  </select>
+
+  <select id="selectGoodsByVriety" parameterType="java.lang.Integer" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    where category_id=#{vrietyId}
+    and
+    status =1
+    order by weight
+  </select>
+
+  <select id="selectGoodsByIds" resultType="com.mall.wms.entity.GoodsEntity">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    WHERE id in
+    <foreach collection="goodsIds" item="ids" open="(" close=")" separator=",">
+    #{ids}
+    </foreach>
+    and status =1
+  </select>
+
+  <select id="selectGoodsCount" resultType="java.lang.Long">
+    select count(id)
+    from goods
+    where delete_flag = 0
   </select>
 </mapper>
