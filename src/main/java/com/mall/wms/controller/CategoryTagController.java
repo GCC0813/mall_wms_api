@@ -25,9 +25,9 @@ public class CategoryTagController {
     @Autowired
     private CategoryTagService categoryTagService;
 
-    @Autowired
+    /*@Autowired
     @Qualifier("oneRabbitTemplate")
-    private RabbitTemplate oneRabbitTemplate;
+    private RabbitTemplate oneRabbitTemplate;*/
 
     @PostMapping("category-tag-list")
     public JsonOut categoryTagList(){
@@ -61,9 +61,9 @@ public class CategoryTagController {
 
 
 
-    @GetMapping("abc")
+    /*@GetMapping("abc")
     public void abc(String a){
         oneRabbitTemplate.convertAndSend("qqq",a);
-    }
+    }*/
 
 }
