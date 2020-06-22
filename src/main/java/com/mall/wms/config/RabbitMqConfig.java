@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Primary;
  * @author haonan
  * create on 2020/4/15 10:32
  */
+/*
 @Configuration
 public class RabbitMqConfig {
 
@@ -77,3 +78,4 @@ public class RabbitMqConfig {
         return factory;
     }
 }
+*/

@@ -17,9 +17,9 @@ public class LogCostInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if(Integer.parseInt(request.getHeader("a"))==1){
+        /*if(Integer.parseInt(request.getHeader("a"))==1){
             throw new BizException(CodeMsg.CODE_304);
-        }
+        }*/
         return true;
     }
 

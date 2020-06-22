@@ -1,5 +1,8 @@
 package com.mall.wms.service;
 
+import com.mall.wms.entity.GoodsCategoryEntity;
+
+import java.lang.reflect.Constructor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,17 +13,13 @@ import java.time.format.DateTimeFormatter;
 public class Test {
 
 
-    public static void main(String[] args) {
-        LocalDate date  = LocalDate.now();
-        for (int i=7;i>0;i--){
-            String str = date.minusDays(i).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-            System.out.println(str);
+    public static void main(String[] args) throws Exception {
 
-        }
-
-        System.out.println(date);
-
-
+      /*  Class clazz = Class.forName("com.mall.wms.entity.GoodsCategoryEntity");
+        Constructor constructor = clazz.getConstructor(null);
+        GoodsCategoryEntity entity = (GoodsCategoryEntity)constructor.newInstance();
+        entity.setStatus(1);
+        System.out.println(entity);*/
     }
 
 }
