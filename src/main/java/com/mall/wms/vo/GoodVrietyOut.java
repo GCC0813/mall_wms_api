@@ -2,7 +2,6 @@ package com.mall.wms.vo;
 
 import com.mall.wms.enums.GoodsEnums;
 import lombok.Data;
-import sun.dc.pr.PRError;
 
 import java.util.List;
 

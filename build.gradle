@@ -63,7 +63,7 @@ dependencies {
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+    //compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2
@@ -76,5 +76,43 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.2.2.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.2.2.RELEASE'
+    // https://mvnrepository.com/artifact/io.swagger/swagger-annotations
+    compile group: 'io.swagger', name: 'swagger-annotations', version: '1.5.22'
 
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+    testCompileOnly 'org.projectlombok:lombok:1.18.8'
 }
+
+static def releaseTime() {
+    return new Date().format("yyyyMMddHHmm", TimeZone.getDefault())
+}
+
+//删除 旧的.jar包 任务
+task clearJar(type: Delete) {
+    FileTree tree = fileTree("build/libs/")
+    tree.visit {
+        element ->
+            if (element.getName().endsWith(".jar")) {
+                println "$element.file.name" + " " + element.getName()
+                delete element.file
+            }
+    }
+}
+task makeJar(type: Jar){
+    //指定生成的jar名
+    baseName 'mall_wms_api_'+ releaseTime()
+    //从哪里打包class文件
+    from('build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/hd/test/sdk/')
+    //打包到jar后的目录结构
+    into('com/hd/test/sdk/')
+    //去掉不需要打包的目录和文件
+    exclude('BuildConfig.class','R.class')
+    //去掉R$开头的文件
+    exclude{it.name.startsWith('R$')}
+}
+makeJar.dependsOn(clearJar,build)
+
+

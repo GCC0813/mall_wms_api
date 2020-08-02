@@ -174,10 +174,10 @@ public class CategoryTagService {
 
 
 
-    @RabbitListener(queues = "qqq",containerFactory = "oneFactory")
+    /*@RabbitListener(queues = "qqq",containerFactory = "oneFactory")
     public void over(Message message){
-        System.out.println(new String(message.getBody()));
-    }
+        System.out.println(Arrays.toString(message.getBody()));
+    }*/
 
 
 }
