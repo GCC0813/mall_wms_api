@@ -50,9 +50,9 @@ public class UserService {
                 }
                 type = 1;
             } else {
-                /*if(!Pattern.compile(PHONE_REGULAR).matcher(userName).matches()){
+                if(!Pattern.compile(PHONE_REGULAR).matcher(userName).matches()){
                     throw bizException(CODE_206);
-                }*/
+                }
                 type = 2;
             }
         }
