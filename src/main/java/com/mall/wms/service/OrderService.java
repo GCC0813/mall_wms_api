@@ -60,25 +60,22 @@ public class OrderService {
                 orderGoodsMap = orderGoods.stream().collect(Collectors.toMap(OrderGoodsEntity::getOrderId, Function.identity()));
             }
 
-            List<OrderDeliveryEntity> orderDeliveries = orderDeliveryMapper.selectOrderDeliveryByOrderIds(orderIds);
-            Map<Long, OrderDeliveryEntity> orderDeliveryMap = new HashMap<>();
-            if (!CollectionUtils.isEmpty(orderDeliveries)) {
-                orderDeliveryMap = orderDeliveries.stream().collect(Collectors.toMap(OrderDeliveryEntity::getOrderId, Function.identity()));
-            }
-
             List<UserEntity> users = userMapper.selectUserListByIds(userIds, 1);
             Map<Integer, UserEntity> usersMap = new HashMap<>();
             if (!CollectionUtils.isEmpty(orderGoods)) {
                 usersMap = users.stream().collect(Collectors.toMap(UserEntity::getId, Function.identity()));
             }
 
+            List<OrderDeliveryEntity> orderDeliveries = orderDeliveryMapper.selectOrderDeliveryByOrderIds(orderIds);
+            Map<Long, OrderDeliveryEntity> orderDeliveryMap = new HashMap<>();
+            if (!CollectionUtils.isEmpty(orderDeliveries)) {
+                orderDeliveryMap = orderDeliveries.stream().collect(Collectors.toMap(OrderDeliveryEntity::getOrderId, Function.identity()));
+            }
             for (UserOrderEntity uo : userOrders) {
                 orders.add(new OrderListOut.Order(usersMap, orderGoodsMap, orderDeliveryMap, uo));
             }
         }
-        return new OrderListOut(orders) {{
-            setCount(page.getTotal());
-        }};
+        return new OrderListOut(orders) {{ setCount(page.getTotal()); }};
     }
 
 

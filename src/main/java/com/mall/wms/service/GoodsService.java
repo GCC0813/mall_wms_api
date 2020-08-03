@@ -55,7 +55,8 @@ public class GoodsService {
     public CodeMsg addGoods(GoodsEntity in){
         in.setPicUrls(getSubStringImgPic(in.getPicUrls()));
         in.setDetailPicUrls(getSubStringImgPic(in.getDetailPicUrls()));
-        //in.setCreateBy(userEntity.getId().longValue());
+        UserEntity userEntity = (UserEntity) httpSession.getAttribute("user");
+        in.setCreateBy(userEntity.getId().longValue());
         in.setTimeCreate(System.currentTimeMillis()/1000);
         int row  = goodsMapper.insertSelective(in);
         if(row<1){
@@ -148,19 +149,14 @@ public class GoodsService {
         if (Objects.isNull(entity)) {
             throw bizException(CODE_304);
         }
-
         GoodsTagEntity goodsTagEntity = goodsTagMapper.selectByPrimaryKey(entity.getTagId());
-
         GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.selectByPrimaryKey(entity.getCategoryId());
-
         List<Long> userIds = new ArrayList<Long>() {{
             add(entity.getCheckBy());
             add(entity.getCreateBy());
             add(entity.getUpdateBy());
         }};
-
         GoodsSupplierEntity goodsSupplierEntity = goodsSupplierMapper.selectByPrimaryKey(entity.getSupplierId());
-
         List<UserEntity> userEntitieList = userMapper.selectUserListByIds(userIds,0);
         Map<Integer, UserEntity> userEntityHashMap = new HashMap<>();
         if (!CollectionUtils.isEmpty(userEntitieList)) {
