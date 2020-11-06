@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.wms.mapper.BasSendSmsMapper">
+  <resultMap id="BaseResultMap" type="com.mall.wms.entity.BasSendSmsEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="countryCode" jdbcType="VARCHAR" property="countrycode" />
+    <result column="is_use" jdbcType="TINYINT" property="isUse" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="time_created" jdbcType="INTEGER" property="timeCreated" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="is_send" jdbcType="TINYINT" property="isSend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, countryCode, is_use, code, `type`, time_created, ip_address, is_send
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bas_send_sms
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bas_send_sms
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mall.wms.entity.BasSendSmsEntity">
+    insert into bas_send_sms (id, phone, countryCode, 
+      is_use, code, `type`, 
+      time_created, ip_address, is_send
+      )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{countrycode,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=TINYINT}, #{code,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{timeCreated,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, #{isSend,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mall.wms.entity.BasSendSmsEntity">
+    insert into bas_send_sms
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="countrycode != null">
+        countryCode,
+      </if>
+      <if test="isUse != null">
+        is_use,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="timeCreated != null">
+        time_created,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="isSend != null">
+        is_send,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="countrycode != null">
+        #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null">
+        #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="timeCreated != null">
+        #{timeCreated,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isSend != null">
+        #{isSend,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.wms.entity.BasSendSmsEntity">
+    update bas_send_sms
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="countrycode != null">
+        countryCode = #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null">
+        is_use = #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="timeCreated != null">
+        time_created = #{timeCreated,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isSend != null">
+        is_send = #{isSend,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mall.wms.entity.BasSendSmsEntity">
+    update bas_send_sms
+    set phone = #{phone,jdbcType=VARCHAR},
+      countryCode = #{countrycode,jdbcType=VARCHAR},
+      is_use = #{isUse,jdbcType=TINYINT},
+      code = #{code,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=TINYINT},
+      time_created = #{timeCreated,jdbcType=INTEGER},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      is_send = #{isSend,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
