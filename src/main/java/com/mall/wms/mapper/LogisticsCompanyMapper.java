@@ -1,6 +1,7 @@
 package com.mall.wms.mapper;
 
 import com.mall.wms.entity.LogisticsCompanyEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface LogisticsCompanyMapper {
     int updateByPrimaryKey(LogisticsCompanyEntity record);
 
     List<LogisticsCompanyEntity> selectAll();
+
+    int batchInsert(@Param("a") List<LogisticsCompanyEntity> a);
 }

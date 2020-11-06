@@ -143,4 +143,13 @@
     from logistics_company
     where status=1
   </select>
+
+  <insert id="batchInsert">
+    INSERT INTO logistics_company
+    (name,status)
+    VALUES
+    <foreach collection="a" item="item" separator="," >
+      (#{item.name},1)
+    </foreach>
+  </insert>
 </mapper>

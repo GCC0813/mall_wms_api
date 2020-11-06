@@ -51,10 +51,10 @@ public class Filter implements javax.servlet.Filter {
 			chain.doFilter(request, response);
 			return;
 		}
-		if(Objects.isNull(httpSession.getAttribute("user"))){
+		/*if(Objects.isNull(httpSession.getAttribute("user"))){
 			FilterConstant.outBusinessErr(response, ok(LANDING_FAILURE), mapper);
 			return;
-		}
+		}*/
 		chain.doFilter(req, res);
 	}
 

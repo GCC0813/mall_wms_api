@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Primary;
  * @author haonan
  * create on 2020/4/15 10:32
  */
-/*
 @Configuration
 public class RabbitMqConfig {
 
@@ -43,30 +42,12 @@ public class RabbitMqConfig {
         return connectionFactory;
     }
 
-    @Bean(name = "oneRabbitTemplate")
-    public RabbitTemplate firstRabbitTemplate(
-            @Qualifier("oneRabbitConnectionFactory") ConnectionFactory connectionFactory
-    ) {
-        return new RabbitTemplate(connectionFactory);
-    }
-
     @Bean(name="twoRabbitTemplate")
     public RabbitTemplate secondRabbitTemplate(
             @Qualifier("twoRabbitConnectionFactory") ConnectionFactory connectionFactory
     ){
         return new RabbitTemplate(connectionFactory);
     }
-
-    @Bean(name="oneFactory")
-    public SimpleRabbitListenerContainerFactory hospSyncFactory(
-            SimpleRabbitListenerContainerFactoryConfigurer configurer,
-            @Qualifier("oneRabbitConnectionFactory") ConnectionFactory connectionFactory
-    ) {
-        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-        configurer.configure(factory, connectionFactory);
-        return factory;
-    }
-
 
     @Bean(name="twoFactory")
     public SimpleRabbitListenerContainerFactory hPayFactory(
@@ -78,4 +59,3 @@ public class RabbitMqConfig {
         return factory;
     }
 }
-*/
