@@ -1,3 +1,4 @@
+/*
 package com.mall.wms.config;
 
 import com.google.common.collect.Maps;
@@ -64,3 +65,4 @@ public class ShardingDataSourceConfig {
     }
 
 }
+*/

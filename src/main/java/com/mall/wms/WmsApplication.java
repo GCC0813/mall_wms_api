@@ -1,9 +1,11 @@
 package com.mall.wms;
 
 
+import org.apache.logging.log4j.core.appender.db.jdbc.DataSourceConnectionSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * @author haonan

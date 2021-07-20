@@ -1,3 +1,4 @@
+/*
 package com.mall.wms.config;
 
 import com.zaxxer.hikari.HikariDataSource;
@@ -17,3 +18,4 @@ public class ShardingConfig {
     private MasterSlaveRuleConfiguration masterSlaveRule;
 
 }
+*/

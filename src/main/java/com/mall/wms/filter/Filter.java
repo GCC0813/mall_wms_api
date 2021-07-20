@@ -19,7 +19,7 @@ import static com.mall.wms.vo.JsonOut.ok;
  * @author haonan
  * 过滤器
  */
-@Configuration
+//@Configuration
 public class Filter implements javax.servlet.Filter {
 
 	@Autowired

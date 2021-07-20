@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 
-@Mapper
 public interface UserLoginMapper {
     int deleteByPrimaryKey(Integer id);
 
